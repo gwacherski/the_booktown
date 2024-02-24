@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
     #fav com user.id e book.id
     #salvar planilha fav;
     #redirecionar para (onde)?
-    #é possível favoritar direto da página de index? como small icon
+    #é possível favoritar direto da página de index? como small icon - Com stimulus, criar um ícone de favoritar e desfavoritar
   end
 
   def edit
@@ -33,5 +33,12 @@ class FavoritesController < ApplicationController
     #edit seria alterar de favorito para não favorito? ou seria destroy?
   end
 
-
 end
+
+
+# FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
+# 1 Basico (create, show, edit, update, destroy)
+# 1 Tentar utilizar Stimulus para criar um botão de favoritar e desfavoritar na página do book
+# 1 Mostrar os favoritos do usuário na página do usuário (uma rota dedicada a isso)
+# 1 Mostrar quantos favoritos o book tem na página do book (métodod search? algo assim)
+

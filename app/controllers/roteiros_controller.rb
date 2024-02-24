@@ -26,3 +26,15 @@ class RoteirosController < ApplicationController
   def destroy
   end
 end
+
+
+# FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
+# 1 Basico (create, show, edit, update, destroy)
+# 1 Sistema de rating para o roteiro (0 a 5 por exemplo)
+# 1 Roteiro mostra as reviews relacionadas a ele
+# 1 Usuário: Edita e deleta apenas suas próprias roteiros, Administrador: Edita e deleta roteiros de qualquer usuário
+# 1 Upload de fotos no roteiro (limitar quantidade de fotos por roteiro talvez)
+# 1 Geocoding para o roteiro (pegar as localizações que o usuário passou e mostrar no mapa)
+# 2 Mostrar data que o roteiro foi editado pela última vez (updated_at)
+# 2 Ferramenta de compartilhar o roteiro (whatsapp, facebook, instagram, etc)
+# 2/3 Durante a criação do roteiro, sugestões baseadas em OpenAI
