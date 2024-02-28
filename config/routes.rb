@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :books do
-    resources :reviews, only: %i[new create]
+    resources :reviews, only: [:new, :create,:show, :edit, :update, :destroy]
+    resources :roteiros
+
   end
 end
+
