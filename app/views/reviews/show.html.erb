@@ -1,0 +1,17 @@
+<div class="review-form">
+  <%= form_with(model: @review, url: book_reviews_path(@book), local: true) do |form| %>
+    <div class="field">
+      <%= form.label :rating %>
+      <%= form.number_field :rating %>
+    </div>
+    <div class="field">
+      <%= form.label :comment %>
+      <%= form.text_area :comment %>
+    </div>
+    <div class="actions">
+      <%= form.submit "Create Review" %>
+    </div>
+  <% end %>
+</div>
+
+<%#SHOW DA REVIEW DENTRO DO LIVRO PARA TODOS VEREM DENTRO DO SHOW DE BOOKS %>
