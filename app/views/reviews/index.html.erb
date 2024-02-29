@@ -1,0 +1,11 @@
+<% @reviews.each do |review| %>
+  <% if review.user_id == current_user.id %>
+    <div>
+      <h3><%= review.title %></h3>
+      <p><%= review.content %></p>
+    </div>
+  <% end %>
+<% end %>
+
+
+<%# REVIEW DAS REVIEWS DO USUÁRIO%>
