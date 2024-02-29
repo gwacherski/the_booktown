@@ -1,12 +1,11 @@
 class RoteirosController < ApplicationController
+  before_action :set_roteiro, only: [:show, :edit, :update, :destroy, :update_rating]
 
   def index
     @roteiros = Roteiro.all
   end
 
   def show
-    #onde será mostrado os roteiros? no show do livro? ou em uma página separada?
-    #página só para roteiros dos users + roteiros na pagina do book.
   end
 
   def new
@@ -14,19 +13,53 @@ class RoteirosController < ApplicationController
   end
 
   def create
-    #usuário pode criar roteiro DELE para qualquer livro mas aprovação para todos usuários na página do livro passa pelo admin?
+    @roteiro = Roteiro.new(roteiro_params)
+    @roteiro.user_id = current_user
+    @roteiro.book_id = params[:book_id]
+    if @roteiro.save
+      redirect_to roteiro_path(@roteiro)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def update
+    if @roteiro.update(roteiro_params)
+      redirect_to roteiro_path(@roteiro)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @roteiro.destroy
+    redirect_to roteiros_path
+  end
+
+  def update_rating
+    @roteiro.rating = params[:rating]
+    if @roteiro.save
+      redirect_to roteiro_path(@roteiro)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def set_roteiro
+    @roteiro = Roteiro.find(params[:id])
+  end
+
+  def roteiro_params
+    params.require(:roteiro).permit(:description, :location, :rating, :title, :activity_description,
+                                    :activity_address, :estimated_time, :estimated_costs, :activity_done,
+                                    :book_id, :user_id)
   end
 end
-
 
 # FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
 # 1 Basico (create, show, edit, update, destroy)
