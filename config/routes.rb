@@ -12,8 +12,5 @@ Rails.application.routes.draw do
 
   resources :books do
     resources :reviews, only: [:new, :create,:show, :edit, :update, :destroy]
-    resources :roteiros
-
   end
 end
-

@@ -24,8 +24,6 @@ class BooksController < ApplicationController
 
   def destroy
   end
-
-
 end
 
 # FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
