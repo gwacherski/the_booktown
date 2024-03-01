@@ -14,6 +14,14 @@ class BooksController < ApplicationController
   end
 
   def create
+    @roteiro = Roteiro.find(params[:roteiro_id])
+    @book = Book.new(book_params)
+    @book.user = current_user
+    if @book.save
+      redirect_to book_path(@book)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -33,3 +41,5 @@ end
 # 1 Link para foto da capa do livro ou upload de foto?
 # 1 Sistema de favoritar livros (link entre livro e usuário)
 # 2 Em books, ordenação os roteiros por rating ou por data de criação
+# Colocar parte destinada a dedicatórias
+# colocar página de reviews do usuário

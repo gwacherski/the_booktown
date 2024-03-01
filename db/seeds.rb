@@ -8,32 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# seeds.rb
-
 require 'httparty'
 
-User.create(email: "amor@love.com", password: "123456")
+Book.destroy_all
+User.destroy_all
+Roteiro.destroy_all
+Review.destroy_all
 
-Review.create(
-  description: "Ótima experiência!",
-  rating: 4.8,
-  created_by: "Alice",
-  user_id: User.first
-)
-
-Roteiro.create(
-  description: "Viagem à Praia",
-  author: "João",
-  location: "Praia do Sol",
-  rating: 4.5,
-  review_id: Review.first
-)
-
-puts 'entrance'
-puts User.first
-puts Review.first
-puts Roteiro.first
-puts "fim"
+user = User.new(email: "amor@love.com", password: "123456")
+user.save!
 
 def fetch_google_books(author)
   puts 'fazendo o seed'
@@ -55,9 +38,8 @@ def fetch_google_books(author)
     author = volume_info['authors']&.join(', ')
     description = volume_info['description']
     user = User.first
-    roteiro = Roteiro.first
-    puts roteiro
-    books << { name: name, author: author, description: description, user: user, roteiro_id: roteiro}
+
+    books << { name: name, author: author, description: description, user: user}
   end
   puts books[0]
   books.each do |book|
@@ -66,3 +48,33 @@ def fetch_google_books(author)
 end
 
 fetch_google_books('Machado de Assis')
+
+roteiro = Roteiro.new(
+  description: 'Test roteiro',
+  author: 'Test author',
+  location: 'Test location',
+  rating: 4.5,
+  title: 'Test title',
+  activity_description: 'Test activity description',
+  activity_address: 'Test activity address',
+  estimated_time: 2.5,
+  estimated_costs: 100.0,
+  activity_done: false,
+  book_id: Book.first.id
+)
+roteiro.save!
+
+review = Review.new(
+  description: "Ótima experiência!",
+  rating: 4.8,
+  created_by: "Alice",
+  user_id: user.id,
+  roteiro_id: roteiro.id
+)
+review.save!
+
+puts 'entrance'
+puts user.errors.messages
+puts review.errors.messages
+puts roteiro.errors.messages
+puts "fim"
