@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_27_235149) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_01_000758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,8 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_235149) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "roteiro_id", null: false
-    t.index ["roteiro_id"], name: "index_books_on_roteiro_id"
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
@@ -73,6 +71,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_235149) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.bigint "roteiro_id", null: false
+    t.index ["roteiro_id"], name: "index_reviews_on_roteiro_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -83,14 +83,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_235149) do
     t.decimal "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "review_id", null: false
     t.string "title", null: false
     t.string "activity_description", null: false
     t.string "activity_address", null: false
     t.decimal "estimated_time", default: "0.0"
     t.decimal "estimated_costs", default: "0.0"
     t.boolean "activity_done", default: false
-    t.index ["review_id"], name: "index_roteiros_on_review_id"
+    t.bigint "book_id", null: false
+    t.index ["book_id"], name: "index_roteiros_on_book_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -107,10 +107,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_27_235149) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "books", "roteiros"
   add_foreign_key "books", "users"
   add_foreign_key "favorites", "books"
   add_foreign_key "favorites", "users"
+  add_foreign_key "reviews", "roteiros"
   add_foreign_key "reviews", "users"
-  add_foreign_key "roteiros", "reviews"
+  add_foreign_key "roteiros", "books"
 end
