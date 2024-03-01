@@ -1,0 +1,17 @@
+<div class="container">
+  <%= simple_form_for(@roteiro) do |f| %>
+    <%= f.input :description, placeholder: 'Enter description' %>
+    <%= f.input :author, placeholder: 'Enter author' %>
+    <%= f.input :location, placeholder: 'Enter location' %>
+    <%= f.input :rating, placeholder: 'Enter rating' %>
+    <%= f.input :review_id, placeholder: 'Enter review id' %>
+    <%= f.input :title, placeholder: 'Enter title' %>
+    <%= f.input :activity_description, placeholder: 'Enter activity description' %>
+    <%= f.input :activity_address, placeholder: 'Enter activity address' %>
+    <%= f.input :estimated_time, placeholder: 'Enter estimated time' %>
+    <%= f.input :estimated_costs, placeholder: 'Enter estimated costs' %>
+    <%= f.check_box :activity_done %>
+    <%= f.button :submit %>
+    <%= link_to "Cancel", roteiros_path %>
+  <% end %>
+</div>

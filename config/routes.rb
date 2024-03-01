@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :books do
-    resources :reviews, only: [:new, :create,:show, :edit, :update, :destroy]
+    resources :roteiros, only: [:new, :create, :show, :edit, :update, :destroy] do
+      resources :reviews, only: [:new, :create, :show, :edit, :update, :destroy]
+    end
   end
+  resources :favorites, only: [:create, :destroy]
 end
