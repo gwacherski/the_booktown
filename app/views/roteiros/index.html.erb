@@ -1,10 +1,2 @@
 
   <h1>List of Itinerarys</h1>
-  <ul>
-    <% @roteiros.each do |roteiro| %>
-      <li><%= roteiro.title %></li>
-      <li><%= link_to 'Edit', edit_roteiro_path(roteiro) %></li>
-      <li><%= link_to 'Delete', roteiro_path(roteiro), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-    <% end %>
-  <%= link_to 'New Itinerary', new_roteiro_path %>
-  <%= link  %>
