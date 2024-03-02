@@ -1,4 +1,4 @@
-<%= simple_form_for @book do |f| %>
+<%= simple_form_for @book, url: books_path do |f| %>
   <%= f.input :name %>
   <%= f.input :author %>
   <%= f.input :genre %>

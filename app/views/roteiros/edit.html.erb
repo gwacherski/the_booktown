@@ -1,0 +1,16 @@
+<div class="container">
+  <%= simple_form_for([@book, @roteiro]) do |f| %>
+    <%= f.input :description %>
+    <%= f.input :location %>
+    <%= f.input :rating %>
+    <%= f.input :title %>
+    <%= f.input :activity_description %>
+    <%= f.input :activity_address %>
+    <%= f.input :estimated_time %>
+    <%= f.input :estimated_costs %>
+    <%= f.label :activity_done, "I did this itinerary" %>
+      <%= f.check_box :activity_done %>
+    <%= f.button :submit, "Finish editing" %>
+    <%= link_to "Cancel", book_roteiro_path %>
+  <% end %>
+</div>
