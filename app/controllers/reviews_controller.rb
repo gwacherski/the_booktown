@@ -15,13 +15,17 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @book = Book.find(params[:book_id])
+    puts review_params
     @review = Review.new(review_params)
     @review.user_id = current_user.id
-    @review.pending_approval = true # Set the review as pending approval
+    @review.roteiro_id = params[:roteiro_id]
 
-    if @review.save
-      redirect_to book_path
+    # @review.pending_approval = true # Set the review as pending approval
+
+    book = Book.find(params[:book_id])
+
+    if @review.save!
+      redirect_to book_path(book)
     else
       alert('Erro ao criar review')
       render :new #aqui vai ser o javascript abrindo e fechando a DIV de create renew, pop up de "aguardando review do admin?"
@@ -59,7 +63,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :comment, :book_id, :user_id, photos: [3])
+    params.require(:review).permit(:rating, :description, :book_id, :user_id, :roteiro_id)
   end
 end
 
