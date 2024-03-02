@@ -14,8 +14,8 @@
   <ul>
     <% @roteiros.each do |roteiro| %>
       <li><%= roteiro.title %></li>
-      <li><%= link_to 'Edit', edit_roteiro_path(roteiro) %></li>
-      <li><%= link_to 'Delete', roteiro_path(roteiro), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <%= link_to 'Edit', edit_roteiro_path(roteiro.id)%>
+      <%= link_to 'Delete', roteiro_path(roteiro), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-  <%= link_to 'New Itinerary', new_roteiro_path %>
+  <%= link_to 'New Itinerary', new_book_roteiro_path(@book) %>
   </ul>

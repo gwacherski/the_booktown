@@ -1,5 +1,6 @@
 <div class="container">
-  <%= simple_form_for([@book, @roteiro]) do |f| %>
+  <%= simple_form_for(@roteiro) do |f| %>
+
     <%= f.input :description %>
     <%= f.input :location %>
     <%= f.input :rating %>
@@ -10,7 +11,7 @@
     <%= f.input :estimated_costs %>
     <%= f.label :activity_done, "I did this itinerary" %>
       <%= f.check_box :activity_done %>
-    <%= f.button :submit, "Finish editing" %>
-    <%= link_to "Cancel", book_roteiro_path %>
+    <%= f.button :submit, "Finish editing"%>
+    <%= link_to "Cancel", book_path(@roteiro.book_id) %>
   <% end %>
 </div>
