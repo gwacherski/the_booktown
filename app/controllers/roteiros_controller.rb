@@ -1,5 +1,5 @@
 class RoteirosController < ApplicationController
-  before_action :set_roteiro, only: [:show, :edit, :update, :destroy]
+  before_action :set_roteiro, only: [:show, :update, :destroy]
 
   def index
     @roteiros = Roteiro.all
@@ -28,7 +28,8 @@ class RoteirosController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:book_id])
+    # @book = Book.find(params[:book_id])
+    @roteiro = Roteiro.find(params[:id])
   end
 
   def update
