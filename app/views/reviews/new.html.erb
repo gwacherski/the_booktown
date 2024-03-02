@@ -1,26 +1,15 @@
-<%# renderizar o form javascript? %>
-
-<%= form_for @review, remote: true do |f| %>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+<%= form_with(model: @review, url:  book_roteiro_reviews_path, local: true) do |form|%>
+ <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
-    </div>
-
-    <div class="field">
-      <%= f.label :images %><br>
-      <%= f.file_field :images, multiple: true %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-
+    <%= form.label :rating %>
+    <%= form.select :rating, (1..5) %>
   </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= form.submit %>
   </div>
+<% end %>
