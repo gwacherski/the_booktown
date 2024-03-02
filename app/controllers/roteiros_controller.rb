@@ -1,5 +1,5 @@
 class RoteirosController < ApplicationController
-  before_action :set_roteiro, only: [:show, :edit, :update, :destroy, :update_rating]
+  before_action :set_roteiro, only: [:show, :edit, :update, :destroy]
 
   def index
     @roteiros = Roteiro.all
@@ -9,44 +9,50 @@ class RoteirosController < ApplicationController
   end
 
   def new
+    @book = Book.find(params[:book_id])
     @roteiro = Roteiro.new
   end
 
   def create
+    book_id = params[:book_id]
+    @book = Book.find(book_id)
     @roteiro = Roteiro.new(roteiro_params)
-    @roteiro.user_id = current_user
-    @roteiro.book_id = params[:book_id]
+    @roteiro.author = current_user.email # TROCAR PARA USERNAME DEPOIS
+    @roteiro.book_id = book_id
+
     if @roteiro.save
-      redirect_to roteiro_path(@roteiro)
+      redirect_to book_path(@book, @roteiro)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @book = Book.find(params[:book_id])
   end
 
   def update
     if @roteiro.update(roteiro_params)
-      redirect_to roteiro_path(@roteiro)
+      redirect_to book_roteiro_path(@roteiro)
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @book = Book.find(params[:book_id])
     @roteiro.destroy
-    redirect_to roteiros_path
+    redirect_to book_path(@book), notice: "Ordem deletada com sucesso."
   end
 
-  def update_rating
-    @roteiro.rating = params[:rating]
-    if @roteiro.save
-      redirect_to roteiro_path(@roteiro)
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
+  # def update_rating
+  #   @roteiro.rating = params[:rating]
+  #   if @roteiro.save
+  #     redirect_to book_roteiro_path(@roteiro)
+  #   else
+  #     render :edit, status: :unprocessable_entity
+  #   end
+  # end
 
   private
 
@@ -56,8 +62,8 @@ class RoteirosController < ApplicationController
 
   def roteiro_params
     params.require(:roteiro).permit(:description, :location, :rating, :title, :activity_description,
-                                    :activity_address, :estimated_time, :estimated_costs, :activity_done,
-                                    :book_id, :user_id)
+                                    :activity_address, :estimated_time, :estimated_costs, :activity_done)
+
   end
 end
 
