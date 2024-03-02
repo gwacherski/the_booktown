@@ -1,8 +1,19 @@
-<h1>Lista de Livros</h1>
 
-<% @books.each do |book| %>
-  <div>
-    <h2><%= book.name %></h2>
-    <p><%= book.description %></p>
-  </div>
-<% end %>
+<ul class="cards">
+  <% @books.order(id: :asc).each do |book| %>
+    <li class="cards__item col-md-4"> <!-- Added col-md-4 class -->
+      <a href="<%= book_path(book) %>"> <!-- Added link tag -->
+        <div class="card-product">
+          <div class="card-product-infos">
+            <div class=""><%= book.name %></div>
+            <p class="">Author: <%= book.author %></p>
+            <p class="">Genre: <%= book.genre %></p>
+          </div>
+        </div>
+      </a>
+    </li>
+  <% end %>
+</ul>
+</div>
+
+<a href="<%= new_book_path %>" class="btn btn-primary">Add New Book</a>

@@ -1,12 +1,19 @@
 class BooksController < ApplicationController
-
   def index
-    @books = Book.all
+    if params[:query].present?
+      @books = Book.search_by_name_or_author(params[:query])
+      if @books.empty?
+        flash[:notice] = "No books found with the name or author: #{params[:query]}"
+      else
+        @books = Book.search_by_name_or_author(params[:query])
+      end
+    else
+      @books = Book.all
+    end
   end
 
   def show
     @book = Book.find(params[:id])
-    @review = Review.new
   end
 
   def new
@@ -14,23 +21,43 @@ class BooksController < ApplicationController
   end
 
   def create
-    @roteiro = Roteiro.find(params[:roteiro_id])
     @book = Book.new(book_params)
     @book.user = current_user
+
     if @book.save
-      redirect_to book_path(@book)
+      redirect_to books_path(@book)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
+  end
+
   def edit
+    @book = Book.find(params[:id])
   end
 
   def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to books_path(@book)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
-  def destroy
+  private
+
+  def book_params
+    params.require(:book).permit(:name, :author, :genre, :year, :price, :quantity, :photo, :descricao)
+  end
+
+  def order_params
+    params.require(:order).permit(:quantity)
   end
 end
 
