@@ -1,0 +1,20 @@
+  <% Roteiro.all.each do |roteiro| %>
+    <div>
+      <%= roteiro.title %>
+      <%= roteiro.rating %>
+      <%= roteiro.updated_at %>
+      <div> <%# Adicionar carrossel de fotos posteriormente %>
+        <% roteiro.photos.each do |photo| %>
+          <%= image_tag photo.url %>
+        <% end %>
+      </div>
+      <div>
+        <%= roteiro.activity_description %>
+        <%= roteiro.location %>
+        <%= roteiro.activity_address %>
+        <%= roteiro.estimated_time %>
+        <%= roteiro.estimated_costs %>
+        <%#= roteiro.activity_done %>
+      </div>
+    </div>
+  <% end %>

@@ -63,7 +63,7 @@ class RoteirosController < ApplicationController
 
   def roteiro_params
     params.require(:roteiro).permit(:description, :location, :rating, :title, :activity_description,
-                                    :activity_address, :estimated_time, :estimated_costs, :activity_done)
+                                    :activity_address, :estimated_time, :estimated_costs, :activity_done, photos: [])
 
   end
 end
