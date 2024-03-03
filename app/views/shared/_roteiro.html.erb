@@ -1,7 +1,13 @@
   <% Roteiro.all.each do |roteiro| %>
     <div>
       <%= roteiro.title %>
-      <%= roteiro.rating %>
+      <%# Média de avaliações %>
+      <div>
+        <% if roteiro.reviews.present? %>
+          <%= roteiro.reviews.average(:rating) %>
+        <% else %>
+          <p>Leave a review!</p>
+       </div>
       <%= roteiro.updated_at %>
       <div> <%# Adicionar carrossel de fotos posteriormente %>
         <% roteiro.photos.each do |photo| %>
