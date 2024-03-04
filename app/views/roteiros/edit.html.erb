@@ -11,6 +11,15 @@
     <%= f.input :estimated_costs %>
     <%= f.label :activity_done, "I did this itinerary" %>
       <%= f.check_box :activity_done %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <% if resource.photo.attached? %>
+        <% resource.photo.each do |photo| %>
+          <div>
+            <p>Current photo: <%= photo.filename %></p>
+            <%= f.input :remove_photo, as: :boolean %>
+          </div>
+        <% end %>
+      <% end %>
     <%= f.button :submit, "Finish editing"%>
     <%= link_to "Cancel", book_path(@roteiro.book_id) %>
   <% end %>
