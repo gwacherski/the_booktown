@@ -29,19 +29,23 @@ class RoteirosController < ApplicationController
 
   def edit
     # @book = Book.find(params[:book_id])
+    book_id = params[:book_id]
+    @book = Book.find(book_id)
     @roteiro = Roteiro.find(params[:id])
   end
 
   def update
+    # book_id = params[:book_id]
+    @book = Book.find(@roteiro.book_id)
     if @roteiro.update(roteiro_params)
-      redirect_to book_roteiro_path(@roteiro)
+      redirect_to book_path(@book)
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @book = Book.find(params[:book_id])
+    @book = Book.find(@roteiro.book_id)
     @roteiro.destroy
     redirect_to book_path(@book), notice: "Ordem deletada com sucesso."
   end
