@@ -11,25 +11,5 @@
 </div>
 
 <h2>Roteiros</h2>
-  <ul>
-    <% @roteiros.each do |roteiro| %>
-      <li><%= roteiro.title %></li>
-      <%= link_to 'Edit', edit_roteiro_path(roteiro.id)%>
-      <%= link_to 'Delete', roteiro_path(roteiro), method: :delete, data: { confirm: 'Are you sure?' } %>
-
-      <% if user_signed_in? %>
-      <% if current_user.favorites.exists?(roteiro: roteiro) %>
-        <%= link_to 'Remover dos Favoritos', favorite_path(current_user.favorites.find_by(roteiro: roteiro)), method: :delete, data: { confirm: 'Tem certeza?' } %>
-      <% else %>
-        <%= link_to 'Adicionar aos Favoritos', favorites_path(roteiro_id: roteiro), method: :post %>
-      <% end %>
-      <% end %>
-
-      <div id='map' style='width: 780px; height: 300px;'
-      data-controller='map'>
-      </div>
-
-    <% end %>
-
-    <%= link_to 'New Itinerary', new_book_roteiro_path(@book) %>
-</ul>
+<%= render 'shared/roteiro'  %>
+<%= link_to 'New Itinerary', new_book_roteiro_path(@book) %>

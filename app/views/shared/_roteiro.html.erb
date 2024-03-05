@@ -3,15 +3,16 @@
       <%= roteiro.title %>
       <%# Média de avaliações %>
       <div>
-        <% if roteiro.reviews.present? %>
-          <%= roteiro.reviews.average(:rating) %>
-        <% else %>
-          <p>Leave a review!</p>
+        <%# if roteiro.reviews.present? %>
+          <%#= roteiro.reviews.average(:rating) %>
+        <%# else %>
+          <%# <p>Leave a review!</p> %>
+        <%# end %>
        </div>
       <%= roteiro.updated_at %>
       <div> <%# Adicionar carrossel de fotos posteriormente %>
         <% roteiro.photos.each do |photo| %>
-          <%= image_tag photo.url %>
+            <%= image_tag photo.url, size: "200x100" %>
         <% end %>
       </div>
       <div>
@@ -22,5 +23,7 @@
         <%= roteiro.estimated_costs %>
         <%#= roteiro.activity_done %>
       </div>
+      <%= link_to 'Edit', edit_roteiro_path(roteiro.id, book_id: roteiro.book.id) %>
+      <%= button_to 'Delete', book_roteiro_path(roteiro.book.id, roteiro.id), method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
