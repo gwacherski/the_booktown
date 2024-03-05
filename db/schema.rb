@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_114154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,10 +59,8 @@
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "roteiros_id", null: false
     t.bigint "roteiro_id", null: false
     t.index ["roteiro_id"], name: "index_favorites_on_roteiro_id"
-    t.index ["roteiros_id"], name: "index_favorites_on_roteiros_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
@@ -115,7 +114,6 @@
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "books", "users"
   add_foreign_key "favorites", "roteiros"
-  add_foreign_key "favorites", "roteiros", column: "roteiros_id"
   add_foreign_key "favorites", "users"
   add_foreign_key "reviews", "roteiros"
   add_foreign_key "reviews", "users"
