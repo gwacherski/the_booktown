@@ -1,6 +1,6 @@
 class Roteiro < ApplicationRecord
   geocoded_by :activity_address
-  after_validation :geocode, if: :will_save_change_to_address?
+  after_validation :geocode, if: :will_save_change_to_activity_address?
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   belongs_to :book

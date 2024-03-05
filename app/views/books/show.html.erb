@@ -24,6 +24,11 @@
         <%= link_to 'Adicionar aos Favoritos', favorites_path(roteiro_id: roteiro), method: :post %>
       <% end %>
       <% end %>
+
+      <div id='map' style='width: 780px; height: 300px;'
+      data-controller='map'>
+      </div>
+
     <% end %>
 
     <%= link_to 'New Itinerary', new_book_roteiro_path(@book) %>
