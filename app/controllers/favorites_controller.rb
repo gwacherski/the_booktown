@@ -1,44 +1,20 @@
+# app/controllers/favorites_controller.rb
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @favorites = Favorite.where(user: current_user)
-  end
-
-  def show
-    #find do book favorito pela planilha favoritos BOOK.ID e USER.ID
-    #each do? para mostrar em lista, ou em cards menores (como no instagram)
-  end
-
-  def new
-    @favorite = Favorite.new
+    @favorites = current_user.favorites
   end
 
   def create
-    #fav com user.id e book.id
-    #salvar planilha fav;
-    #redirecionar para (onde)?
-    #é possível favoritar direto da página de index? como small icon - Com stimulus, criar um ícone de favoritar e desfavoritar
-  end
-
-  def edit
-    #edit seria alterar de favorito para não favorito? ou seria destroy/update?
-    #edit se faz necessário?
-  end
-
-  def update
-    #edit seria alterar de favorito para não favorito? ou seria destroy?
+    roteiro = Roteiro.find(params[:roteiro_id])
+    current_user.favorites.create(roteiro: roteiro)
+    redirect_to roteiros_path, notice: 'Roteiro favoritado com sucesso.'
   end
 
   def destroy
-    #edit seria alterar de favorito para não favorito? ou seria destroy?
+    favorite = current_user.favorites.find(params[:id])
+    favorite.destroy
+    redirect_to favorites_path, notice: 'Favorito removido com sucesso.'
   end
-
 end
-
-
-# FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
-# 1 Basico (create, show, edit, update, destroy)
-# 1 Tentar utilizar Stimulus para criar um botão de favoritar e desfavoritar na página do book
-# 1 Mostrar os favoritos do usuário na página do usuário (uma rota dedicada a isso)
-# 1 Mostrar quantos favoritos o book tem na página do book (métodod search? algo assim)
-

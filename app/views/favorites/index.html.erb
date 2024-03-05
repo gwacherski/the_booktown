@@ -1,0 +1,14 @@
+<!-- app/views/favorites/index.html.erb -->
+<h1>Meus Favoritos</h1>
+
+<% if @favorites.present? %>
+  <% @favorites.each do |favorite| %>
+    <div class="favorite">
+      <h2><%= favorite.roteiro.nome %></h2>
+      <p><%= favorite.roteiro.descricao %></p>
+      <%= link_to 'Remover dos Favoritos', favorite_path(favorite), method: :delete, data: { confirm: 'Tem certeza?' } %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Nenhum favorito encontrado.</p>
+<% end %>

@@ -83,6 +83,8 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    acts_as_favoritor (6.0.1)
+      activerecord (>= 5.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.16.0)
@@ -319,6 +321,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  acts_as_favoritor
   autoprefixer-rails
   bootsnap
   bootstrap (~> 5.2)
