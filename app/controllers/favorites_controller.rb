@@ -6,6 +6,14 @@ class FavoritesController < ApplicationController
     @favorites = current_user.favorites
   end
 
+  def show
+    @favorite = current_user.favorites.find(params[:id])
+  end
+
+  def new
+    @favorite = current_user.favorites.new
+  end
+
   def create
     roteiro = Roteiro.find(params[:roteiro_id])
     current_user.favorites.create(roteiro: roteiro)
