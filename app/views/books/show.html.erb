@@ -11,11 +11,5 @@
 </div>
 
 <h2>Roteiros</h2>
-  <ul>
-    <% @roteiros.each do |roteiro| %>
-      <li><%= roteiro.title %></li>
-      <%= link_to 'Edit', edit_roteiro_path(roteiro.id)%>
-      <%= link_to 'Delete', roteiro_path(roteiro), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  <%= link_to 'New Itinerary', new_book_roteiro_path(@book) %>
-  </ul>
+<%= render 'shared/roteiro'  %>
+<%= link_to 'New Itinerary', new_book_roteiro_path(@book) %>
