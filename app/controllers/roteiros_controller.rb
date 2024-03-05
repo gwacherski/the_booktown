@@ -3,6 +3,12 @@ class RoteirosController < ApplicationController
 
   def index
     @roteiros = Roteiro.all
+    # @markers = @roteiros.geocoded.map do |roteiro|
+    #   {
+    #     lat: roteiro.latitude,
+    #     lng: roteiro.longitude
+    #   }
+    # end
   end
 
   def show
