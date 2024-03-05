@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for(@roteiro) do |f| %>
+  <%= simple_form_for([@book, @roteiro]) do |f| %>
     <%= f.input :title, placeholder: 'Give a title for your itinerary' %>
     <%= f.input :activity_description, placeholder: 'Add a detailed description' %>
     <%#= f.input :description, placeholder: 'Enter description' %>
@@ -13,6 +13,7 @@
     <%= f.label :activity_done, "Share your photos as well!" %>
       <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, "Create" %>
-    <%= link_to "Cancel", book_roteiros_path %>
+  <%= link_to "Cancel", root_path  %>
   <% end %>
+
 </div>

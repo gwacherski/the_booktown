@@ -11,17 +11,17 @@ class RoteirosController < ApplicationController
   def new
     @book = Book.find(params[:book_id])
     @roteiro = Roteiro.new
+
   end
 
   def create
     book_id = params[:book_id]
-    @book = Book.find(book_id)
     @roteiro = Roteiro.new(roteiro_params)
-    @roteiro.author = current_user.email # TROCAR PARA USERNAME DEPOIS
-    @roteiro.book_id = book_id
-
+    @book = Book.find(book_id)
+    @roteiro.book = @book
+    @roteiro.author = current_user.email
     if @roteiro.save
-      redirect_to book_path(@book, @roteiro)
+      redirect_to book_path(@book)
     else
       render :new, status: :unprocessable_entity
     end
@@ -66,11 +66,12 @@ class RoteirosController < ApplicationController
   end
 
   def roteiro_params
-    params.require(:roteiro).permit(:description, :location, :rating, :title, :activity_description,
-                                    :activity_address, :estimated_time, :estimated_costs, :activity_done, photos: [])
+    params.require(:roteiro).permit(:title, :activity_description, :location, :activity_address, :author,
+                                    :estimated_time, :estimated_costs, :activity_done, photos: [])
 
   end
 end
+
 
 # FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
 # 1 Basico (create, show, edit, update, destroy)
