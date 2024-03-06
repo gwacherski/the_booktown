@@ -1,0 +1,16 @@
+        <% if roteiro.reviews.present? %>
+          <% roteiro.reviews.each do |review| %>
+            <div>
+              <%= review.rating %>
+              <%= review.description %>
+              <%= link_to 'Show Review', book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id, id: review.id) %>
+              <%= button_to 'Delete Review', book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
+          <% if defined?(review) && review.present? %>
+          <% end %>
+        <% end %>
+         <%# #mapa add fora da iteração %>
+  <div id='map' style='width: 20%; height: 150px;' data-controller='map'></div>

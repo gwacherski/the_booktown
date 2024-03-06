@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
 
   def show
     #mostra as reviews para todos os usuários. em show#book uma prévia, podendo ir para outra página para um review completo?
-    @reviews = Review.order(rating: :desc)
+    @review = Review.find(params[:id])
   end
 
   def new
@@ -52,12 +52,10 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
 
-    if current_user.admin? || current_user.id == @review.user_id
+    if current_user.id == @review.user_id
       @review.destroy
       redirect_to book_path
-    else
-      redirect_to book_path, alert: 'You are not authorized to delete this review.'
-    end
+   end
   end
 
   private
@@ -76,3 +74,9 @@ end
 # 2 Aprovação de review pelo admin (ou não) - verificar possibilidade. Criar um campo de status da aprovação do reviews
 #   no DB
 # 2 Mostrar data que o review foi editado (created_at e updated_at) - # APENAS SHOW, JÁ VEM PRONTO. #
+
+
+
+
+
+#retu
