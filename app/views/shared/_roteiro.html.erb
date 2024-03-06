@@ -14,11 +14,11 @@
           <% end %>
         </div>
         <div>
-          <%= roteiro.activity_description %>
           <%= roteiro.location %>
+          <%= roteiro.activity_description %>
           <%= roteiro.activity_address %>
-          <%= roteiro.estimated_time %>
-          <%= roteiro.estimated_costs %>
+          <%#= roteiro.estimated_time %>
+          <%#= roteiro.estimated_costs %>
 
           <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
