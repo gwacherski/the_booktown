@@ -15,6 +15,12 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @roteiros = @book.roteiros
+    @markers = @roteiros.geocoded.map do |roteiro|
+      {
+        lat: roteiro.latitude,
+        lng: roteiro.longitude
+      }
+    end
   end
 
   def new
