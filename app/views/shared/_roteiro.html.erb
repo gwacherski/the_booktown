@@ -8,11 +8,11 @@
         <%# else %>
           <%# <p>Leave a review!</p> %>
         <%# end %>
-       </div>
+      </div>
       <%= roteiro.updated_at %>
       <div> <%# Adicionar carrossel de fotos posteriormente %>
         <% roteiro.photos.each do |photo| %>
-            <%= image_tag photo.url, size: "200x100" %>
+          <%= image_tag photo.url, size: "200x100" %>
         <% end %>
       </div>
       <div>
@@ -21,7 +21,8 @@
         <%= roteiro.activity_address %>
         <%= roteiro.estimated_time %>
         <%= roteiro.estimated_costs %>
-        <%#= roteiro.activity_done %>
+        <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
+
       </div>
       <% if current_user.favorites.include?(roteiro) %>
         <%= link_to 'Remove from Favorites', favorites_path(roteiro.id), method: :delete %>
@@ -30,6 +31,7 @@
       <% end %>
       <%= link_to 'Edit', edit_roteiro_path(roteiro.id, book_id: roteiro.book.id) %>
       <%= button_to 'Delete', book_roteiro_path(roteiro.book.id, roteiro.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Create Review', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
     </div>
   <% end %>
 
