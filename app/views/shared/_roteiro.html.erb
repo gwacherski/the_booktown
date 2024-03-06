@@ -1,42 +1,49 @@
+<div>
   <% Roteiro.all.each do |roteiro| %>
-    <div>
-      <%= roteiro.title %>
-      <%# Média de avaliações %>
-      <div>
-        <%# if roteiro.reviews.present? %>
-          <%#= roteiro.reviews.average(:rating) %>
-        <%# else %>
-          <%# <p>Leave a review!</p> %>
-        <%# end %>
+    <div class="roteiro-card">
+      <div class="roteiro-title" onclick="toggleDetails(this)">
+        <%= roteiro.title %>
       </div>
-      <%= roteiro.updated_at %>
-      <div> <%# Adicionar carrossel de fotos posteriormente %>
-        <% roteiro.photos.each do |photo| %>
-          <%= image_tag photo.url, size: "200x100" %>
-        <% end %>
-      </div>
-      <div>
-        <%= roteiro.activity_description %>
-        <%= roteiro.location %>
-        <%= roteiro.activity_address %>
-        <%= roteiro.estimated_time %>
-        <%= roteiro.estimated_costs %>
-        <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
+      <div class="roteiro-details" style="display:none;">
+        <div>
+          <%= roteiro.updated_at %>
+        </div>
+        <div> <%# Carrossel de fotos posteriormente%>
+          <% roteiro.photos.each do |photo| %>
+            <%= image_tag photo.url, size: "200x100" %>
+          <% end %>
+        </div>
+        <div>
+          <%= roteiro.activity_description %>
+          <%= roteiro.location %>
+          <%= roteiro.activity_address %>
+          <%= roteiro.estimated_time %>
+          <%= roteiro.estimated_costs %>
 
+          <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
+        </div>
       </div>
-      <% if current_user.favorites.include?(roteiro) %>
-        <%= link_to 'Remove from Favorites', favorites_path(roteiro.id), method: :delete %>
-      <% else %>
-        <%= link_to 'Add to Favorites', favorites_path(roteiro.id), method: :post %>
-      <% end %>
-      <%= link_to 'Edit', edit_roteiro_path(roteiro.id, book_id: roteiro.book.id) %>
-      <%= button_to 'Delete', book_roteiro_path(roteiro.book.id, roteiro.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to 'Create Review', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
     </div>
   <% end %>
+</div>
+
 
   <%# #mapa add fora da iteração %>
   <div style="width: 100%; height: 600px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+
+<script>
+  function toggleDetails(element) {
+    // Find the next sibling element which is the details container
+    var details = element.nextElementSibling;
+    // Toggle the display property
+    if (details.style.display === "none") {
+      details.style.display = "block";
+    } else {
+      details.style.display = "none";
+    }
+  }
+</script>
