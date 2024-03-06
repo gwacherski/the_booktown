@@ -1,0 +1,54 @@
+/* Estilos gerais para os cartões */
+.roteiro-card {
+  border: 1px solid #ddd; /* Borda sutil */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra leve para dar profundidade */
+  margin-bottom: 20px; /* Espaço entre os cartões */
+  overflow: hidden; /* Garante que nada saia fora dos limites do cartão */
+  transition: box-shadow 0.3s ease; /* Efeito de transição para a sombra */
+}
+
+.roteiro-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra mais proeminente ao passar o mouse */
+}
+
+.roteiro-title {
+  background-color: #007bff; /* Cor de fundo do título (exemplo com azul) */
+  color: white; /* Cor do texto do título */
+  padding: 15px 20px; /* Espaçamento interno */
+  cursor: pointer; /* Indica que é clicável */
+  font-size: 18px; /* Tamanho do texto */
+}
+
+.roteiro-details {
+  display: none; /* Inicialmente escondido */
+  padding: 20px; /* Espaçamento interno */
+  background-color: #f8f9fa; /* Cor de fundo suave para os detalhes */
+}
+
+.roteiro-details div {
+  margin-bottom: 10px; /* Espaço entre os elementos dos detalhes */
+}
+
+/* Estilização específica para imagens, se necessário */
+.roteiro-details img {
+  border-radius: 4px; /* Bordas arredondadas para as imagens */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Ajustes para links e botões, se aplicável */
+.roteiro-card a, .roteiro-card button {
+  text-decoration: none;
+  color: #007bff; /* Cor que combina com o tema */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.roteiro-card button {
+  display: inline-block;
+  margin-right: 10px; /* Espaço entre botões, se houver mais de um */
+}
+
+/* Pode ser necessário ajustar para combinar com seu layout */

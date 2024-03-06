@@ -1,0 +1,18 @@
+<% if roteiro.reviews.present? %>
+  <% roteiro.reviews.each do |review| %>
+    <div>
+      <div class="rating" data-rating="<%= review.rating %>"></div>
+      <%= review.description %>
+      <%= link_to 'Show Review', book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id, id: review.id) %>
+      <%= button_to 'Delete Review', book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+<% else %>
+  <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
+<% end %>
+
+         <%# #mapa add fora da iteração %>
+           <div style="width: 30%; height: 200px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
