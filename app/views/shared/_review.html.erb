@@ -13,4 +13,7 @@
           <% end %>
         <% end %>
          <%# #mapa add fora da iteração %>
-  <div id='map' style='width: 20%; height: 150px;' data-controller='map'></div>
+           <div style="width: 30%; height: 200px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
