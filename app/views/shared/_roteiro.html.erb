@@ -6,7 +6,9 @@
       </div>
       <div class="roteiro-details" style="display:none;">
         <div>
-          <%= roteiro.updated_at %>
+          <strong>Created by:</strong>
+          <%# avatar e username + quantas reviews usuário fez? %>
+          <em><%= roteiro.updated_at %></em>
         </div>
         <div> <%# Carrossel de fotos posteriormente%>
           <% roteiro.photos.each do |photo| %>
@@ -14,11 +16,13 @@
           <% end %>
         </div>
         <div>
-          <%= roteiro.activity_description %>
-          <%= roteiro.location %>
-          <%= roteiro.activity_address %>
-          <%= roteiro.estimated_time %>
-          <%= roteiro.estimated_costs %>
+          <ul>
+            <li><strong> Activity Description: </strong><%= roteiro.activity_description %></li>
+            <li><strong> Location: </strong><%= roteiro.location %></li>
+            <li><strong> Address: </strong><%= roteiro.activity_address %></li>
+            <li><strong> Time taken: </strong><%= roteiro.estimated_time %></li>
+            <li><strong> Aprox. Cost: </strong><%= roteiro.estimated_costs %></li>
+          </ul>
 
           <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
@@ -29,6 +33,7 @@
 
 
   <%# #mapa add fora da iteração %>
+  <strong> All pinned itinerarys:  </strong>
   <div style="width: 100%; height: 600px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"

@@ -3,12 +3,16 @@
 @import "config/colors";
 @import "config/bootstrap_variables";
 
+
 // External libraries
 @import "bootstrap";
 @import "font-awesome";
+@import "star-rating.js/dist/star-rating.css";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
 @import "pages/roteiros/roteiro";
 @import "pages/roteiros/review_rating";
+@import "trix/dist/trix";
+@import "actiontext";
