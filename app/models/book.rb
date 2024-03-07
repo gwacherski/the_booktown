@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  has_many :roteiros
+  has_many :roteiros, dependent: :destroy
   belongs_to :user
 
   include PgSearch::Model
