@@ -1,5 +1,5 @@
 <div>
-  <% Roteiro.all.each do |roteiro| %>
+  <% Roteiro.where(book_id: @book.id).each do |roteiro| %>
     <div class="roteiro-card">
       <div class="roteiro-title" onclick="toggleDetails(this)">
         <%= roteiro.title %>
@@ -21,13 +21,14 @@
             <li><strong> Location: </strong><%= roteiro.location %></li>
             <li><strong> Address: </strong><%= roteiro.activity_address %></li>
             <li><strong> Time taken: </strong><%= roteiro.estimated_time %>h</li>
-            <li><strong> Aprox. Cost: </strong><%= roteiro.estimated_costs %></li>
+            <li><strong> Aprox. Cost: $</strong><%= roteiro.estimated_costs %></li>
           </ul>
 
           <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
       </div>
     </div>
+
   <% end %>
 </div>
 

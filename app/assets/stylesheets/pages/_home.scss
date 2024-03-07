@@ -1,1 +1,10 @@
 // Specific CSS for your home-page
+body {
+  background-color: #eeeeee;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  grid-template-rows: 1fr auto;
+  padding-top: 70px;
+}
+
