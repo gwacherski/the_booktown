@@ -1,15 +1,11 @@
-<%= form_with(model: @review, url:  book_roteiro_reviews_path, local: true) do |form|%>
- <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <%= simple_form_for(@review, url: book_roteiro_reviews_path) do |f| %>
+        <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
+        <%= f.rich_text_area :rich_body %>
+        <%= f.submit "Send your review" %>
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :rating %>
-    <%= form.select :rating, (1..5) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
