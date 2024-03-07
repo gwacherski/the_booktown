@@ -6,6 +6,7 @@ class RoteirosController < ApplicationController
   end
 
   def show
+    @book = Book.find(params[:book_id])
   end
 
   def new
