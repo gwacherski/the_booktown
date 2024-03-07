@@ -18,7 +18,9 @@ class BooksController < ApplicationController
     @markers = @roteiros.geocoded.map do |roteiro|
       {
         lat: roteiro.latitude,
-        lng: roteiro.longitude
+        lng: roteiro.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { roteiro: roteiro }),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
