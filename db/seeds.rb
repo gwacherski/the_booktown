@@ -24,7 +24,7 @@ def fetch_google_books(author)
   base_url = 'https://www.googleapis.com/books/v1/volumes'
   query_author = author.gsub(' ', '%20')
 
-  query_url = "#{base_url}?q=inauthor:#{query_author}&maxResults=10&key=#{api_key}"
+  query_url = "#{base_url}?q=inauthor:#{query_author}&maxResults=6&key=#{api_key}"
 
   response = HTTParty.get(query_url)
   items = response['items']
@@ -48,9 +48,12 @@ def fetch_google_books(author)
 end
 
 fetch_google_books('Machado de Assis')
+fetch_google_books('Thomas Harris')
+fetch_google_books('Paulo Coelho')
+fetch_google_books('Arthur Conan Doyle')
 
 roteiro = Roteiro.new(
-  description: 'Test roteiro',
+  description: '',
   author: 'Test author',
   location: 'Test location',
   rating: 4.5,
