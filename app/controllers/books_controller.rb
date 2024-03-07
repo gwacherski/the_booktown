@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
   def index
     if params[:query].present?
-      @books = Book.search_by_name_or_author(params[:query])
+      @books = Book.search_by_name(params[:query])
       if @books.empty?
-        flash[:notice] = "No books found with the name or author: #{params[:query]}"
+        flash[:notice] = "No books found with the name: #{params[:query]}"
       else
-        @books = Book.search_by_name_or_author(params[:query])
+        @books = Book.search_by_name(params[:query])
       end
     else
       @books = Book.all
