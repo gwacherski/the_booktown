@@ -7,9 +7,8 @@
       <%#= button_to 'Delete Review', book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
-
-  <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
 <% end %>
+  <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
 <div>
 
 <!--
