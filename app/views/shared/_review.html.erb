@@ -1,22 +1,45 @@
-<% if roteiro.reviews.present? %>
-  <% roteiro.reviews.each do |review| %>
-    <div>
-      <div class="stars-rating" data-rating="<%= review.rating %>"></div>
-      <%= review.description %>
-      <%#= link_to 'Show Review', book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id, id: review.id) %>
-      <%#= button_to 'Delete Review', book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-  <% end %>
-<% end %>
-  <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
 <div>
+  <strong>See all reviews!</strong>
+  <strong>----------------------------</strong>
+</div>
+<div>
+  <% if roteiro.reviews.present? %>
+    <% roteiro.reviews.each do |review| %>
 
-<!--
-<strong>Pinned Location:</strong>
-         <%# #mapa add fora da iteração %>
-           <div style="width: 30%; height: 200px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-  </div>
--->
+
+
+      <span>
+        <div> USER PHOTO AND USER NAME
+        <%= review.user.username %>
+        <% if review.user.photo.present? %>
+          <%= image_tag review.user.photo %>
+        <% else %>
+          <%= "no photo attached" %>
+        <% end %>
+         </div>
+      </span>
+
+
+
+      <div class="somente-as-estrelas">
+        <% 5.times do |i| %>
+          <% if (i+1) <= review.rating %>
+            <i class="fa-solid fa-star"></i>
+          <% else %>
+            <i class="fa-regular fa-star"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+
+      <div class="review-description">
+        <%= review.description %>
+      </div>
+
+
+    <% end %>
+  <% end %>
+</div>
+
+
+<%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
