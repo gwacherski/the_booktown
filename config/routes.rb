@@ -12,16 +12,16 @@ Rails.application.routes.draw do
     resources :roteiros, only: [:show, :new, :create, :destroy] do
       resources :reviews, only: [:new, :create, :show, :edit, :update, :destroy]
     end
+    post 'favorites', to: 'favorites#create'
   end
+  get 'favorites', to: 'favorites#index'
+  delete 'favorites/:id', to: 'favorites#destroy', as: :favorite
 
   # resources :roteiros do
   #   member do
   #     post 'add_to_favorites'
   #   end
   # end
-
-  resources :favorites, only: [:create, :destroy, :index]
-    get '/favorites', to: 'favorites#index', as: 'list_favorites'
 
   resources :roteiros, only: [:index, :edit, :update, :destroy]
 end
