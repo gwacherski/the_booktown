@@ -15,7 +15,7 @@ User.destroy_all
 Roteiro.destroy_all
 Review.destroy_all
 
-user = User.new(email: "amor@love.com", password: "123456", first_name: "Amor", last_name: "Love", username: "amorlove")
+user = User.new(email: "amor@love.com", password: "123456", first_name: "Amor", last_name: "Love", username: "amorlove", admin: true)
 user.save!
 
 def fetch_google_books(author)

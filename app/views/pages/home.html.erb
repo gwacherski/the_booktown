@@ -1,2 +1,34 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div id="background-img">
+<div class="container">
+  <div class="row height d-flex justify-content-center align-items-center">
+    <div class="col-md-8">
+      <h2 class="display-4">Welcome to The BookTown!</h2>
+         <div class="search">
+          <i class="fa fa-search"></i>
+          <form action="<%= books_path %>" method="get">
+            <input type="text" name="query" class="form-control" placeholder="Search for your favorite book or author">
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+        <p></p>
+    </div>
+      <%# <button type="button" class="btn btn-primary">Explore all</button> %>
+  </div>
+</div>
+</div>
+
+<section id="about">
+  <h1>What is The Booktown? </h1>
+  <p>
+    FULL SITE DESCRIPTION
+  </p>
+
+  <h2>Follow Us on Social media</h2>
+
+  <div class="social">
+  <a href="" target="_blank"><i class="fab fa-twitter fa-3x"></i></a>
+    <a href="" target="_blank"><i class="fab fa-facebook fa-3x"></i></a>
+    <a href="" target="_blank"><i class="fab fa-github fa-3x"></i></a>
+    <a href="" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+  </div>
+</section>

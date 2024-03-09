@@ -55,7 +55,7 @@ class ReviewsController < ApplicationController
     if current_user.id == @review.user_id
       @review.destroy
       redirect_to book_path
-   end
+    end
   end
 
   private
