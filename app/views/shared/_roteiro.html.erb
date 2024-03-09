@@ -6,28 +6,60 @@
       </div>
       <div class="roteiro-details" style="display:none;">
         <div>
-          <strong>Created by:</strong>
-          <%# avatar e username + quantas reviews usuário fez? %>
-          <em><%= roteiro.updated_at %></em>
-        </div>
+            <strong>Created by:</strong> <%= roteiro.author%>
+           <%# tá vindo só o email do author, e não acha o username...%>
+           <ul>
+            <li><strong> Activity Description: </strong><%= roteiro.activity_description %></li>
+            <li><strong> Location: </strong><%= roteiro.location %></li>
+            <li><strong> Address: </strong><%= roteiro.activity_address %></li>
+            <li><strong> Time taken: </strong><%= roteiro.estimated_time %></li>
+            <li><strong> Time taken: </strong><%= roteiro.estimated_time %>h</li>
+            <li><strong> Aprox. Cost: </strong>R$<%= roteiro.estimated_costs.to_i %></li>
+           </ul>
+         </div>
         <div> <%# Carrossel de fotos posteriormente%>
 
         <!-- Add the button code below -->
         <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "favorite-button" %>
 
-          <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
+        <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
       </div>
     </div>
 
   <% end %>
     <%# #mapa add fora da iteração %>
-  <strong> All pinned itinerarys:  </strong>
+  <strong> All pinned itineraries:  </strong>
   <div style="width: 100%; height: 600px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
+
+<style>
+  .roteiro-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .roteiro-title {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .roteiro-details {
+    margin-top: 10px;
+  }
+
+  .favorite-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+</style>
 
 <script>
   function toggleDetails(element) {
