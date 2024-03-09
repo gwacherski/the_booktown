@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>TheBooktown</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,9 +15,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body>
+    <% if current_page?(root_path) || current_page?(new_user_session_path) || devise_controller? %>
+      <%= render "shared/navbar_simple" %>
+    <% else %>
+      <%= render "shared/navbar" %>
+    <% end %>
+    <%= render "shared/flashes" %>
 
     <%= yield %>
   </body>
+
+  <footer>
+    <%= render "shared/footer" %>
+  </footer>
+
 </html>
