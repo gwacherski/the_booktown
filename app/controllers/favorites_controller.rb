@@ -15,9 +15,12 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    roteiro = Roteiro.find(params[:roteiro_id])
-    current_user.favorites.create(roteiro: roteiro)
-    redirect_to roteiros_path, notice: 'Roteiro favoritado com sucesso.'
+    @favorite = Favorite.new(roteiro_id: params[:roteiro_id], user: current_user)
+    if @favorite.save
+      redirect_to favorites_path, notice: 'Favorito adicionado com sucesso.'
+    else
+      flash[:alert] = 'Erro ao adicionar favorito.'
+    end
   end
 
   def destroy

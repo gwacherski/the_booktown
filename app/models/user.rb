@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # acts_as_favoritor
+
   has_many :favorites
   has_many :reviews, through: :roteiros
   has_many :books
@@ -22,5 +24,12 @@ class User < ApplicationRecord
     puts "Checking for photo removal"
     photo.purge if remove_photo == '1'
   end
-  
+
+  def favorite(roteiro)
+    # Check if the user has already favorited the book
+    unless favorite_roteiros.include?(book)
+      # If not, create a new favorite
+      favorites.create(roteiro: roteiro)
+    end
+  end
 end

@@ -4,9 +4,9 @@
 <% if @favorites.present? %>
   <% @favorites.each do |favorite| %>
     <div class="favorite">
-      <h2><%= favorite.roteiro.nome %></h2>
-      <p><%= favorite.roteiro.descricao %></p>
-      <%= link_to 'Remover dos Favoritos', favorite_path(favorite), method: :delete, data: { confirm: 'Tem certeza?' } %>
+      <h2><%= favorite.roteiro.title %></h2>
+      <p><%= favorite.roteiro.description %></p>
+      <%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %>
     </div>
   <% end %>
 <% else %>
