@@ -52,10 +52,10 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
 
-    if current_user.id == @review.user_id
+    # if current_user.id == @review.user_id
       @review.destroy
       redirect_to book_path
-   end
+    end
   end
 
   private
@@ -63,7 +63,6 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:rating, :description, :rich_body, :book_id, :user_id, :roteiro_id)
   end
-end
 
 # FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
 # 1 Basico (create, show, edit, update, destroy) - OK

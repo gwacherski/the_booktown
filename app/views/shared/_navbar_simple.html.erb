@@ -3,13 +3,7 @@
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "Black_logo_no_bg.png" %>
     <% end %>
-<%# SEARCH BAR NA NAVBAR = PROVISORIO %>
-    <form class="form-inline" action="<%= books_path %>" method="get">
-      <div class="input-group">
-        <input type="text" name="query" class="form-control" placeholder="Search for your favorite book or author">
-        <button type="submit" class="btn btn-outline-dark">Search</button>
-      </div>
-    </form>
+
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,7 +14,7 @@
         <% if user_signed_in? %>
         <%# LINKS QUE APARECEM NA NAVBAR %>
           <li class="nav-item active">
-            <%= link_to "All Books", books_path, class: "nav-link" %>
+            <%= link_to "", "#", class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "", "#", class: "nav-link" %>
