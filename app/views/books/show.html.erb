@@ -6,30 +6,17 @@
 
 </div>
 
-<style>
-  .action-buttons {
-    display: flex;
-    gap: 10px; /* Espaço entre os botões */
-  }
-
-  .action-button {
-    margin-right: 10px; /* Espaço à direita de cada botão */
-  }
-
-  /* Remove o espaço extra à direita do último botão */
-  .action-button:last-child {
-    margin-right: 0;
-  }
-</style>
-
-<div class="actions action-buttons">
+<div class="actions action-buttons" style="padding: 30px;">
   <%= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger action-button" %>
   <%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary action-button" %>
 </div>
 
-
-<div style="display: flex; align-items: center;">
-  <h2 style="margin-right: 10px;">Roteiros</h2>
+<div class="roteiro-card">
+  <h2>Roteiros</h2>
   <%= link_to 'New Itinerary', new_book_roteiro_path(@book), class: "btn btn-success" %>
 </div>
-<%= render 'shared/roteiro' %>
+
+
+<div>
+  <%= render 'shared/roteiro' %>
+</div>

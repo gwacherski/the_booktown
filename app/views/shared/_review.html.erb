@@ -16,7 +16,7 @@
         <% else %>
           <%= "no photo attached" %>
         <% end %>
-         </div>
+        </div>
       </span>
 
 
@@ -41,5 +41,6 @@
   <% end %>
 </div>
 
-
-<%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id) %>
+<div>
+  <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id)%>
+</div>

@@ -1,0 +1,13 @@
+  .action-buttons {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+  }
+
+  .action-button {
+    margin-right: 10px; /* Espaço à direita de cada botão */
+  }
+
+  /* Remove o espaço extra à direita do último botão */
+  .action-button:last-child {
+    margin-right: 0;
+  }
