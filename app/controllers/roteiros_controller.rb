@@ -20,7 +20,7 @@ class RoteirosController < ApplicationController
     @roteiro = Roteiro.new(roteiro_params)
     @book = Book.find(book_id)
     @roteiro.book = @book
-    @roteiro.author = current_user.email
+    @roteiro.author = current_user.username
     if @roteiro.save
       redirect_to book_path(@book)
     else

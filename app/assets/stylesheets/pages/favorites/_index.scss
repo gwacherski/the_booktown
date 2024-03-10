@@ -1,0 +1,35 @@
+
+.mypage {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+
+  }
+
+  .div1 { grid-area: 1 / 1 / 4 / 2;
+
+  }
+
+  .div2 { grid-area: 1 / 2 / 2 / 3;
+
+  }
+
+  .div3 { grid-area: 2 / 2 / 3 / 3;
+
+  }
+
+  .div4 { grid-area: 3 / 2 / 4 / 3;
+
+  }
+
+  .div5 { grid-area: 2 / 1 / 4 / 2;
+
+  }
+
+  // div1 - superior esquerdo
+  // div2 - superior direito
+  // div3 - meio direito
+  // div4 - inferior direito
+  // div5 - inferior esquerdo
