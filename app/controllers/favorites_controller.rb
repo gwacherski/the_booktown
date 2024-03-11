@@ -4,6 +4,9 @@ class FavoritesController < ApplicationController
 
   def index
     @favorites = current_user.favorites
+    @user_roteiros = Roteiro.where(author: current_user.username)
+    @user_reviews = Review.where(user_id: current_user.id)
+
   end
 
   def show

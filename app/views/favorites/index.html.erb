@@ -1,14 +1,59 @@
 <!-- app/views/favorites/index.html.erb -->
+
 <h1>Meus Favoritos</h1>
 
-<% if @favorites.present? %>
-  <% @favorites.each do |favorite| %>
-    <div class="favorite">
-      <h2><%= favorite.roteiro.title %></h2>
-      <p><%= favorite.roteiro.description %></p>
-      <%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %>
-    </div>
-  <% end %>
-<% else %>
-  <p>Nenhum favorito encontrado.</p>
-<% end %>
+<div class="mypage">
+
+  <div class="div1">
+    <% if current_user.photo.url.present? %>
+      <%= cl_image_tag(current_user.photo.key, :transformation=>[
+                      {:gravity=>"face", :height=>90, :width=>90, :crop=>"thumb"},
+                      {:radius=>"max"},
+                      {:fetch_format=>:auto}
+                      ]) %>
+    <% else %>
+      <%= image_tag "user.png", class: "avatar-square" %>
+    <% end %>
+  </div>
+
+  <div class="div2">
+    <% if @favorites.present? %>
+    <% @favorites.each do |favorite| %>
+      <div class="favorite">
+        <h3><%= favorite.roteiro.title %></h3>
+        <p><%= favorite.roteiro.description %></p>
+        <%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %>
+      </div>
+    <% end %>
+    <% else %>
+      <p>Nenhum favorito encontrado.</p>
+    <% end %>
+  </div>
+
+  <div class="div3">
+    <% if @user_roteiros.present? %>
+      <% @user_roteiros.each do |roteiro| %>
+        <div class="favorite">
+          <h3><%= roteiro.title %></h3>
+         </div>
+      <% end %>
+    <% else %>
+      <p>Nenhum roteiro encontrado.</p>
+    <% end %>
+  </div>
+
+  <div class="div4">
+  <% if @user_reviews.present? %>
+      <% @user_reviews.each do |review| %>
+        <div class="favorite">
+          <p><%= review.roteiro_id %> - <%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %> - <%= review.rating %></p>
+         </div>
+      <% end %>
+    <% else %>
+      <p>Nenhum review encontrado.</p>
+    <% end %>
+  </div>
+
+  <div class="div5">
+  </div>
+</div>
