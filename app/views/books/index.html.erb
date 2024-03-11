@@ -1,20 +1,28 @@
 <h1>Welcome to The BookTown</h1>
 
-<ul class="cards">
   <% @books.order(id: :asc).each do |book| %>
-    <li class="cards__item col-md-4"> <!-- Added col-md-4 class -->
-      <a href="<%= book_path(book) %>"> <!-- Added link tag -->
-        <div class="card-product">
-          <div class="card-product-infos">
-            <div class=""><%= book.name %></div>
-            <p class="">Author: <%= book.author %></p>
-            <%# <p class="">Genre: <%= book.genre %></p>
+    <div class="example-2 card">
+      <div class="wrapper">
+        <div class="header">
+          <ul class="menu-content">
+            <li>
+              <a href="#" class="fa fa-bookmark-o"></a>
+            </li>
+            <li><a href="#" class="fa fa-heart-o"><span>Read the city!</span></a></li>
+            <li><a href="#" class="fa fa-comment-o"><span>thebooktown</span></a></li>
+          </ul>
+        </div>
+        <div class="data">
+          <div class="content">
+            <span class="author"><p><%= book.author %></p></span>
+            <h1 class="title"><a href="<%= book_path(book) %>">
+            <%= book.name %></a></h1>
+            <p class="text"><%= book.description %></p>
+            <a href="#" class="button">Read more</a>
           </div>
         </div>
-      </a>
-    </li>
+      </div>
+    </div>
   <% end %>
-</ul>
-</div>
 
-<a href="<%= new_book_path %>" class="btn btn-primary">Add New Book</a>
+<a href="<%= new_book_path %>" class="btn btn-dark">Add New Book</a>
