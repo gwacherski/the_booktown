@@ -26,7 +26,9 @@
       </div>
     <% end %>
     <% else %>
+    <% 10.times do %>
       <p>Nenhum favorito encontrado.</p>
+      <% end %>
     <% end %>
   </div>
 
@@ -34,7 +36,9 @@
     <% if @user_roteiros.present? %>
       <% @user_roteiros.each do |roteiro| %>
         <div class="favorite">
-          <h3><%= roteiro.title %></h3>
+          <% 10.times do %>
+            <h3><%= roteiro.title %></h3>
+          <% end %>
          </div>
       <% end %>
     <% else %>
@@ -46,7 +50,9 @@
   <% if @user_reviews.present? %>
       <% @user_reviews.each do |review| %>
         <div class="favorite">
+        <% 10.times do %>
           <p><%= review.roteiro_id %> - <%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %> - <%= review.rating %></p>
+          <% end %>
          </div>
       <% end %>
     <% else %>
