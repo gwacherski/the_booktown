@@ -1,44 +1,5 @@
-<h2>Add Review</h2>
-<button id="review-add-btn" aria-label="add review" title="Add Review"></button>
-<div id="modal" role="dialog" aria-modal="true" aria-labelledby="add-review-header" class="">
-  <button class="close-btn" aria-label="close" title="Close">x</button>
-  <div id="review-form-container">
-    <h2 id="add-review-header">Add Review</h2>
-    <form id="review-form">
-      <div class="fieldset">
-        <label for="reviewName">Name</label>
-        <input name="reviewName" id="reviewName" required="">
-      </div>
-      <div class="fieldset">
-        <label>Rating</label>
-        <div class="rate">
-          <input type="radio" id="star5" name="rate" value="5" onkeydown="navRadioGroup(event)" onfocus="setFocus(event)" required="">
-          <label for="star5" title="5 stars">5 stars</label>
-          <input type="radio" id="star4" name="rate" value="4" onkeydown="navRadioGroup(event)">
-          <label for="star4" title="4 stars">4 stars</label>
-          <input type="radio" id="star3" name="rate" value="3" onkeydown="navRadioGroup(event)">
-          <label for="star3" title="3 stars">3 stars</label>
-          <input type="radio" id="star2" name="rate" value="2" onkeydown="navRadioGroup(event)">
-          <label for="star2" title="2 stars">2 stars</label>
-          <input type="radio" id="star1" name="https://codepen.io/pen/rate" value="1" onkeydown="navRadioGroup(event)" onfocus="setFocus(event)">
-          <label for="star1" title="1 star">1 star</label>
-        </div>
-      </div>
 
-      <div class="fieldset">
-        <label for="reviewComments">Comments</label>
-        <textarea name="reviewComments" id="reviewComments" cols="20" rows="5" required=""></textarea>
-      </div>
-      <div class="fieldset right">
-        <button id="submit-review-btn">Save</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal-overlay"></div>
-
-<script>
-  let focusedElementBeforeModal;
+let focusedElementBeforeModal;
 const modal = document.getElementById('modal');
 const modalOverlay = document.querySelector('.modal-overlay');
 
@@ -206,4 +167,3 @@ const navRadioGroup = (evt) => {
     }
   }
 };
-</script>
