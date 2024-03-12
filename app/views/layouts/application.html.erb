@@ -15,7 +15,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="content">
     <% if current_page?(root_path) || current_page?(new_user_session_path) || devise_controller? %>
       <%= render "shared/navbar_simple" %>
     <% else %>
@@ -26,7 +26,7 @@
     <%= yield %>
   </body>
 
-  <footer>
+  <footer class="footer">
     <%= render "shared/footer" %>
   </footer>
 
