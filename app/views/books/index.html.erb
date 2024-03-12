@@ -1,28 +1,35 @@
-<h1>Welcome to The BookTown</h1>
+<h1 class="h1 title text-center" style="font-size: 3.5rem; padding: 20px; color: gray; font-family: 'Courier New', Courier, monospace; weight: 10px;">Welcome to The BookTown</h1>
 
-  <% @books.order(id: :asc).each do |book| %>
-    <div class="example-2 card">
-      <div class="wrapper">
-        <div class="header">
-          <ul class="menu-content">
-            <li>
-              <a href="#" class="fa fa-bookmark-o"></a>
-            </li>
-            <li><a href="#" class="fa fa-heart-o"><span>Read the city!</span></a></li>
-            <li><a href="#" class="fa fa-comment-o"><span>thebooktown</span></a></li>
-          </ul>
-        </div>
-        <div class="data">
-          <div class="content">
-            <span class="author"><p><%= book.author %></p></span>
-            <h1 class="title"><a href="<%= book_path(book) %>">
-            <%= book.name %></a></h1>
-            <p class="text"><%= book.description %></p>
-            <a href="#" class="button">Read more</a>
+<div class="grid">
+  <% @books.order(id: :asc).limit(15).each_slice(3) do |books| %>
+    <div class="grid-row">
+      <% books.each do |book| %>
+        <div class="grid-item">
+          <div class="example-2 card" style="width: 300px; padding: 10px;">
+            <div class="wrapper">
+              <div class="header">
+                <ul class="menu-content">
+                  <li>
+                    <a href="#" class="fa fa-bookmark-o"></a>
+                  </li>
+                  <li><a href="#" class="fa fa-heart-o"><span>Read the city!</span></a></li>
+                </ul>
+              </div>
+              <div class="data">
+                <div class="content">
+                    <span class="author"><p><%= book.author %></p></span>
+                    <h1 class="title"><a href="<%= book_path(book) %>">
+                    <%= book.name %></a></h1>
+                    <p class="text"><%= truncate(book.description, length: 90, separator: ' ', omission: '...') %></p>
+                    <a href="<%= book_path(book) %>" class="button">Read more</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
 <a href="<%= new_book_path %>" class="btn btn-dark">Add New Book</a>
