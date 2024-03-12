@@ -45,11 +45,25 @@ h1 {
   margin: 50px auto 0;
 }
 
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  .card {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+  }
+}
+
 // Base styles
 .card {
   float: left;
   padding: 0 1.7rem;
-  width: 50%;
+  width: calc(100% / 5); // Display only 15 cards by setting width to 20%
+  @media (max-width: 900px) {
+    width: calc(100% / 3); // Adjust width for smaller screens
+  }
   .menu-content {
     @include cf;
     margin: 0;
@@ -110,107 +124,6 @@ h1 {
   }
   input[type='checkbox']:checked + .menu-content {
     transform: translateY(-60px);
-  }
-}
-
-// First example styles
-.example-1 {
-  .wrapper {
-    background: url(https://images.unsplash.com/photo-1496979551903-46e46589a88b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cda12b505afa1beb06e49d89014cbd65&auto=format&fit=crop&w=634&q=80) 20% 1% / cover no-repeat;
-  }
-  .date {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: $bermuda;
-    color: $white;
-    padding: 0.8em;
-    span {
-      display: block;
-      text-align: center;
-    }
-    .day {
-      font-weight: 700;
-      font-size: 24px;
-      text-shadow: 2px 3px 2px rgba($black, 0.18);
-    }
-    .month {
-      text-transform: uppercase;
-    }
-    .month,
-    .year {
-      font-size: 12px;
-    }
-  }
-  .content {
-    background-color: $white;
-    box-shadow: 0 5px 30px 10px rgba($black, 0.3);
-  }
-  .title {
-    a {
-      color: lighten($black, 50%);
-    }
-  }
-  .menu-button {
-    position: absolute;
-    z-index: 999;
-    top: 16px;
-    right: 16px;
-    width: 25px;
-    text-align: center;
-    cursor: pointer;
-    span {
-      width: 5px;
-      height: 5px;
-      background-color: lighten($black, 50%);
-      color: lighten($black, 50%);
-      position: relative;
-      display: inline-block;
-      border-radius: 50%;
-      &::after,
-      &::before {
-        content: '';
-        display: block;
-        width: 5px;
-        height: 5px;
-        background-color: currentColor;
-        position: absolute;
-        border-radius: 50%;
-      }
-      &::before {
-        left: -10px;
-      }
-      &::after {
-        right: -10px;
-      }
-    }
-  }
-  .menu-content {
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-    transition: transform 0.3s;
-    transform: translateY(0);
-    li {
-      width: 33.333333%;
-      float: left;
-      background-color: $bermuda;
-      height: 60px;
-      position: relative;
-    }
-    a {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 24px;
-    }
-    span {
-      top: -10px;
-    }
   }
 }
 
