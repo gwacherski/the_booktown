@@ -2,18 +2,36 @@
 
 <h1>Meus Favoritos</h1>
 
-<div class="wrapper">
+<div class="grid-fav">
 
   <div class="photo">
-    <% if current_user.photo.url.present? %>
-      <%= cl_image_tag(current_user.photo.key, :transformation=>[
-                      {:gravity=>"face", :height=>120, :width=>120, :crop=>"fill"},
-                      {:border=>"3px_solid_lightblue"},
-                      {:fetch_format=>:auto}
-                      ]) %>
-    <% else %>
-      <%= image_tag "user.png", class: "avatar-square" %>
-    <% end %>
+    <div class="photo-div row">
+      <div class="col">
+      <% if current_user.photo.url.present? %>
+        <%= cl_image_tag(current_user.photo.key, :transformation=>[
+                        {:gravity=>"face", :height=>120, :width=>120, :crop=>"fill"},
+                        {:border=>"3px_solid_lightblue"},
+                        {:fetch_format=>:auto}
+                        ]) %>
+      <% else %>
+        <%= image_tag "user.png", class: "avatar-square" %>
+      <% end %>
+      <br> Hi <%= current_user.first_name %> <%= current_user.last_name %>!
+      </div>
+      <br>
+      <div class="row">
+        <div class="col text">
+          <ul>
+            <li><strong>My data:</strong></li>
+            <li>Username: <%= current_user.username %></li>
+            <li>E-mail: <%= current_user.email %></li>
+            <li>User since: <%= current_user.created_at.strftime("%Y-%m-%d") %></li>
+            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class="favorites">
@@ -26,9 +44,9 @@
       </div>
     <% end %>
     <% else %>
-    <% 10.times do %>
+
       <p>Nenhum favorito encontrado.</p>
-      <% end %>
+
     <% end %>
   </div>
 
@@ -36,9 +54,9 @@
     <% if @user_roteiros.present? %>
       <% @user_roteiros.each do |roteiro| %>
         <div class="favorite">
-          <% 10.times do %>
+
             <h3><%= roteiro.title %></h3>
-          <% end %>
+
          </div>
       <% end %>
     <% else %>
@@ -50,9 +68,9 @@
   <% if @user_reviews.present? %>
       <% @user_reviews.each do |review| %>
         <div class="favorite">
-        <% 10.times do %>
+
           <p><%= review.roteiro_id %> - <%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %> - <%= review.rating %></p>
-          <% end %>
+
          </div>
       <% end %>
     <% else %>
@@ -61,13 +79,6 @@
   </div>
 
   <div class="mydata">
-      <ul>
-        <li><%= current_user.first_name %> <%= current_user.last_name %></li>
-        <li><%= current_user.username %></li>
-        <li><%= current_user.email %></li>
-        <li>Usuário desde: <%= current_user.created_at %></li>
-        <li><%= link_to 'Editar', edit_user_registration_path %></li>
-      </ul>
   </div>
 
 </div>
