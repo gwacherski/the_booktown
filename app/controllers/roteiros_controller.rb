@@ -71,6 +71,7 @@ class RoteirosController < ApplicationController
                                     :estimated_time, :estimated_costs, :activity_done, photos: [])
 
   end
+
 end
 
 

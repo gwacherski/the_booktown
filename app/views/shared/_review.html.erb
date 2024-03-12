@@ -2,6 +2,7 @@
   <strong>See all reviews!</strong>
   <strong>----------------------------</strong>
 </div>
+
 <div>
   <% if roteiro.reviews.present? %>
     <% roteiro.reviews.each do |review| %>
@@ -9,17 +10,15 @@
 
 
       <span>
-        <div> USER PHOTO AND USER NAME
+        <div> USER PHOTO AND USER NAME:
         <%= review.user.username %>
         <% if review.user.photo.present? %>
           <%= image_tag review.user.photo %>
         <% else %>
-          <%= "no photo attached" %>
+          <%= "user has no photo attached" %>
         <% end %>
         </div>
       </span>
-
-
 
       <div class="somente-as-estrelas">
         <% 5.times do |i| %>
