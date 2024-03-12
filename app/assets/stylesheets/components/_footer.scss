@@ -4,8 +4,18 @@
   text-align: center;
   padding-bottom: 50px;
   width: 100%;
+
+  //teste
+  flex-shrink: 0;
+
 }
 
+.footer-bottom {
+  background-color: #666666;
+  color: white;
+  height: 50px;
+  text-align: center
+}
 
 #footer .container h1 {
   color: white;
@@ -15,11 +25,4 @@
 
 #footer .container h3 {
   color: #dee2e6b3;
-}
-
- .footer-bottom {
-  background-color: #666666;
-  color: white;
-  height: 50px;
-  text-align: center;
 }

@@ -2,13 +2,13 @@
 
 <h1>Meus Favoritos</h1>
 
-<div class="mypage">
+<div class="wrapper">
 
-  <div class="div1">
+  <div class="photo">
     <% if current_user.photo.url.present? %>
       <%= cl_image_tag(current_user.photo.key, :transformation=>[
-                      {:gravity=>"face", :height=>90, :width=>90, :crop=>"thumb"},
-                      {:radius=>"max"},
+                      {:gravity=>"face", :height=>120, :width=>120, :crop=>"fill"},
+                      {:border=>"3px_solid_lightblue"},
                       {:fetch_format=>:auto}
                       ]) %>
     <% else %>
@@ -16,7 +16,7 @@
     <% end %>
   </div>
 
-  <div class="div2">
+  <div class="favorites">
     <% if @favorites.present? %>
     <% @favorites.each do |favorite| %>
       <div class="favorite">
@@ -30,7 +30,7 @@
     <% end %>
   </div>
 
-  <div class="div3">
+  <div class="roteiros">
     <% if @user_roteiros.present? %>
       <% @user_roteiros.each do |roteiro| %>
         <div class="favorite">
@@ -42,7 +42,7 @@
     <% end %>
   </div>
 
-  <div class="div4">
+  <div class="reviews">
   <% if @user_reviews.present? %>
       <% @user_reviews.each do |review| %>
         <div class="favorite">
@@ -54,6 +54,14 @@
     <% end %>
   </div>
 
-  <div class="div5">
+  <div class="mydata">
+      <ul>
+        <li><%= current_user.first_name %> <%= current_user.last_name %></li>
+        <li><%= current_user.username %></li>
+        <li><%= current_user.email %></li>
+        <li>Usuário desde: <%= current_user.created_at %></li>
+        <li><%= link_to 'Editar', edit_user_registration_path %></li>
+      </ul>
   </div>
+
 </div>
