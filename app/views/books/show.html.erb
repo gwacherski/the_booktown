@@ -1,22 +1,30 @@
-<div class="book-details">
+<div class="box-shadow" style="padding: 10px;">
+<div class="book-details" style="padding: 10px;">
   <h2>Title: <%= @book.name %></h2>
   <p>Author: <%= @book.author %></p>
 
   <p>Description: <%= @book.description %></p>
-
+</div>
 </div>
 
+<div class="box-shadow" style="padding: 10px;">
 <div class="actions action-buttons" style="padding: 30px;">
   <%= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger action-button" %>
   <%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary action-button" %>
 </div>
-
-<div class="roteiro-card">
-  <h2>Roteiros</h2>
-
 </div>
-<%= link_to 'New Itinerary', new_book_roteiro_path(@book), class: "btn btn-success" %>
 
-<div>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <div class="box-shadow" style="padding: 30px;">
+    <h2>Roteiros</h2>
+  </div>
+  <div class="box-shadow" style="padding: 30px;">
+  <div style="margin-left: auto; padding-right: 900px;">
+    <%= link_to 'Compartilhe seu Roteiro!', new_book_roteiro_path(@book), class: "btn btn-success" %>
+  </div>
+</div>
+</div>
+
+<div class="box-shadow" style="padding: 30px;">
   <%= render 'shared/roteiro' %>
 </div>

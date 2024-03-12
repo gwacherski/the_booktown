@@ -58,6 +58,7 @@ h1 {
 
 // Base styles
 .card {
+  z-index: 1;
   float: left;
   padding: 0 1.7rem;
   width: calc(100% / 5); // Display only 15 cards by setting width to 20%
