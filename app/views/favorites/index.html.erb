@@ -35,29 +35,32 @@
   </div>
 
   <div class="favorites">
-    <% if @favorites.present? %>
-    <% @favorites.each do |favorite| %>
-      <div class="favorite">
-        <h3><%= favorite.roteiro.title %></h3>
-        <p><%= favorite.roteiro.description %></p>
-        <%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %>
-      </div>
-    <% end %>
-    <% else %>
-
-      <p>Nenhum favorito encontrado.</p>
-
-    <% end %>
-  </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% if @favorites.present? %>
+          <% @favorites.each do |favorite| %>
+            <tr>
+              <td><%= favorite.roteiro.title %></td>
+              <td><%= favorite.roteiro.description %></td>
+              <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %></td>
+            </tr>
+          <% end %>
+      <% else %>
+    </tbody>
+  </table>
+</div>
 
   <div class="roteiros">
     <% if @user_roteiros.present? %>
       <% @user_roteiros.each do |roteiro| %>
-        <div class="favorite">
-
-            <h3><%= roteiro.title %></h3>
-
-         </div>
+        <h3><%= roteiro.title %></h3>
       <% end %>
     <% else %>
       <p>Nenhum roteiro encontrado.</p>
@@ -67,11 +70,7 @@
   <div class="reviews">
   <% if @user_reviews.present? %>
       <% @user_reviews.each do |review| %>
-        <div class="favorite">
-
           <p><%= review.roteiro_id %> - <%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %> - <%= review.rating %></p>
-
-         </div>
       <% end %>
     <% else %>
       <p>Nenhum review encontrado.</p>
