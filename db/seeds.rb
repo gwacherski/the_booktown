@@ -10,21 +10,28 @@
 
 require 'httparty'
 
+# Certifique-se de substituir 'YOUR_API_KEY' pelo seu próprio chave de API do Google Books.
+GOOGLE_BOOKS_API_KEY = 'AIzaSyClvl56GQ8PDo8-hDutJxpwNo6DujM2fm4'
+
 Book.destroy_all
 User.destroy_all
 Roteiro.destroy_all
 Review.destroy_all
 
-user = User.new(email: "amor@love.com", password: "123456", first_name: "Amor", last_name: "Love", username: "amorlove", admin: true)
-user.save!
+user = User.create!(
+  email: "amor@love.com",
+  password: "123456",
+  first_name: "Amor",
+  last_name: "Love",
+  username: "amorlove",
+  admin: true
+)
 
 def fetch_google_books(author)
   puts 'fazendo o seed'
-  api_key = 'AIzaSyClvl56GQ8PDo8-hDutJxpwNo6DujM2fm4'
-  base_url = 'https://www.googleapis.com/books/v1/volumes'
   query_author = author.gsub(' ', '%20')
-
-  query_url = "#{base_url}?q=inauthor:#{query_author}&maxResults=6&key=#{api_key}"
+  base_url = 'https://www.googleapis.com/books/v1/volumes'
+  query_url = "#{base_url}?q=inauthor:#{query_author}&maxResults=6&key=#{GOOGLE_BOOKS_API_KEY}"
 
   response = HTTParty.get(query_url)
   items = response['items']
@@ -37,14 +44,14 @@ def fetch_google_books(author)
     name = volume_info['title']
     author = volume_info['authors']&.join(', ')
     description = volume_info['description']
+    thumbnail = volume_info['imageLinks']['thumbnail'] if volume_info['imageLinks'] && volume_info['imageLinks']['thumbnail']
+
     user = User.first
 
-    books << { name: name, author: author, description: description, user: user}
+    books << { name: name, author: author, description: description, thumbnail: thumbnail, user: user }
   end
-  puts books[0]
-  books.each do |book|
-    Book.create!(book)
-  end
+
+  Book.create!(books)
 end
 
 fetch_google_books('Machado de Assis')
@@ -52,12 +59,12 @@ fetch_google_books('Thomas Harris')
 fetch_google_books('Paulo Coelho')
 fetch_google_books('Arthur Conan Doyle')
 
-roteiro = Roteiro.new(
+roteiro = Roteiro.create!(
   description: '',
-  author: 'Test author',
-  location: 'Test location',
+  author: 'Kelle',
+  location: 'Praia do Leme',
   rating: 4.5,
-  title: 'Test title',
+  title: 'Só praia e amor',
   activity_description: 'Test activity description',
   activity_address: 'Test activity address',
   estimated_time: 2.5,
@@ -65,16 +72,14 @@ roteiro = Roteiro.new(
   activity_done: false,
   book_id: Book.first.id
 )
-roteiro.save!
 
-review = Review.new(
+review = Review.create!(
   description: "Ótima experiência!",
   rating: 4.8,
   created_by: "Alice",
   user_id: user.id,
   roteiro_id: roteiro.id
 )
-review.save!
 
 puts 'entrance'
 puts user.errors.messages
