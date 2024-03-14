@@ -1,25 +1,17 @@
-<div>
-  <strong>See all reviews!</strong>
-  <strong>----------------------------</strong>
-</div>
-
-<div>
+<div class="flexbox-container">
   <% if roteiro.reviews.present? %>
     <% roteiro.reviews.each do |review| %>
-
-
-
-      <span>
-        <div> USER PHOTO AND USER NAME:
-        <%= review.user.username %>
-        <% if review.user.photo.present? %>
+      <!-- Avatar and Username -->
+      <div class="avatar-profile">
+        <div class="avatar-review">
           <%= image_tag review.user.photo %>
-        <% else %>
-          <%= "user has no photo attached" %>
-        <% end %>
         </div>
-      </span>
+        <div class="username">
+          <em><%= review.user.username %></em>
+        </div>
+      </div>
 
+      <!-- Star Ratings -->
       <div class="somente-as-estrelas">
         <% 5.times do |i| %>
           <% if (i+1) <= review.rating %>
@@ -28,17 +20,18 @@
             <i class="fa-regular fa-star"></i>
           <% end %>
         <% end %>
+        <em>~ This is the user rating ~</em>
       </div>
 
-
+      <!-- Review Description -->
       <div class="review-description">
         <%= review.description %>
       </div>
-
-
     <% end %>
   <% end %>
 </div>
+
+
 
 <div>
   <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id)%>
