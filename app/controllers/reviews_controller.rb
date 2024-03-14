@@ -2,11 +2,11 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.where(user_id: current_user.id).order(created_at: :desc)
-    #mostra as reviews criadas pelo usuário logado
+    # mostra as reviews criadas pelo usuário logado
   end
 
   def show
-    #mostra as reviews para todos os usuários. em show#book uma prévia, podendo ir para outra página para um review completo?
+    # mostra as reviews para todos os usuários. em show#book uma prévia, podendo ir para outra página para um review completo?
     @review = Review.find(params[:id])
   end
 
@@ -19,16 +19,15 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.roteiro_id = params[:roteiro_id]
-
     # @review.pending_approval = true # Set the review as pending approval
-
     book = Book.find(params[:book_id])
 
     if @review.save!
+      update_roteiro_rating(@review.roteiro_id)
       redirect_to book_path(book)
     else
       alert('Erro ao criar review')
-      render :new #aqui vai ser o javascript abrindo e fechando a DIV de create renew, pop up de "aguardando review do admin?"
+      render :new # aqui vai ser o javascript abrindo e fechando a DIV de create renew, pop up de "aguardando review do admin?"
     end
   end
 
@@ -51,18 +50,30 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-
     # if current_user.id == @review.user_id
-      @review.destroy
-      redirect_to book_path
-    end
+    @review.destroy
+    redirect_to book_path
   end
+
 
   private
 
   def review_params
     params.require(:review).permit(:rating, :description, :rich_body, :book_id, :user_id, :roteiro_id)
   end
+
+  def update_roteiro_rating(roteiro_id)
+    roteiro = Roteiro.find(roteiro_id)
+    reviews = Review.where(roteiro_id: roteiro_id)
+    total_rating = 0
+    reviews.each do |review|
+      total_rating += review.rating
+    end
+    roteiro.rating = total_rating / reviews.count
+    roteiro.save
+  end
+end
+
 # FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
 # 1 Basico (create, show, edit, update, destroy) - OK
 # 1 Como usuário, posso dar uma nota para o review de outras pessoas - sitema de rating 0 a 5 por exemplo - #0 A 5 VEM DIRETO DA GEM # - OK
@@ -74,7 +85,3 @@ class ReviewsController < ApplicationController
 # 2 Mostrar data que o review foi editado (created_at e updated_at) - # APENAS SHOW, JÁ VEM PRONTO. #
 
 
-
-
-
-#retu

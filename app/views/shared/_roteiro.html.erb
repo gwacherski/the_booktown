@@ -3,10 +3,8 @@
     <div class="roteiro-card">
       <div class="roteiro-title" onclick="toggleDetails(this)">
         <%= roteiro.title %>
-        <% total_rating = roteiro.reviews.sum(:rating) %>
-        <% average_rating = roteiro.reviews.count > 0 ? total_rating / roteiro.reviews.count : nil %>
-        <% if average_rating %>
-          <strong>Average Rating: <%= number_with_precision(average_rating, precision: 1) %></strong>
+        <% if roteiro.rating %>
+          <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %></strong>
           <i class="fas fa-star"></i>
         <% else %>
           <strong>No reviews yet</strong>
