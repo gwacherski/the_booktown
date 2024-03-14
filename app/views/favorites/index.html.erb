@@ -1,12 +1,14 @@
 <!-- app/views/favorites/index.html.erb -->
 
-<h1>Meus Favoritos</h1>
+<h1>Profile page</h1>
 
 <div class="grid-fav">
 
   <div class="photo">
     <div class="photo-div row">
       <div class="col">
+       Hi <%= current_user.first_name %> <%= current_user.last_name %>!
+       <br>
       <% if current_user.photo.url.present? %>
         <%= cl_image_tag(current_user.photo.key, :transformation=>[
                         {:gravity=>"face", :height=>120, :width=>120, :crop=>"fill"},
@@ -16,9 +18,8 @@
       <% else %>
         <%= image_tag "user.png", class: "avatar-square" %>
       <% end %>
-      <br> Hi <%= current_user.first_name %> <%= current_user.last_name %>!
       </div>
-      <br>
+
       <div class="row">
         <div class="col text">
           <ul>
@@ -26,6 +27,11 @@
             <li>Username: <%= current_user.username %></li>
             <li>E-mail: <%= current_user.email %></li>
             <li>User since: <%= current_user.created_at.strftime("%Y-%m-%d") %></li>
+            <br>
+            <li>No. of favorites: <%= @favorites.count %></li>
+            <li>No. of itineraries written: <%= @user_roteiros.count %></li>
+            <li>No. of reviews left: <%= @user_reviews.count %></li>
+            <br>
             <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
           </ul>
         </div>
@@ -35,12 +41,15 @@
   </div>
 
   <div class="favorites">
+    <h3>My Favorites</h3>
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
+          <th scope="col">Itinerary Title</th>
+          <th scope="col">Book Name</th>
+          <th scope="col">Average Itinerary Rating</th>
           <th scope="col">Action</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -48,33 +57,69 @@
           <% @favorites.each do |favorite| %>
             <tr>
               <td><%= favorite.roteiro.title %></td>
-              <td><%= favorite.roteiro.description %></td>
+              <td><%= favorite.roteiro.book.name %></td>
+              <td><%= favorite.roteiro.rating.to_f.round(1) %></td>
               <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %></td>
+              <td><%= button_to 'Visit book page', book_path(favorite.roteiro.book), method: :get %></td>
             </tr>
           <% end %>
-      <% else %>
+      <% end %>
     </tbody>
   </table>
 </div>
 
   <div class="roteiros">
-    <% if @user_roteiros.present? %>
-      <% @user_roteiros.each do |roteiro| %>
-        <h3><%= roteiro.title %></h3>
-      <% end %>
-    <% else %>
-      <p>Nenhum roteiro encontrado.</p>
-    <% end %>
+  <h3>My Ininerarys</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Itinerary Title</th>
+          <th scope="col">Belongs to</th>
+          <th scope="col">Average Itinerary Rating</th>
+          <th scope="col">Last update</th>
+          <th scope="col">No. of reviews</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @user_roteiros.present? %>
+          <% @user_roteiros.each do |roteiro| %>
+            <tr>
+              <td><%= roteiro.title %></td>
+              <td><%= roteiro.book.name %></td>
+              <td><%= roteiro.rating.to_f.round(1) %></td>
+              <td><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
+              <td><%= roteiro.reviews.count %></td>
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="reviews">
-  <% if @user_reviews.present? %>
-      <% @user_reviews.each do |review| %>
-          <p><%= review.roteiro_id %> - <%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %> - <%= review.rating %></p>
-      <% end %>
-    <% else %>
-      <p>Nenhum review encontrado.</p>
-    <% end %>
+  <h3>My Reviews</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Review No.</th>
+          <th scope="col">Short Description</th>
+          <th scope="col">Last update</th>
+          <th scope="col">Rating given</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @user_reviews.present? %>
+          <% @user_reviews.each do |review| %>
+            <tr>
+              <td><%= review.roteiro_id%></td>
+              <td><%= truncate(review.description, length: 25) %></td>
+              <td><%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td><%= review.rating %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="mydata">

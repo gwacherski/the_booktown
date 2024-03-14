@@ -51,15 +51,6 @@ class RoteirosController < ApplicationController
     redirect_to book_path(@book), notice: "Ordem deletada com sucesso."
   end
 
-  # def update_rating
-  #   @roteiro.rating = params[:rating]
-  #   if @roteiro.save
-  #     redirect_to book_roteiro_path(@roteiro)
-  #   else
-  #     render :edit, status: :unprocessable_entity
-  #   end
-  # end
-
   private
 
   def set_roteiro
