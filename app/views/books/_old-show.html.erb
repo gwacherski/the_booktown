@@ -1,0 +1,49 @@
+<div class="box-shadow" style="padding: 10px;">
+<div class="book-details" style="padding: 10px;">
+  <h2>Title: <%= @book.name %></h2>
+  <p>Author: <%= @book.author %></p>
+  <p>Photo:<%= image_tag @book.thumbnail %></p>
+
+  <p>Description: <%= @book.description %></p>
+</div>
+</div>
+
+<div class="box-shadow" style="padding: 10px;">
+<div class="actions action-buttons" style="padding: 30px;">
+  <%= button_to "Destroy", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger action-button" %>
+  <%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary action-button" %>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <div class="box-shadow" style="padding: 30px;">
+    <h2>Roteiros</h2>
+  </div>
+  <div class="box-shadow" style="padding: 30px;">
+  <div style="margin-left: auto; padding-right: 900px;">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Create Roteiro
+</button>
+  </div>
+</div>
+</div>
+
+<div class="box-shadow" style="padding: 30px;">
+  <%= render 'shared/roteiro' %>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-5" id="exampleModalLabel">New Roteiro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'roteiros/new', book: @book, roteiro: @roteiro %>
+      </div>
+    </div>
+  </div>
+</div>

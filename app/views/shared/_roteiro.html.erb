@@ -4,7 +4,7 @@
       <div class="roteiro-title" onclick="toggleDetails(this)">
         <%= roteiro.title %>
         <% if roteiro.rating %>
-          <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %></strong>
+          <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %></strong>(<%= roteiro.reviews.count %> reviews)
           <i class="fas fa-star"></i>
         <% else %>
           <strong>No reviews yet</strong>
@@ -34,41 +34,17 @@
         <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
       </div>
+        <strong> All pinned itineraries:  </strong>
+  <div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
     </div>
 
   <% end %>
     <%# #mapa add fora da iteração %>
-  <strong> All pinned itineraries:  </strong>
-  <div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-</div>
 
-<style>
-  .roteiro-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-
-  .roteiro-title {
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .roteiro-details {
-    margin-top: 10px;
-  }
-
-  .favorite-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-  }
-</style>
 
 <script>
   function toggleDetails(element) {
