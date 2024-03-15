@@ -38,20 +38,19 @@ def fetch_google_books(author)
 
   return [] unless items
 
-  books = []
+  #books = []
   items.each do |item|
     volume_info = item['volumeInfo']
     name = volume_info['title']
     author = volume_info['authors']&.join(', ')
     description = volume_info['description']
-    thumbnail = volume_info['imageLinks']['thumbnail'] if volume_info['imageLinks'] && volume_info['imageLinks']['thumbnail']
+    medium = volume_info['imageLinks']['thumbnail'] if volume_info['imageLinks'] && volume_info['imageLinks']['thumbnail']
 
     user = User.first
 
-    books << { name: name, author: author, description: description, thumbnail: thumbnail, user: user }
+    book = Book.new(name: name, author: author, description: description, thumbnail: medium, user: user)
+    book.save! if book.thumbnail.present?
   end
-
-  Book.create!(books)
 end
 
 fetch_google_books('Machado de Assis')
