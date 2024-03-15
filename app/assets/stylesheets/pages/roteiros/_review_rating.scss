@@ -28,3 +28,72 @@
     --gl-star-size: 32px;
     pointer-events: none;
 }
+.flexbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 20px; /* Adicionando padding para evitar que os itens toquem as bordas da tela */
+}
+
+.card {
+  flex: 1 1 100%; /* Faz com que cada card ocupe 100% da largura */
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Adicionando borda inferior entre o avatar e o resto do conteúdo */
+}
+
+.avatar-review img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.username {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.somente-as-estrelas {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Adicionando borda inferior entre as estrelas e a descrição */
+}
+
+.fa-solid {
+  color: gold;
+}
+
+.fa-regular {
+  color: lightgray;
+}
+
+.review-description {
+  padding: 10px;
+}
+
+.quote {
+  font-size: 24px;
+  color: #999;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.end-quote {
+  position: absolute;
+  font-size: 24px;
+  color: #999;
+  bottom: 5px;
+  right: 5px;
+}

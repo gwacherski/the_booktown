@@ -1,31 +1,33 @@
 <div class="flexbox-container">
   <% if roteiro.reviews.present? %>
     <% roteiro.reviews.each do |review| %>
-      <!-- Avatar and Username -->
-      <div class="avatar-profile">
-        <div class="avatar-review">
-          <%= image_tag review.user.photo %>
+      <div class="card">
+        <!-- Avatar and Username -->
+        <div class="avatar-profile">
+          <div class="avatar-review">
+            <%= image_tag review.user.photo %>
+          </div>
+          <div class="username">
+            <em><%= review.user.username %></em>
+          </div>
         </div>
-        <div class="username">
-          <em><%= review.user.username %></em>
-        </div>
-      </div>
 
-      <!-- Star Ratings -->
-      <div class="somente-as-estrelas">
-        <% 5.times do |i| %>
-          <% if (i+1) <= review.rating %>
-            <i class="fa-solid fa-star"></i>
-          <% else %>
-            <i class="fa-regular fa-star"></i>
+        <!-- Star Ratings -->
+        <div class="somente-as-estrelas">
+          <% 5.times do |i| %>
+            <% if (i+1) <= review.rating %>
+              <i class="fa-solid fa-star"></i>
+            <% else %>
+              <i class="fa-regular fa-star"></i>
+            <% end %>
           <% end %>
-        <% end %>
-        <em>~ This is the user rating ~</em>
-      </div>
+          <em>~ This is the user rating ~</em>
+        </div>
 
-      <!-- Review Description -->
-      <div class="review-description">
-        <%= review.description %>
+        <!-- Review Description -->
+        <div class="review-description">
+          <%= review.description %>
+        </div>
       </div>
     <% end %>
   <% end %>
