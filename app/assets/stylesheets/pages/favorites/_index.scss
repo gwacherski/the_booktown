@@ -14,7 +14,6 @@
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 4;
-  border: solid 1px #e6e6e6;
 
 }
 
@@ -23,7 +22,7 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
-  border: solid 1px #e6e6e6;
+
 }
 
 .roteiros {
@@ -31,7 +30,7 @@
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
-  border: solid 1px #e6e6e6;
+
 }
 
 .reviews {
@@ -39,7 +38,7 @@
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
-  border: solid 1px #e6e6e6;
+
 }
 
 .col {
@@ -49,6 +48,7 @@
   align-items: center;
   text-align: center;
   padding: 2px;
+
 }
 
 .text {
@@ -61,4 +61,8 @@ ul {
   list-style-type: none;
   padding-left: 0;
 
+}
+
+tr {
+  text-align: center;
 }
