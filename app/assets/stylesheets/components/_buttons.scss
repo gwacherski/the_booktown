@@ -11,3 +11,9 @@
   .action-button:last-child {
     margin-right: 0;
   }
+
+  .no-hover:hover {
+    color: inherit;
+    background-color: #007bff;
+    border-color: #007bff;
+  }

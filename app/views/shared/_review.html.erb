@@ -31,8 +31,12 @@
   <% end %>
 </div>
 
-
-
-<div>
-  <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id)%>
-</div>
+<% if user_signed_in? %>
+  <div>
+    <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id), class: "btn btn-primary" %>
+  </div>
+<% else %>
+  <div>
+    <%= link_to 'Sign in to leave a review!', new_user_session_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
