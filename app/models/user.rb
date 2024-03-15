@@ -18,11 +18,18 @@ class User < ApplicationRecord
 
   attr_accessor :remove_photo
 
+  after_commit :add_default_photo, on: %i[create]
   before_save :check_for_photo_removal
 
   def check_for_photo_removal
     puts "Checking for photo removal"
     photo.purge if remove_photo == '1'
+  end
+
+  def add_default_photo
+    unless photo.attached?
+      photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "user.png")), filename: 'standard_image_user.png', content_type: 'image/png')
+    end
   end
 
   def favorite(roteiro)
