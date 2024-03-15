@@ -1,6 +1,6 @@
 <!-- app/views/favorites/index.html.erb -->
 
-<h1>Profile page</h1>
+<h1>Profile page </h1>
 
 <div class="grid-fav">
 
@@ -24,13 +24,13 @@
         <div class="col text">
           <ul>
             <li><strong>My data:</strong></li>
-            <li>Username: <%= current_user.username %></li>
-            <li>E-mail: <%= current_user.email %></li>
-            <li>User since: <%= current_user.created_at.strftime("%Y-%m-%d") %></li>
+            <li><i class="fa-regular fa-user"></i> <%= current_user.username %></li>
+            <li><i class="fa-regular fa-envelope"></i> <%= current_user.email %></li>
+            <li><i class="fa-regular fa-calendar"></i> <%= current_user.created_at.strftime("%Y-%m-%d") %></li>
             <br>
-            <li>No. of favorites: <%= @favorites.count %></li>
-            <li>No. of itineraries written: <%= @user_roteiros.count %></li>
-            <li>No. of reviews left: <%= @user_reviews.count %></li>
+            <li><i class="fa-solid fa-bookmark"></i> No. of favorites: <%= @favorites.count %></li>
+            <li><i class="fa-solid fa-folder-plus"></i> No. of itineraries written: <%= @user_roteiros.count %></li>
+            <li><i class="fa-solid fa-magnifying-glass-location"></i> No. of reviews left: <%= @user_reviews.count %></li>
             <br>
             <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
           </ul>
