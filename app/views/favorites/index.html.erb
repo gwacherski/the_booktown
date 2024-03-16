@@ -70,7 +70,7 @@
 </div>
 
   <div class="roteiros">
-  <h3>My Ininerarys</h3>
+  <h3>My Itinerarys</h3>
     <% if @user_roteiros.present? %>
       <table class="table table-hover">
         <thead>
@@ -80,6 +80,7 @@
             <th scope="col">Average Itinerary Rating</th>
             <th scope="col">Last update</th>
             <th scope="col">No. of reviews</th>
+            <th scope="col">Edit Itinerary</th>
           </tr>
         </thead>
         <tbody>
@@ -90,6 +91,7 @@
                 <td><%= roteiro.rating.to_f.round(1) %></td>
                 <td><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
                 <td><%= roteiro.reviews.count %></td>
+                <td><%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id) %></td>
                 </tr>
             <% end %>
         </tbody>
