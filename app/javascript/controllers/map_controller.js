@@ -12,10 +12,14 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/mapbox/streets-v10",
+      scrollZoom: false // Disable scroll zoom
     })
+
+    this.map.addControl(new mapboxgl.NavigationControl()) // Add zoom and rotation controls to the map
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+
   }
 
   #addMarkersToMap() {

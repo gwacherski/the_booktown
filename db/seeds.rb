@@ -27,6 +27,8 @@ user = User.create!(
   admin: true
 )
 
+
+
 def fetch_google_books(author)
   puts 'fazendo o seed'
   query_author = author.gsub(' ', '%20')
@@ -78,6 +80,15 @@ review = Review.create!(
   created_by: "Alice",
   user_id: user.id,
   roteiro_id: roteiro.id
+)
+
+User.create!(
+  email: "admin@admin.com",
+  password: "123456",
+  first_name: "Admin",
+  last_name: "Istrator",
+  username: "The Admin",
+  admin: true
 )
 
 puts 'entrance'

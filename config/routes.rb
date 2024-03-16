@@ -26,5 +26,5 @@ Rails.application.routes.draw do
 # new review
 #  get 'books/:book_id/roteiros/:roteiro_id/reviews/new', to: 'reviews#new', as: :new_review
 
-  resources :roteiros, only: [:index, :edit, :update, :destroy]
+  resources :roteiros, only: [:index, :edit, :update]
 end

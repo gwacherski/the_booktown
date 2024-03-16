@@ -1,59 +1,68 @@
 <div>
   <% Roteiro.where(book_id: @book.id).each do |roteiro| %>
     <div class="roteiro-card">
-      <div class="roteiro-title" onclick="toggleDetails(this)">
-        <%= roteiro.title %>
+      <div class="roteiro-title d-flex justify-content-between" onclick="toggleDetails(this)">
+        <strong><%= roteiro.title %></strong>
         <% if roteiro.rating %>
-          <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %></strong>(<%= roteiro.reviews.count %> reviews)
-          <i class="fas fa-star"></i>
+          <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %>  <i class="fas fa-star"></i>  </strong>(<%= roteiro.reviews.count %> reviews)
         <% else %>
           <strong>No reviews yet</strong>
-          <i class="fas fa-star"></i>
         <% end %>
-
-
       </div>
+
+
       <div class="roteiro-details" style="display:none;">
-        <div>
-            <strong>Created by:</strong> <%= roteiro.author%>
-           <%# tá vindo só o email do author, e não acha o username...RESOLVIDO NO CONTROLLER%>
-           <ul>
-            <li><strong> Activity Description: </strong><%= roteiro.activity_description %></li>
-            <li><strong> Location: </strong><%= roteiro.location %></li>
-            <li><strong> Address: </strong><%= roteiro.activity_address %></li>
-            <li><strong> Time taken: </strong><%= roteiro.estimated_time %></li>
-            <li><strong> Time taken: </strong><%= roteiro.estimated_time %>h</li>
-            <li><strong> Aprox. Cost: </strong>R$<%= roteiro.estimated_costs.to_i %></li>
-           </ul>
-         </div>
+        <div class="details-container">
+          <% if @photos.present? %>
+            <div class="photo-container">
+              <div class="photo-grid">
+                <% @photos.each do |photo| %>
+                  <div class="photo">
+                    <img src="<%= photo.url %>" alt="<%= photo.alt %>">
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <div>
+            <ul>
+              <li><strong>Created by:</strong> <%= roteiro.author %></li>
+              <li><strong>Location:</strong> <%= roteiro.location %></li>
+              <li><strong>Activity Description:</strong>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa <%= roteiro.activity_description %></li>
+              <li><strong>Address:</strong> <%= roteiro.activity_address %></li>
+              <li><strong>Time taken:</strong> <%= roteiro.estimated_time %>hours</li>
+              <li><strong>Approx. Cost:</strong> R$ <%= roteiro.estimated_costs.to_i %></li>
+            </ul>
+          </div>
+        </div>
         <div> <%# Carrossel de fotos posteriormente%>
-
-        <!-- Add the button code below -->
-        <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "favorite-button" %>
-
-        <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
+          <!-- Add the button code below -->
+          <% if user_signed_in? %>
+            <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "favorite-button" %>
+          <% end %>
+          <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
       </div>
-     </div>
-
+    </div>
   <% end %>
-    <%# #mapa add fora da iteração %>
-            <strong> All pinned itineraries:  </strong>
+  <%# #mapa add fora da iteração %>
+  <strong> All pinned itineraries:  </strong>
   <div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
-<script>
-  function toggleDetails(element) {
-    // Find the next sibling element which is the details container
-    var details = element.nextElementSibling;
-    // Toggle the display property
-    if (details.style.display === "none") {
-      details.style.display = "block";
-    } else {
-      details.style.display = "none";
+  <script>
+    function toggleDetails(element) {
+      // Find the next sibling element which is the details container
+      var details = element.nextElementSibling;
+      // Toggle the display property
+      if (details.style.display === "none") {
+        details.style.display = "block";
+      } else {
+        details.style.display = "none";
+      }
     }
-  }
-</script>
+  </script>

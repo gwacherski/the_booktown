@@ -1,13 +1,11 @@
 <div class="container">
   <%= simple_form_for([@book, @roteiro]) do |f| %>
-    <%= f.input :title, placeholder: 'Give a title for your itinerary' %>
-    <%= f.input :location, placeholder: 'What city does it take place?' %>
-    <%= f.input :activity_description, placeholder: 'Add a detailed description for the other to enjoy the tour' %>
-    <%#= f.input :description, placeholder: 'Enter description' %>
-    <%#= f.input :rating, placeholder: 'Enter rating' %>
+    <%= f.input :title, :label => 'Itinerary Title', placeholder: 'Give a title for your itinerary' %>
+    <%= f.input :location, :label => 'City', placeholder: 'What city does it take place?' %>
+    <%= f.input :activity_description, :as => :text, placeholder: 'Add a detailed description for the other to enjoy the tour', :input_html => { style: 'resize:vertical; min-height: 120px;' } %>
     <%= f.input :activity_address, placeholder: 'Detailed address (street, number, zip code...)'  %>
-    <%= f.input :estimated_time, placeholder: 'Estimated time in hours (optional)' %>
-    <%= f.input :estimated_costs, placeholder: 'Does it have any cost? How much?' %>
+    <%= f.input :estimated_time, :label => 'Estimated time (hours) for itinerary', placeholder: 'Estimated time in hours (optional)' %>
+    <%= f.input :estimated_costs, :label => 'Total estimated costs', placeholder: 'Does it have any cost? How much?' %>
     <%= f.label :activity_done, "Have you ever taken this tour?" %>
       <%= f.check_box :activity_done %>
     <%= f.label :activity_done, "Share your photos as well!" %>
