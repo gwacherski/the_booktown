@@ -11,10 +11,9 @@
       </div>
 
       <div class="roteiro-details" style="display:none;">
-        <div class="details-container">
+        <div class="details-container row">
           <% if roteiro.photos.present? %>
-            <div class="photo-container">
-
+            <div class="photo-container col">
               <div class="carousel">
                 <input type="radio" id="carousel-1" name="carousel[]" checked>
                 <input type="radio" id="carousel-2" name="carousel[]">
@@ -48,17 +47,21 @@
               </div>
             </div>
           <% end %>
-          <div>
-            <ul>
+        </div>
+          <div class="details-container data row">
+
+            <ul class ="col" >
+            <div class="text-left">
               <li><strong>Created by:</strong> <%= roteiro.author %></li>
               <li><strong>Location:</strong> <%= roteiro.location %></li>
               <li><strong>Activity Description:</strong>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa <%= roteiro.activity_description %></li>
               <li><strong>Address:</strong> <%= roteiro.activity_address %></li>
               <li><strong>Time taken:</strong> <%= roteiro.estimated_time %>hours</li>
               <li><strong>Approx. Cost:</strong> R$ <%= roteiro.estimated_costs.to_i %></li>
+            </div>
             </ul>
+
           </div>
-        </div>
         <div>
           <!-- Add the button code below -->
           <% if user_signed_in? %>

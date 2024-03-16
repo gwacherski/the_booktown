@@ -28,6 +28,7 @@
 
 .roteiro-details div {
   margin-bottom: 10px; /* Espaço entre os elementos dos detalhes */
+  margin: auto;
 }
 
 /* Estilização específica para imagens, se necessário */
@@ -51,6 +52,7 @@
   margin-right: 10px;
 }
 
+
 /* Pode ser necessário ajustar para combinar com seu layout */
 .box-shadow {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -64,6 +66,7 @@
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
+
   }
 
   .details-container ul {
@@ -83,6 +86,11 @@
   .details-container div {
     padding: 10px;
     background-color: white;
+  }
+
+  .details-container data {
+    display: flex;
+    width: 120vh;
   }
 
   .photo-container {
@@ -105,6 +113,15 @@
     height: auto;
     border-radius: 5px;
   }
+
+.col {
+  flex-direction: column;
+  gap: 2px;
+
+  .text-left {
+    text-align: left;
+  }
+}
 
 // CAROUSEL //
 //          //
@@ -211,9 +228,10 @@
       -webkit-transition: opacity 2s;
 
       img {
-        width: 100%;
+        min-width: 700px;
+        max-height: 400px;
         vertical-align: middle;
-        object-fit: cover;
+        object-fit:contain;
         object-position: center;
       }
     }
@@ -221,7 +239,7 @@
     &__prev,
     &__next {
       > label {
-        border: 1px solid #fff;
+        border: 1px solid #b4b4b4;
         border-radius: 50%;
         cursor: pointer;
         display: block;
@@ -250,8 +268,8 @@
         }
 
         &:before {
-          background: linear-gradient(to top, #fff 0%, #fff 10%, rgba(51, 51, 51, 0) 10%),
-                      linear-gradient(to left, #fff 0%, #fff 10%, rgba(51, 51, 51, 0) 10%);
+          background: linear-gradient(to top, #b4b4b4 0%, #fff 10%, rgba(51, 51, 51, 0) 10%),
+                      linear-gradient(to left, #b4b4b4 0%, #fff 10%, rgba(51, 51, 51, 0) 10%);
           width: 60%;
           height: 60%;
           top: 20%;
@@ -293,7 +311,7 @@
       z-index: 3;
 
       > label {
-        border: 1px solid #fff;
+        border: 1px solid #b4b4b4;
         display: inline-block;
         border-radius: 50%;
         cursor: pointer;
@@ -318,4 +336,4 @@ body {
   margin: 0;
 }
 
-@include carousel(5);
+@include carousel(3);
