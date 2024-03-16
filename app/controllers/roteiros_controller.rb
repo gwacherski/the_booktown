@@ -39,7 +39,7 @@ class RoteirosController < ApplicationController
     # book_id = params[:book_id]
     @book = Book.find(@roteiro.book_id)
     if @roteiro.update(roteiro_params)
-      redirect_to book_path(@book)
+      redirect_to favorites_path
     else
       render :edit, status: :unprocessable_entity
     end
