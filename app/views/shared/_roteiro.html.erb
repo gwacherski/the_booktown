@@ -10,21 +10,44 @@
         <% end %>
       </div>
 
-
       <div class="roteiro-details" style="display:none;">
         <div class="details-container">
-          <% if @photos.present? %>
+          <% if roteiro.photos.present? %>
             <div class="photo-container">
-              <div class="photo-grid">
-                <% @photos.each do |photo| %>
-                  <div class="photo">
-                    <img src="<%= photo.url %>" alt="<%= photo.alt %>">
-                  </div>
-                <% end %>
+
+              <div class="carousel">
+                <input type="radio" id="carousel-1" name="carousel[]" checked>
+                <input type="radio" id="carousel-2" name="carousel[]">
+                <input type="radio" id="carousel-3" name="carousel[]">
+                <ul class="carousel__items">
+                  <% if roteiro.photos.first.present? %>
+                    <li class="carousel__item"><%= cl_image_tag roteiro.photos.first.key, class: "photo" %></li>
+                  <% end %>
+                  <% if roteiro.photos.second.present? %>
+                    <li class="carousel__item"><%= cl_image_tag roteiro.photos.second.key, class: "photo" %></li>
+                  <% end %>
+                  <% if roteiro.photos.third.present? %>
+                    <li class="carousel__item"><%= cl_image_tag roteiro.photos.third.key, class: "photo" %></li>
+                  <% end %>
+                </ul>
+                <div class="carousel__prev">
+                  <label for="carousel-1"></label>
+                  <label for="carousel-2"></label>
+                  <label for="carousel-3"></label>
+                </div>
+                <div class="carousel__next">
+                  <label for="carousel-1"></label>
+                  <label for="carousel-2"></label>
+                  <label for="carousel-3"></label>
+                </div>
+                <div class="carousel__nav">
+                  <label for="carousel-1"></label>
+                  <label for="carousel-2"></label>
+                  <label for="carousel-3"></label>
+                </div>
               </div>
             </div>
           <% end %>
-
           <div>
             <ul>
               <li><strong>Created by:</strong> <%= roteiro.author %></li>
@@ -36,7 +59,7 @@
             </ul>
           </div>
         </div>
-        <div> <%# Carrossel de fotos posteriormente%>
+        <div>
           <!-- Add the button code below -->
           <% if user_signed_in? %>
             <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "favorite-button" %>
