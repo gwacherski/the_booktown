@@ -52,7 +52,7 @@ h1 {
   align-items: center;
   .card {
     width: calc(33.33% - 20px);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 }
 
@@ -111,7 +111,7 @@ h1 {
     }
   }
   .author {
-    font-size: 12px;
+    font-size: 20px;
   }
   .title {
     margin-top: 10px;
@@ -175,11 +175,11 @@ h1 {
     width: 100px;
     margin: 2em auto 1em;
     text-align: center;
-    font-size: 12px;
+    font-size: 20px;
     color: $white;
     line-height: 1;
     position: relative;
-    font-weight: 700;
+    font-weight: 1000;
     &::after {
       content: '\2192';
       opacity: 0;

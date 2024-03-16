@@ -1,4 +1,8 @@
-<h1 class="h1 title text-center" style="font-size: 3.5rem; padding: 20px; color: gray; font-family: 'Courier New', Courier, monospace; weight: 10px;">Welcome to The BookTown</h1>
+<div class="container">
+  <h1>Welcome to the BookTown!
+    <span class="txt-type"></span></h1>
+  <h2>Read the city</h2>
+</div>
 
 <div class="grid">
   <% @books.order(id: :asc).limit(15).each_slice(3) do |books| %>
@@ -16,9 +20,9 @@
                 </ul>
               </div>
               <div class="data">
-                <div class="content">
+                <div class="content" style="background-color: black;">
                     <span class="author"><p><%= book.author %></p></span>
-                    <h1 class="title"><a href="<%= book_path(book) %>">
+                    <h1 class="title" style="font-size: smaller; font-weight: bold; font-stretch: wider; color: black;"><a href="<%= book_path(book) %>">
                     <%= book.name %></a></h1>
                     <p class="text"><%= truncate(book.description, length: 90, separator: ' ', omission: '...') %></p>
                     <a href="<%= book_path(book) %>" class="button">Read more</a>
