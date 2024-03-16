@@ -7,20 +7,34 @@
           <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %>  <i class="fas fa-star"></i>  </strong>(<%= roteiro.reviews.count %> reviews)
         <% else %>
           <strong>No reviews yet</strong>
-
         <% end %>
       </div>
+
+
       <div class="roteiro-details" style="display:none;">
-        <div>
-          <ul>
-            <li><strong>Created by: </strong> <%= roteiro.author%></li>
-            <br>
-            <li><strong>Location: </strong><%= roteiro.location %></li>
-            <li><strong>Activity Description: </strong><%= roteiro.activity_description %></li>
-            <li><strong>Address: </strong><%= roteiro.activity_address %></li>
-            <li><strong>Time taken: </strong><%= roteiro.estimated_time %>h</li>
-            <li><strong>Aprox. Cost: </strong>R$ <%= roteiro.estimated_costs.to_i %></li>
-          </ul>
+        <div class="details-container">
+          <div class="photo-container">
+            <div class="photo-grid">
+              <div class="photo">
+                <img src="photo1.jpg" alt="Photo 1">
+              </div>
+              <div class="photo">
+                <img src="photo2.jpg" alt="Photo 2">
+              </div>
+              <!-- Add more photos as needed -->
+            </div>
+          </div>
+
+          <div>
+            <ul>
+              <li><strong>Created by:</strong> <%= roteiro.author %></li>
+              <li><strong>Location:</strong> <%= roteiro.location %></li>
+              <li><strong>Activity Description:</strong>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa <%= roteiro.activity_description %></li>
+              <li><strong>Address:</strong> <%= roteiro.activity_address %></li>
+              <li><strong>Time taken:</strong> <%= roteiro.estimated_time %>h</li>
+              <li><strong>Approx. Cost:</strong> R$ <%= roteiro.estimated_costs.to_i %></li>
+            </ul>
+          </div>
         </div>
         <div> <%# Carrossel de fotos posteriormente%>
           <!-- Add the button code below -->
