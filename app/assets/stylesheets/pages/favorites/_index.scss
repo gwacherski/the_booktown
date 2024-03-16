@@ -1,7 +1,7 @@
 
 .grid-fav {
 	display: grid;
-  grid-template-columns: 240px auto;
+  grid-template-columns: 250px auto;
   grid-auto-rows: minmax(120px, auto);
   grid-gap: 10px;
   margin: 10px;
@@ -9,7 +9,7 @@
 
 }
 
-.photo {
+.photo-fav {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
