@@ -13,17 +13,17 @@
 
       <div class="roteiro-details" style="display:none;">
         <div class="details-container">
-          <div class="photo-container">
-            <div class="photo-grid">
-              <div class="photo">
-                <img src="photo1.jpg" alt="Photo 1">
+          <% if @photos.present? %>
+            <div class="photo-container">
+              <div class="photo-grid">
+                <% @photos.each do |photo| %>
+                  <div class="photo">
+                    <img src="<%= photo.url %>" alt="<%= photo.alt %>">
+                  </div>
+                <% end %>
               </div>
-              <div class="photo">
-                <img src="photo2.jpg" alt="Photo 2">
-              </div>
-              <!-- Add more photos as needed -->
             </div>
-          </div>
+          <% end %>
 
           <div>
             <ul>
@@ -31,7 +31,7 @@
               <li><strong>Location:</strong> <%= roteiro.location %></li>
               <li><strong>Activity Description:</strong>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa <%= roteiro.activity_description %></li>
               <li><strong>Address:</strong> <%= roteiro.activity_address %></li>
-              <li><strong>Time taken:</strong> <%= roteiro.estimated_time %>h</li>
+              <li><strong>Time taken:</strong> <%= roteiro.estimated_time %>hours</li>
               <li><strong>Approx. Cost:</strong> R$ <%= roteiro.estimated_costs.to_i %></li>
             </ul>
           </div>
