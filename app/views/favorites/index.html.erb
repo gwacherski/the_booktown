@@ -1,22 +1,22 @@
 <!-- app/views/favorites/index.html.erb -->
 
-<h1>Profile page </h1>
+<h1>Profile page</h1>
 
 <div class="grid-fav">
 
   <div class="photo-fav">
     <div class="photo-div row">
       <div class="col">
-       Hi <%= current_user.first_name %> <%= current_user.last_name %>!
-       <br>
-       <% if current_user.photo.url.present? %>
+        Hi <%= current_user.first_name %> <%= current_user.last_name %>!
+        <br>
+        <% if current_user.photo.url.present? %>
         <%= cl_image_tag(current_user.photo.key, :transformation=>[
-                        {:gravity=>"face", :height=>120, :width=>120, :crop=>"fill"},
-                        {:border=>"3px_solid_lightblue"},
-                        {:fetch_format=>:auto}
-                        ]) %>
+          {:gravity=>"face", :height=>120, :width=>120, :crop=>"fill"},
+          {:border=>"3px_solid_lightblue"},
+          {:fetch_format=>:auto}
+          ]) %>
         <% else %>
-          <%= image_tag "user.png", class: "avatar-square" %>
+        <%= image_tag "user.png", class: "avatar-square" %>
         <% end %>
       </div>
 
@@ -42,89 +42,151 @@
   <div class="favorites">
     <h3>My Favorites</h3>
     <% if @favorites.present? %>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Itinerary Title</th>
-            <th scope="col">Book Name</th>
-            <th scope="col">Average Itinerary Rating</th>
-            <th scope="col">Actions</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @favorites.each do |favorite| %>
-                <td><%= favorite.roteiro.title %></td>
-                <td><%= favorite.roteiro.book.name %></td>
-                <td><%= favorite.roteiro.rating.to_f.round(1) %></td>
-                <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %></td>
-                <td><%= button_to 'Visit book page', book_path(favorite.roteiro.book), method: :get %></td>
-              </tr>
-            <% end %>
-        </tbody>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Itinerary Title</th>
+          <th scope="col">Book Name</th>
+          <th scope="col">Average Itinerary Rating</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorites.each do |favorite| %>
+        <tr class="favorite-row" data-book-id="<%= favorite.roteiro.book.id %>">
+          <!-- Conteúdo da tabela -->
+          <td><%= favorite.roteiro.title %></td>
+          <td><%= favorite.roteiro.book.name %></td>
+          <td><%= favorite.roteiro.rating.to_f.round(1) %></td>
+          <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %></td>
+        </tr>
+        <% end %>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona todas as linhas da tabela que representam os favoritos
+            var favoriteRows = document.querySelectorAll('.favorite-row');
+
+            // Adiciona um event listener de clique a cada linha de favorito
+            favoriteRows.forEach(function(row) {
+              row.addEventListener('click', function() {
+                // Obtém o ID do livro relacionado ao favorito clicado
+                var bookId = row.dataset.bookId;
+
+                // Redireciona para a página do livro usando o seu ID
+                window.location.href = '/books/' + bookId;
+              });
+              // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
+              row.style.cursor = 'pointer';
+            });
+          });
+        </script>
+      </tbody>
     </table>
     <% else %>
-      <p>You have no favorites yet.</p>
+    <p>You have no favorites yet.</p>
     <% end %>
-</div>
+  </div>
 
   <div class="roteiros">
-  <h3>My Itinerarys</h3>
+    <h3>My Itinerarys</h3>
     <% if @user_roteiros.present? %>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Itinerary Title</th>
-            <th scope="col">Belongs to</th>
-            <th scope="col">Average Itinerary Rating</th>
-            <th scope="col">Last update</th>
-            <th scope="col">No. of reviews</th>
-            <th scope="col">Edit Itinerary</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @user_roteiros.each do |roteiro| %>
-              <tr>
-                <td><%= roteiro.title %></td>
-                <td><%= roteiro.book.name %></td>
-                <td><%= roteiro.rating.to_f.round(1) %></td>
-                <td><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
-                <td><%= roteiro.reviews.count %></td>
-                <td><%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id) %></td>
-                </tr>
-            <% end %>
-        </tbody>
-      </table>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Itinerary Title</th>
+          <th scope="col">Belongs to</th>
+          <th scope="col">Average Itinerary Rating</th>
+          <th scope="col">Last update</th>
+          <th scope="col">No. of reviews</th>
+          <th scope="col">Edit Itinerary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user_roteiros.each do |roteiro| %>
+        <tr class="roteiro-row" data-book-id="<%= roteiro.book.id %>">
+          <!-- Conteúdo da tabela -->
+          <td><%= roteiro.title %></td>
+          <td><%= roteiro.book.name %></td>
+          <td><%= roteiro.rating.to_f.round(1) %></td>
+          <td><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= roteiro.reviews.count %></td>
+          <td><%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id) %></td>
+        </tr>
+        <% end %>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona todas as linhas da tabela que representam os itinerários do usuário
+            var roteiroRows = document.querySelectorAll('.roteiro-row');
+
+            // Adiciona um event listener de clique a cada linha de itinerário
+            roteiroRows.forEach(function(row) {
+              row.addEventListener('click', function() {
+                // Obtém o ID do livro relacionado ao itinerário
+                var bookId = row.dataset.bookId;
+
+                // Redireciona para a página do livro usando o seu ID
+                window.location.href = '/books/' + bookId;
+              });
+              // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
+              row.style.cursor = 'pointer';
+            });
+          });
+        </script>
+      </tbody>
+    </table>
     <% else %>
-      <p>You have no itineraries created yet.</p>
+    <p>You have no itineraries created yet.</p>
     <% end %>
   </div>
 
   <div class="reviews">
-  <h3>My Reviews</h3>
+    <h3>My Reviews</h3>
     <% if @user_reviews.present? %>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Review No.</th>
-            <th scope="col">Short Description</th>
-            <th scope="col">Last update</th>
-            <th scope="col">Rating given</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @user_reviews.each do |review| %>
-              <tr>
-                <td><%= review.roteiro_id%></td>
-                <td><%= truncate(review.description, length: 25) %></td>
-                <td><%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-                <td><%= review.rating %></td>
-              </tr>
-            <% end %>
-        </tbody>
-      </table>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Review No.</th>
+          <th scope="col">Short Description</th>
+          <th scope="col">Last update</th>
+          <th scope="col">Rating given</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user_reviews.each do |review| %>
+        <tr class="review-row" data-book-id="<%= review.roteiro.book.id %>">
+          <!-- Conteúdo da tabela -->
+          <td><%= review.roteiro_id%></td>
+          <td><%= truncate(review.description, length: 25) %></td>
+          <td><%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= review.rating %></td>
+        </tr>
+        <% end %>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona todas as linhas da tabela que representam as revisões do usuário
+            var reviewRows = document.querySelectorAll('.review-row');
+
+            // Adiciona um event listener de clique a cada linha de revisão
+            reviewRows.forEach(function(row) {
+              row.addEventListener('click', function() {
+                // Obtém o ID do livro relacionado à revisão
+                var bookId = row.dataset.bookId;
+
+                // Redireciona para a página do livro usando o seu ID
+                window.location.href = '/books/' + bookId;
+              });
+              // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
+              row.style.cursor = 'pointer';
+            });
+          });
+        </script>
+      </tbody>
+    </table>
     <% else %>
-      <p>You have not left any reviews yet.</p>
+    <p>You have not left any reviews yet.</p>
     <% end %>
   </div>
 
