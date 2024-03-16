@@ -12,6 +12,13 @@ body {
   padding: 150px 0;
   width: 100%;
   margin: 0 auto;
+  //display: flex;
+  //flex-direction: column;
+   //justify-content: center;
+   height: 100vh; /* Updated to 100vh */
+   padding: 0 3rem;
+   //align-items: center;
+   background-size: cover; /* Added background size */
 }
 
 .container {
