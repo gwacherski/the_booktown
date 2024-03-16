@@ -1,20 +1,7 @@
-<%= form_with(model: @book, url: book_path(@book), method: :patch) do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<%= simple_form_for(@book, url: book_path(@book), method: :patch) do |form| %>
+  <%= form.input :name, label: "Book Name" %>
+  <%= form.input :author %>
+  <%= form.input :description %>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
-  </div>
-
-    <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Update Book" %>
-  </div>
+  <%= form.button :submit, "Update Book", class: "btn btn-primary" %>
 <% end %>
