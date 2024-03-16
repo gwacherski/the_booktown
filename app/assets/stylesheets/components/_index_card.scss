@@ -51,8 +51,11 @@ h1 {
   justify-content: center;
   align-items: center;
   .card {
-    width: calc(33.33% - 20px);
-    margin-bottom: 30px;
+    width: calc(20% - 10px); // Adjust the width to make the cards smaller
+    margin: 10px;
+    @media (max-width: 900px) {
+      width: calc(33.33% - 10px); // Adjust the width for smaller screens
+    }
   }
 }
 
@@ -60,11 +63,12 @@ h1 {
 .card {
   z-index: 1;
   float: left;
-  padding: 0 1.7rem;
-  width: calc(100% / 5); // Display only 15 cards by setting width to 20%
+  padding: 0 5.7rem;
+  width: calc(100% / 5); // Display 5 cards in a row
   @media (max-width: 900px) {
     width: calc(100% / 3); // Adjust width for smaller screens
   }
+}
   .menu-content {
     @include cf;
     margin: 0;
@@ -126,7 +130,6 @@ h1 {
   input[type='checkbox']:checked + .menu-content {
     transform: translateY(-60px);
   }
-}
 
 // Second example styles
 .example-2 {
