@@ -54,7 +54,6 @@
         </thead>
         <tbody>
             <% @favorites.each do |favorite| %>
-              <tr>
                 <td><%= favorite.roteiro.title %></td>
                 <td><%= favorite.roteiro.book.name %></td>
                 <td><%= favorite.roteiro.rating.to_f.round(1) %></td>
