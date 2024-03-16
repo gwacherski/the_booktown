@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,100,400');
+
+body {
+  font-family: 'Raleway', sans-serif;
+  height: 100vh;
+  background: #dfcaca url('https://img.freepik.com/fotos-gratis/escultura-em-pedra-por-do-sol_1137-178.jpg?w=740&t=st=1710591319~exp=1710591919~hmac=d4a541e0e9c8a68b29521ce252f813254340c389baedb67963894542b7b6e835');
+  color: #ccc;
+  //overflow:hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 150px 0;
+  width: 100%;
+  margin: 0 auto;
+  //display: flex;
+  //flex-direction: column;
+   //justify-content: center;
+   height: 100vh; /* Updated to 100vh */
+   padding: 0 3rem;
+   //align-items: center;
+   background-size: cover; /* Added background size */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0 3rem;
+  align-items: center;
+}
+
+h1, h2 {
+  font-weight: 200;
+  margin: 0.4rem;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #aaa;
+}
+
+/* Cursor */
+.txt-type > .txt {
+  border-right: 0.2rem solid #777;
+}
+
+@media(min-width: 1200px) {
+  h1 {
+    font-size: 5rem;
+  }
+}
+
+@media(max-width: 800px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media(max-width: 500px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
