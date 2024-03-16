@@ -1,0 +1,7 @@
+<%= simple_form_for(@book, url: book_path(@book), method: :patch) do |form| %>
+  <%= form.input :name, label: "Book Name" %>
+  <%= form.input :author %>
+  <%= form.input :description %>
+
+  <%= form.button :submit, "Update Book", class: "btn btn-primary" %>
+<% end %>
