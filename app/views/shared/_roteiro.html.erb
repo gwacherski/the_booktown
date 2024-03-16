@@ -1,26 +1,25 @@
 <div>
   <% Roteiro.where(book_id: @book.id).each do |roteiro| %>
     <div class="roteiro-card">
-      <div class="roteiro-title" onclick="toggleDetails(this)">
-        <%= roteiro.title %>
+      <div class="roteiro-title d-flex justify-content-between" onclick="toggleDetails(this)">
+        <strong><%= roteiro.title %></strong>
         <% if roteiro.rating %>
-          <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %></strong>(<%= roteiro.reviews.count %> reviews)
-          <i class="fas fa-star"></i>
+          <strong>Average Rating: <%= roteiro.rating.to_f.round(1) %>  <i class="fas fa-star"></i>  </strong>(<%= roteiro.reviews.count %> reviews)
         <% else %>
           <strong>No reviews yet</strong>
-          <i class="fas fa-star"></i>
+
         <% end %>
       </div>
       <div class="roteiro-details" style="display:none;">
         <div>
-          <strong>Created by:</strong> <%= roteiro.author%>
-          <%# tá vindo só o email do author, e não acha o username...RESOLVIDO NO CONTROLLER%>
           <ul>
-            <li><strong> Activity Description: </strong><%= roteiro.activity_description %></li>
-            <li><strong> Location: </strong><%= roteiro.location %></li>
-            <li><strong> Address: </strong><%= roteiro.activity_address %></li>
-            <li><strong> Time taken: </strong><%= roteiro.estimated_time %>h</li>
-            <li><strong> Aprox. Cost: </strong>R$ <%= roteiro.estimated_costs.to_i %></li>
+            <li><strong>Created by: </strong> <%= roteiro.author%></li>
+            <br>
+            <li><strong>Location: </strong><%= roteiro.location %></li>
+            <li><strong>Activity Description: </strong><%= roteiro.activity_description %></li>
+            <li><strong>Address: </strong><%= roteiro.activity_address %></li>
+            <li><strong>Time taken: </strong><%= roteiro.estimated_time %>h</li>
+            <li><strong>Aprox. Cost: </strong>R$ <%= roteiro.estimated_costs.to_i %></li>
           </ul>
         </div>
         <div> <%# Carrossel de fotos posteriormente%>

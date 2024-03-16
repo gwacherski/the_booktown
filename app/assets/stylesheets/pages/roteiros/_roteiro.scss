@@ -56,3 +56,12 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border: 1px solid #ddd;
 }
+
+/* Solid border */
+hr {
+  border-top: 3px solid #818181;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
