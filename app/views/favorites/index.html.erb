@@ -61,28 +61,27 @@
           <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %></td>
         </tr>
         <% end %>
-
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            // Seleciona todas as linhas da tabela que representam os favoritos
-            var favoriteRows = document.querySelectorAll('.favorite-row');
-
-            // Adiciona um event listener de clique a cada linha de favorito
-            favoriteRows.forEach(function(row) {
-              row.addEventListener('click', function() {
-                // Obtém o ID do livro relacionado ao favorito clicado
-                var bookId = row.dataset.bookId;
-
-                // Redireciona para a página do livro usando o seu ID
-                window.location.href = '/books/' + bookId;
-              });
-              // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
-              row.style.cursor = 'pointer';
-            });
-          });
-        </script>
       </tbody>
     </table>
+
+    <script>
+      // Seleciona todas as linhas da tabela que representam os favoritos
+      var favoriteRows = document.querySelectorAll('.favorite-row');
+
+      // Adiciona um event listener de clique a cada linha de favorito
+      favoriteRows.forEach(function(row) {
+        row.addEventListener('click', function() {
+          // Obtém o ID do livro relacionado ao favorito clicado
+          var bookId = row.dataset.bookId;
+
+          // Redireciona para a página do livro usando o seu ID
+          window.location.href = '/books/' + bookId;
+        });
+
+        // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
+        row.style.cursor = 'pointer';
+      });
+    </script>
     <% else %>
     <p>You have no favorites yet.</p>
     <% end %>
@@ -114,28 +113,27 @@
           <td><%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id) %></td>
         </tr>
         <% end %>
-
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            // Seleciona todas as linhas da tabela que representam os itinerários do usuário
-            var roteiroRows = document.querySelectorAll('.roteiro-row');
-
-            // Adiciona um event listener de clique a cada linha de itinerário
-            roteiroRows.forEach(function(row) {
-              row.addEventListener('click', function() {
-                // Obtém o ID do livro relacionado ao itinerário
-                var bookId = row.dataset.bookId;
-
-                // Redireciona para a página do livro usando o seu ID
-                window.location.href = '/books/' + bookId;
-              });
-              // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
-              row.style.cursor = 'pointer';
-            });
-          });
-        </script>
       </tbody>
     </table>
+
+    <script>
+      // Seleciona todas as linhas da tabela que representam os itinerários do usuário
+      var roteiroRows = document.querySelectorAll('.roteiro-row');
+
+      // Adiciona um event listener de clique a cada linha de itinerário
+      roteiroRows.forEach(function(row) {
+        row.addEventListener('click', function() {
+          // Obtém o ID do livro relacionado ao itinerário
+          var bookId = row.dataset.bookId;
+
+          // Redireciona para a página do livro usando o seu ID
+          window.location.href = '/books/' + bookId;
+        });
+
+        // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
+        row.style.cursor = 'pointer';
+      });
+    </script>
     <% else %>
     <p>You have no itineraries created yet.</p>
     <% end %>
@@ -163,28 +161,27 @@
           <td><%= review.rating %></td>
         </tr>
         <% end %>
-
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            // Seleciona todas as linhas da tabela que representam as revisões do usuário
-            var reviewRows = document.querySelectorAll('.review-row');
-
-            // Adiciona um event listener de clique a cada linha de revisão
-            reviewRows.forEach(function(row) {
-              row.addEventListener('click', function() {
-                // Obtém o ID do livro relacionado à revisão
-                var bookId = row.dataset.bookId;
-
-                // Redireciona para a página do livro usando o seu ID
-                window.location.href = '/books/' + bookId;
-              });
-              // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
-              row.style.cursor = 'pointer';
-            });
-          });
-        </script>
       </tbody>
     </table>
+
+    <script>
+      // Seleciona todas as linhas da tabela que representam as revisões do usuário
+      var reviewRows = document.querySelectorAll('.review-row');
+
+      // Adiciona um event listener de clique a cada linha de revisão
+      reviewRows.forEach(function(row) {
+        row.addEventListener('click', function() {
+          // Obtém o ID do livro relacionado à revisão
+          var bookId = row.dataset.bookId;
+
+          // Redireciona para a página do livro usando o seu ID
+          window.location.href = '/books/' + bookId;
+        });
+
+        // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
+        row.style.cursor = 'pointer';
+      });
+    </script>
     <% else %>
     <p>You have not left any reviews yet.</p>
     <% end %>
