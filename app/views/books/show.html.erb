@@ -16,12 +16,12 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h3>Roteiros</h3>
       <% if user_signed_in? %>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Novo Roteiro
-  </button>
-<% else %>
-  <%= link_to "Compartilhe seu roteiro!", new_user_session_path, class: "btn btn-primary" %>
-<% end %>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Novo Roteiro
+        </button>
+      <% else %>
+        <%= link_to "Compartilhe seu roteiro!", new_user_session_path, class: "btn btn-primary" %>
+      <% end %>
 
     </div>
   </div>
