@@ -35,12 +35,14 @@
   padding: 0 20px; /* Adicionando padding para evitar que os itens toquem as bordas da tela */
 }
 
-.card {
-  flex: 1 1 100%; /* Faz com que cada card ocupe 100% da largura */
+.card-review {
+  flex: 0 1 100%;
   background-color: #f9f9f9;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Alinha o conteúdo da div.card à esquerda */
+  display: block; /*garante que os itens sejam dispostos em uma coluna */
 }
 
 .avatar-profile {
@@ -49,12 +51,15 @@
   gap: 10px;
   padding: 10px;
   border-bottom: 1px solid #ddd; /* Adicionando borda inferior entre o avatar e o resto do conteúdo */
+  margin-right: 10px; /* Adicionando margem à direita para separar a imagem do usuário dos outros elementos */
 }
 
 .avatar-review img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px; /* Adicionando margem à direita para separar a imagem do usuário dos outros elementos */
 }
 
 .username {

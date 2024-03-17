@@ -1,8 +1,8 @@
 <div class="flexbox-container">
   <% if roteiro.reviews.present? %>
     <% roteiro.reviews.each do |review| %>
-      <div class="card">
-        <!-- Avatar and Username -->
+      <div class="card-review">
+        <!-- Avatar, Username, and Photo -->
         <div class="avatar-profile">
           <div class="avatar-review">
             <%= image_tag review.user.photo %>
@@ -32,6 +32,9 @@
     <% end %>
   <% end %>
 </div>
+
+
+
 
 <% if user_signed_in? %>
   <div>
