@@ -15,9 +15,16 @@
           <% if roteiro.photos.present? %>
             <div class="photo-container col">
               <div class="carousel">
-                <input type="radio" id="carousel-1" name="carousel[]" checked>
-                <input type="radio" id="carousel-2" name="carousel[]">
-                <input type="radio" id="carousel-3" name="carousel[]">
+
+                <% if roteiro.photos.first.present? %>
+                  <input type="radio" id="carousel-1" name="carousel[]" checked>
+                <% end %>
+                <% if roteiro.photos.second.present? %>
+                  <input type="radio" id="carousel-2" name="carousel[]">
+                <% end %>
+                <% if roteiro.photos.third.present? %>
+                  <input type="radio" id="carousel-3" name="carousel[]">
+                <% end %>
                 <ul class="carousel__items">
                   <% if roteiro.photos.first.present? %>
                     <li class="carousel__item"><%= cl_image_tag roteiro.photos.first.key, class: "photo" %></li>
@@ -30,19 +37,37 @@
                   <% end %>
                 </ul>
                 <div class="carousel__prev">
+                <% if roteiro.photos.first.present? %>
                   <label for="carousel-1"></label>
+                <% end %>
+                <% if roteiro.photos.second.present? %>
                   <label for="carousel-2"></label>
+                <% end %>
+                <% if roteiro.photos.third.present? %>
                   <label for="carousel-3"></label>
+                <% end %>
                 </div>
                 <div class="carousel__next">
-                  <label for="carousel-1"></label>
-                  <label for="carousel-2"></label>
-                  <label for="carousel-3"></label>
+                  <% if roteiro.photos.first.present? %>
+                    <label for="carousel-1"></label>
+                  <% end %>
+                  <% if roteiro.photos.second.present? %>
+                    <label for="carousel-2"></label>
+                  <% end %>
+                  <% if roteiro.photos.third.present? %>
+                    <label for="carousel-3"></label>
+                  <% end %>
                 </div>
                 <div class="carousel__nav">
+                <% if roteiro.photos.first.present? %>
                   <label for="carousel-1"></label>
+                <% end %>
+                <% if roteiro.photos.second.present? %>
                   <label for="carousel-2"></label>
+                <% end %>
+                <% if roteiro.photos.third.present? %>
                   <label for="carousel-3"></label>
+                <% end %>
                 </div>
               </div>
             </div>
@@ -59,9 +84,7 @@
               <li><strong>Approx. Cost:</strong> $ <%= roteiro.estimated_costs.to_i %></li>
               <hr>
               <li><strong>Activity Description:</strong></li>
-              <li><%= roteiro.activity_description %></li>
-
-
+              <li><%= simple_format(roteiro.activity_description) %></li>
             </div>
             </ul>
 
