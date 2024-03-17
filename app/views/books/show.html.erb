@@ -1,24 +1,16 @@
-<div>
-<div class="custom-flexbox-container">
-  <div class="custom-thumbnail">
-    <%= image_tag @book.thumbnail %>
-  </div>
+<div class="d-flex justify-content-center">
+  <h1 class="titl" style="margin: 40px;"><strong><%= "Trip with #{@book.author}" %></strong></h1>
+</div>
 
-  <div class="custom-book-info">
-    <p class="custom-book-name">
-      <strong><%= @book.name %></strong>
-    </p>
-    <p class="custom-book-author">
-      <em>Author: <%= @book.author %></em>
-    </p>
-  </div>
-
-  <div class="custom-description">
-    <p>
-      <strong>Aqui um breve resumo do livro:</strong><br><br>
-      <em><%= @book.description %></em>
-    </p>
-  </div>
+<div class="photo-card">
+<div class="photo-background d-flex justify-content-center align-items-center">
+  <%= image_tag @book.thumbnail, style: "width: 300px; height: auto;" %>
+</div>
+	<div class="photo-details">
+		<h1><strong><%= @book.name %></strong></h1>
+		<span class="photo-author"><a href="#" title="Photos by Jessie Parker" rel="author"> <em><%= @book.author %></em></a></span>
+		<p><em><%= @book.description %></em></p>
+	</div>
 </div>
 
   <div class="actions action-buttons" style="padding: 30px; text-align: center;">
