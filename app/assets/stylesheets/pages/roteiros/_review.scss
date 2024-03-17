@@ -65,6 +65,14 @@
 .username {
   font-weight: bold;
   font-style: italic;
+  margin-top: -45px;
+  font-size: 18px;
+}
+
+.username span {
+  display: block; /* Para que a data de criação do usuário apareça em uma linha separada */
+  font-size: 12px; /* Diminui o tamanho da fonte do span */
+  color: #999;
 }
 
 .somente-as-estrelas {

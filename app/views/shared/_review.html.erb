@@ -1,14 +1,15 @@
 <div class="flexbox-container">
   <% if roteiro.reviews.present? %>
     <% roteiro.reviews.each do |review| %>
-      <div class="card">
+      <div class="card-review">
         <!-- Avatar and Username -->
         <div class="avatar-profile">
           <div class="avatar-review">
             <%= image_tag review.user.photo %>
           </div>
-          <div class="username">
+          <div class="username"> <!-- Adicionando estilo para ajustar o posicionamento do nome de usuário -->
             <em><%= review.user.username %></em>
+            <span>User since: <%= review.user.created_at.strftime("%B %d, %Y") %></span>
           </div>
         </div>
 
