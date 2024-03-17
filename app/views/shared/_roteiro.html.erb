@@ -54,7 +54,7 @@
             <div class="text-left">
               <li><strong>Created by:</strong> <%= roteiro.author %></li>
               <li><strong>Location:</strong> <%= roteiro.location %></li>
-              <li><strong>Activity Description:</strong>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa <%= roteiro.activity_description %></li>
+              <li><strong>Activity Description:</strong><%= roteiro.activity_description %></li>
               <li><strong>Address:</strong> <%= roteiro.activity_address %></li>
               <li><strong>Time taken:</strong> <%= roteiro.estimated_time %>hours</li>
               <li><strong>Approx. Cost:</strong> R$ <%= roteiro.estimated_costs.to_i %></li>
@@ -71,7 +71,8 @@
         </div>
       </div>
     </div>
-  <% end %>
+  <% end %>  #<%# #mapa add dentro da iteração %>
+
   <%# #mapa add fora da iteração %>
   <strong> All pinned itineraries:  </strong>
   <div style="width: 100%; height: 600px;"
