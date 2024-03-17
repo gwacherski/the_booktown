@@ -16,8 +16,20 @@
   pointer-events: none;
 }
 
+// ********************* CARD ********************* //
 
-// *********************
+.wrapper {
+  background-repeat: round;
+  background-size: contain;
+
+}
+
+.card .wrapper {
+  min-height: 420px;
+}
+
+
+// ********************* title ********************* //
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:200,100,400');
 
