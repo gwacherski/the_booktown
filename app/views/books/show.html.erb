@@ -1,44 +1,66 @@
-<div class="productCard_block" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 20px 20px 10px 20px; background-color: #f4f4f4; display: flex; align-items: flex-start;">
-  <div class="productCard_brandBlock" style="margin-right: 20px;">
-    <%= image_tag @book.thumbnail, style: "max-width: 150px;" %>
+<div>
+<div class="custom-flexbox-container">
+  <div class="custom-thumbnail">
+    <%= image_tag @book.thumbnail %>
   </div>
 
-  <div style="flex-grow: 1;">
-    <h2 class="block_name block_name__mainName" style="margin: 0;"><strong><%= @book.name %></strong></h2>
-    <h2 class="block_name block_name__addName" style="margin: 5px 0;"><em>Author: <%= @book.author %></em></h2>
+  <div class="custom-book-info">
+    <p class="custom-book-name">
+      <strong><%= @book.name %></strong>
+    </p>
+    <p class="custom-book-author">
+      <em>Author: <%= @book.author %></em>
+    </p>
+  </div>
 
-    <div class="productCard_rightSide" style="margin-top: 10px;">
-      <strong>Aqui um breve resumo do livro:</strong><br>
+  <div class="custom-description">
+    <p>
+      <strong>Aqui um breve resumo do livro:</strong><br><br>
       <em><%= @book.description %></em>
-    </div>
-
-    <div class="actions action-buttons" style="padding-top: 20px;">
-      <% if user_signed_in? && current_user.admin? %>
-        <%= button_to "Destroy Book", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger action-button" %>
-      <% end %>
-
-      <% if user_signed_in? && (current_user.admin? || @book.user == current_user) %>
-        <!-- O link de edição abre o modal -->
-        <button type="button" class="btn btn-primary action-button" data-bs-toggle="modal" data-bs-target="#editBookModal">
-          Edit
-        </button>
-      <% end %>
-    </div>
+    </p>
   </div>
 </div>
 
-<div class="block_product__advantagesProduct">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h3>Roteiros</h3>
-    <% if user_signed_in? %>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Novo Roteiro
+  <div class="actions action-buttons" style="padding: 30px; text-align: center;">
+    <% if user_signed_in? && current_user.admin? %>
+      <%= button_to "Destroy Book", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger action-button" %>
+    <% end %>
+
+    <% if user_signed_in? && (current_user.admin? || @book.user == current_user) %>
+      <!-- O link de edição abre o modal -->
+      <button type="button" class="btn btn-primary action-button" data-bs-toggle="modal" data-bs-target="#editBookModal">
+        Edit
       </button>
+    <% end %>
+  </div>
+</div>
+
+
+
+<div class="flexbox-container" style="padding: 30px;">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 style="margin: 0; margin-right: 20px;">Roteiros</h3>
+    <% if user_signed_in? %>
+      <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Novo Roteiro
+        </button>
+      </div>
     <% else %>
       <%= link_to "Compartilhe seu roteiro!", new_user_session_path, class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <!-- Modal de edição do livro -->
 <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModalLabel" aria-hidden="true">
