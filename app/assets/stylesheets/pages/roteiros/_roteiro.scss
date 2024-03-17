@@ -22,8 +22,8 @@
 
 .roteiro-details {
   display: none; /* Inicialmente escondido */
-  padding: 20px; /* Espaçamento interno */
-  background-color: #f8f9fa; /* Cor de fundo suave para os detalhes */
+  padding: 5px; /* Espaçamento interno */
+  background-color: #f8f9fa; /* Cor de fundo do carrosel e do card de dados */
 }
 
 .roteiro-details div {
@@ -61,9 +61,10 @@
   .details-container {
     display: grid;
     gap: 20px;
-    padding: 20px;
+    padding: 5px;
     background-color: #f9f9f9;
     border-radius: 10px;
+    min-width: 90%;
 
   }
 
@@ -115,10 +116,35 @@
 .col {
   flex-direction: column;
   gap: 2px;
+  flex-wrap: wrap;
+  align-content: space-between;
 
-  .text-left {
+  .text-left {            // Mexe no tamanho do card dos dados do roteiro
     text-align: left;
+    // min-width: 1100px;
+    margin-left: 0px;
+    width: -webkit-fill-available;
   }
+}
+
+li {
+  color: black;
+  font-size: 16px;
+
+  strong {
+    font-weight: bold;
+    font-size: 16px;
+
+  }
+}
+
+.row {
+  margin: 10px auto 0;
+}
+
+hr {
+  margin: 10px 0;
+  color: #007bff;
 }
 
 // CAROUSEL //
@@ -226,8 +252,8 @@
       -webkit-transition: opacity 2s;
 
       img {
-        min-width: 700px;
-        max-height: 400px;
+        min-width: 800px;
+        max-height: 435px;
         vertical-align: middle;
         object-fit:contain;
         object-position: center;
