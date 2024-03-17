@@ -55,9 +55,9 @@
         <% @favorites.each do |favorite| %>
         <tr class="favorite-row" data-book-id="<%= favorite.roteiro.book.id %>">
           <!-- Conteúdo da tabela -->
-          <td><%= favorite.roteiro.title %></td>
-          <td><%= favorite.roteiro.book.name %></td>
-          <td><%= favorite.roteiro.rating.to_f.round(1) %></td>
+          <td class="clickable-column"><%= favorite.roteiro.title %></td>
+          <td class="clickable-column"><%= favorite.roteiro.book.name %></td>
+          <td class="clickable-column"><%= favorite.roteiro.rating.to_f.round(1) %></td>
           <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %></td>
         </tr>
         <% end %>
@@ -66,20 +66,20 @@
 
     <script>
       // Seleciona todas as linhas da tabela que representam os favoritos
-      var favoriteRows = document.querySelectorAll('.favorite-row');
+      var favoriteColumns = document.querySelectorAll('.clickable-column');
 
       // Adiciona um event listener de clique a cada linha de favorito
-      favoriteRows.forEach(function(row) {
-        row.addEventListener('click', function() {
+     favoriteColumns.forEach(function(column) {
+        column.addEventListener('click', function() {
           // Obtém o ID do livro relacionado ao favorito clicado
-          var bookId = row.dataset.bookId;
+          var bookId = column.closest('.favorite-row').dataset.bookId;
 
           // Redireciona para a página do livro usando o seu ID
           window.location.href = '/books/' + bookId;
         });
 
         // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
-        row.style.cursor = 'pointer';
+        column.style.cursor = 'pointer';
       });
     </script>
     <% else %>
@@ -105,11 +105,11 @@
         <% @user_roteiros.each do |roteiro| %>
         <tr class="roteiro-row" data-book-id="<%= roteiro.book.id %>">
           <!-- Conteúdo da tabela -->
-          <td><%= roteiro.title %></td>
-          <td><%= roteiro.book.name %></td>
-          <td><%= roteiro.rating.to_f.round(1) %></td>
-          <td><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
-          <td><%= roteiro.reviews.count %></td>
+          <td class="clickable-column"><%= roteiro.title %></td>
+          <td class="clickable-column"><%= roteiro.book.name %></td>
+          <td class="clickable-column"><%= roteiro.rating.to_f.round(1) %></td>
+          <td class="clickable-column"><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
+          <td class="clickable-column"><%= roteiro.reviews.count %></td>
           <td><%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id) %></td>
         </tr>
         <% end %>
@@ -118,20 +118,20 @@
 
     <script>
       // Seleciona todas as linhas da tabela que representam os itinerários do usuário
-      var roteiroRows = document.querySelectorAll('.roteiro-row');
+      var favoritesColumns = document.querySelectorAll('.clickable-column');
 
       // Adiciona um event listener de clique a cada linha de itinerário
-      roteiroRows.forEach(function(row) {
-        row.addEventListener('click', function() {
+      favoritesColumns.forEach(function(column) {
+        column.addEventListener('click', function() {
           // Obtém o ID do livro relacionado ao itinerário
-          var bookId = row.dataset.bookId;
+          var bookId = column.closest('.roteiro-row').dataset.bookId;
 
           // Redireciona para a página do livro usando o seu ID
           window.location.href = '/books/' + bookId;
         });
 
         // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
-        row.style.cursor = 'pointer';
+        column.style.cursor = 'pointer';
       });
     </script>
     <% else %>
@@ -145,7 +145,8 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Review No.</th>
+          <th scope="col">Book Name</th>
+          <th scope="col">Itinerary Title</th>
           <th scope="col">Short Description</th>
           <th scope="col">Last update</th>
           <th scope="col">Rating given</th>
@@ -155,9 +156,10 @@
         <% @user_reviews.each do |review| %>
         <tr class="review-row" data-book-id="<%= review.roteiro.book.id %>">
           <!-- Conteúdo da tabela -->
-          <td><%= review.roteiro_id%></td>
-          <td><%= truncate(review.description, length: 25) %></td>
-          <td><%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td class="clickable-column"><%= review.roteiro.book.name %></td>
+          <td class="clickable-column"><%= review.roteiro.title %></td>
+          <td class="clickable-column"><%= truncate(review.description, length: 25) %></td>
+          <td ><%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= review.rating %></td>
         </tr>
         <% end %>
@@ -166,20 +168,20 @@
 
     <script>
       // Seleciona todas as linhas da tabela que representam as revisões do usuário
-      var reviewRows = document.querySelectorAll('.review-row');
+      var reviewColumns = document.querySelectorAll('.clickable-column');
 
       // Adiciona um event listener de clique a cada linha de revisão
-      reviewRows.forEach(function(row) {
-        row.addEventListener('click', function() {
+      reviewColumns.forEach(function(column) {
+        column.addEventListener('click', function() {
           // Obtém o ID do livro relacionado à revisão
-          var bookId = row.dataset.bookId;
+          var bookId = column.closest('.review-row').dataset.bookId;
 
           // Redireciona para a página do livro usando o seu ID
           window.location.href = '/books/' + bookId;
         });
 
         // Altera o cursor do mouse para uma mãozinha quando passa sobre a linha
-        row.style.cursor = 'pointer';
+        column.style.cursor = 'pointer';
       });
     </script>
     <% else %>
