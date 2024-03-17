@@ -8,7 +8,7 @@
     <%= f.input :estimated_costs, :label => 'Total estimated costs', placeholder: 'Does it have any cost? How much?' %>
     <%= f.label :activity_done, "Have you ever taken this tour?" %>
       <%= f.check_box :activity_done %>
-    <%= f.label :activity_done, "Share your photos as well!" %>
+    <%= f.label :activity_done, "Share your photos as well! (Max. 3 per Itinerary)" %>
       <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, "Create" %>
   <%= link_to "Cancel", root_path  %>
