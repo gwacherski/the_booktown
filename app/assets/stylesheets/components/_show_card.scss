@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,500');
+
+$color-card-background: #4c5c5f;
+$color-tag-background: #191e20;
+$color-anchor: #e37544;
+$color-body-copy: #b9bcbd;
+$default-border-radius: 10px;
+$breakpoint-medium: "screen and (min-width: 700px)";
+
+@mixin list-reset() {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	box-sizing: border-box;
+	color: $color-body-copy;
+	font: {
+		family: 'Roboto', sans-serif;
+		size: 100%;
+		weight: 300;
+	}
+	line-height: 1.5;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	background-color: $color-tag-background;
+	padding: 2.1875em;
+}
+
+p {
+	font-size: 87.5%;
+	font-weight: 300;
+	margin-bottom: 1.375em;
+}
+
+.photo-card {
+	background-color: $color-card-background;
+	border-radius: $default-border-radius;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+
+	@media #{$breakpoint-medium} {
+		flex-direction: row;
+	}
+}
+
+.photo-background {
+  //background: url('<%= image_tag @book.thumbnail %>');
+  background-position: center;
+	background-size: cover;
+	border-top-left-radius: $default-border-radius;
+	border-top-right-radius: $default-border-radius;
+	min-height: 250px;
+
+	@media #{$breakpoint-medium} {
+		border-top-left-radius: $default-border-radius;
+		border-top-right-radius: 0;
+		border-bottom-left-radius: $default-border-radius;
+		min-height: none;
+		width: 50%;
+	}
+}
+
+.photo-details {
+	padding: 2.1875em 5%;
+
+	@media #{$breakpoint-medium} {
+		width: 50%;
+	}
+
+	h1, h4 {
+		color: #fff;
+		font-weight: 500;
+		margin: 0;
+	}
+
+	h1 {
+		font-size: 125%;
+		line-height: 1;
+		margin-bottom: 0.35em;
+	}
+
+	h4 {
+		font-size: 62.5%;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+}
+
+.photo-author {
+	color: $color-body-copy;
+	display: block;
+	font-size: 62.5%;
+	text-transform: uppercase;
+
+	a {
+		color: $color-anchor;
+	}
+}
+
+.photo-meta {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1.375em;
+
+	.equipment,
+	.resolution {
+		width: 48.75%;
+
+		ul {
+			@include list-reset;
+			font-size: 87.5%;
+		}
+	}
+}
+
+.photo-tags {
+	ul {
+		@include list-reset;
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 87.5%;
+		margin-top: 0.35em;
+		text-transform: lowercase;
+	}
+
+	li {
+		margin: 0 0.35em 0.35em 0;
+	}
+
+	a {
+		background-color: $color-tag-background;
+		border-radius: 50px;
+		color: #fff;
+		display: block;
+		padding: 0.3125em 1.25em;
+		text-decoration: none;
+		transition: color 0.3s ease;
+
+		&:hover, &:focus {
+			color: $color-anchor;
+		}
+	}
+}
