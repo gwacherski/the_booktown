@@ -110,7 +110,10 @@
           <td class="clickable-column"><%= roteiro.rating.to_f.round(1) %></td>
           <td class="clickable-column"><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
           <td class="clickable-column"><%= roteiro.reviews.count %></td>
-          <td><%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id) %></td>
+          <td>
+  <%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id), class: "edit-button" %>
+</td>
+
         </tr>
         <% end %>
       </tbody>
@@ -143,28 +146,32 @@
     <h3>My Reviews</h3>
     <% if @user_reviews.present? %>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Book Name</th>
-          <th scope="col">Itinerary Title</th>
-          <th scope="col">Short Description</th>
-          <th scope="col">Last update</th>
-          <th scope="col">Rating given</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user_reviews.each do |review| %>
-        <tr class="review-row" data-book-id="<%= review.roteiro.book.id %>">
-          <!-- Conteúdo da tabela -->
-          <td class="clickable-column"><%= review.roteiro.book.name %></td>
-          <td class="clickable-column"><%= review.roteiro.title %></td>
-          <td class="clickable-column"><%= truncate(review.description, length: 25) %></td>
-          <td ><%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-          <td><%= review.rating %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+     <% # Ordene as revisões por data de atualização (last update) %>
+<% @user_reviews = @user_reviews.sort_by(&:updated_at).reverse %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Book Name</th>
+      <th scope="col">Itinerary Title</th>
+      <th scope="col">Short Description</th>
+      <th scope="col">Last update</th>
+      <th scope="col">Rating given</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_reviews.each do |review| %>
+    <tr class="review-row" data-book-id="<%= review.roteiro.book.id %>">
+      <!-- Conteúdo da tabela -->
+      <td class="clickable-column"><%= review.roteiro.book.name %></td>
+      <td class="clickable-column"><%= review.roteiro.title %></td>
+      <td class="clickable-column"><%= truncate(review.description, length: 25) %></td>
+      <td><%= review.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+      <td><%= review.rating %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
     <script>
       // Seleciona todas as linhas da tabela que representam as revisões do usuário

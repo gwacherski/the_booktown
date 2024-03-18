@@ -11,6 +11,7 @@
 		<span class="photo-author"><a href="#" title="Photos by Jessie Parker" rel="author"> <em><%= @book.author %></em></a></span>
 		<p><em><%= @book.description %></em></p>
 	</div>
+
 </div>
 
   <div class="actions action-buttons" style="padding: 30px; text-align: center;">
@@ -31,28 +32,18 @@
 
 <div class="flexbox-container" style="padding: 30px;">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h3 style="margin: 0; margin-right: 20px;">Roteiros</h3>
+    <h3 style="margin: 0; margin-right: 20px;">Itinerarys:</h3>
     <% if user_signed_in? %>
       <div class="d-flex align-items-center">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Novo Roteiro
+          New Itinerary
         </button>
       </div>
     <% else %>
-      <%= link_to "Compartilhe seu roteiro!", new_user_session_path, class: "btn btn-primary" %>
+      <%= link_to "Share your experience!", new_user_session_path, class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 <!-- Modal de edição do livro -->
 <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModalLabel" aria-hidden="true">
