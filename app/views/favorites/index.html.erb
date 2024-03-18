@@ -32,7 +32,7 @@
             <li><i class="fa-solid fa-folder-plus"></i> No. of itineraries written: <%= @user_roteiros.count %></li>
             <li><i class="fa-solid fa-magnifying-glass-location"></i> No. of reviews left: <%= @user_reviews.count %></li>
             <br>
-            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+            <li><%= link_to 'Edit profile', edit_user_registration_path, class: "edit-button" %></li>
           </ul>
         </div>
       </div>
@@ -58,7 +58,7 @@
           <td class="clickable-column"><%= favorite.roteiro.title %></td>
           <td class="clickable-column"><%= favorite.roteiro.book.name %></td>
           <td class="clickable-column"><%= favorite.roteiro.rating.to_f.round(1) %></td>
-          <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete %></td>
+            <td><%= button_to 'Remover dos Favoritos', favorite_path(id: favorite.id), data: { "turbo-method": :delete, confirm: 'Tem certeza?' }, method: :delete, class: "edit-button" %></td>
         </tr>
         <% end %>
       </tbody>

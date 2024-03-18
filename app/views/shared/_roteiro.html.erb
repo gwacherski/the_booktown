@@ -92,7 +92,7 @@
         <div>
           <!-- Add the button code below -->
           <% if user_signed_in? %>
-            <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "favorite-button" %>
+            <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "edit-button" %>
           <% end %>
           <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
