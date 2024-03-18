@@ -40,8 +40,8 @@
 /* Ajustes para links e botões, se aplicável */
 .roteiro-card a, .roteiro-card button {
   text-decoration: none;
-  color: #007bff; /* Cor que combina com o tema */
-  background-color: transparent;
+  // color: #007bff; /* Cor que combina com o tema */
+  // background-color: transparent;
   border: none;
   cursor: pointer;
 }
@@ -103,7 +103,7 @@
     width: 100px; /* Set a fixed width for each photo */
     height: auto; /* Automatically adjust height */
     border-radius: 5px;
-    border: 1px solid #ddd;
+    // border: 1px solid #ddd;
     transition: transform 0.3s ease-in-out;
   }
 
