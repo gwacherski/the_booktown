@@ -15,11 +15,13 @@
 
         <!-- Star Ratings -->
         <div class="somente-as-estrelas">
-          <% 5.times do |i| %>
-            <% if (i+1) <= review.rating %>
-              <i class="fa-solid fa-star"></i>
-            <% else %>
-              <i class="fa-regular fa-star"></i>
+          <% if review.rating.present? %>
+            <% 5.times do |i| %>
+              <% if (i+1) <= review.rating %>
+                <i class="fa-solid fa-star"></i>
+              <% else %>
+                <i class="fa-regular fa-star"></i>
+              <% end %>
             <% end %>
           <% end %>
           <em>~ This is the user rating ~</em>
