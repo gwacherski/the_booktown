@@ -1,40 +1,60 @@
-<div class="flexbox-container">
-  <% if roteiro.reviews.present? %>
-    <% roteiro.reviews.each do |review| %>
-      <div class="card-review">
-        <!-- Avatar and Username -->
-        <div class="avatar-profile">
-          <div class="avatar-review">
-            <%= image_tag review.user.photo %>
-          </div>
-          <div class="username"> <!-- Adicionando estilo para ajustar o posicionamento do nome de usuário -->
-            <em><%= review.user.username %></em>
-            <span>User since: <%= review.user.created_at.strftime("%B %d, %Y") %></span>
-          </div>
-        </div>
+<% roteiro.reviews.each do |review| %>
+  <div class="card-review">
 
-        <!-- Star Ratings -->
-        <div class="somente-as-estrelas">
-          <% if review.rating.present? %>
-            <% 5.times do |i| %>
-              <% if (i+1) <= review.rating %>
-                <i class="fa-solid fa-star"></i>
-              <% else %>
-                <i class="fa-regular fa-star"></i>
-              <% end %>
-            <% end %>
+    <!-- Avatar and Username -->
+
+    <div class="avatar-profile">
+      <div class="avatar-review">
+        <%= image_tag review.user.photo if review.user.photo.attached? %>
+      </div>
+      <div class="username">
+        <em><%= review.user.username %></em>
+        <span>User since: <%= review.user.created_at.strftime("%B %d, %Y") %></span>
+      </div>
+    </div>
+
+    <!-- Star Ratings -->
+
+    <div class="somente-as-estrelas">
+      <% if review.rating.present? %>
+        <% 5.times do |i| %>
+          <% if (i+1) <= review.rating %>
+            <i class="fa-solid fa-star"></i>
+          <% else %>
+            <i class="fa-regular fa-star"></i>
           <% end %>
-          <em>~ This is the user rating ~</em>
-        </div>
+        <% end %>
+      <% end %>
+      <em>~ This is the user rating ~</em>
+    </div>
 
-        <!-- Review Description -->
-        <div class="review-description">
-          <%= simple_format(review.description) %>
-        </div>
+    <!-- Photos -->
+
+    <% if review.photos.attached? %>
+      <div class="review-photos">
+        <% review.photos.each do |photo| %>
+          <%= cl_image_tag review.photos %>
+        <% end %>
       </div>
     <% end %>
-  <% end %>
-</div>
+
+
+    <!-- Review Description -->
+
+    <div class="review-description">
+      <%= simple_format(review.description) %>
+    </div>
+
+    <!-- Message for reviews without images -->
+
+    <% unless review.photos.attached? %>
+      <div class="no-image-message">
+        Review created without images.
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 
 <% if user_signed_in? %>
   <div>
