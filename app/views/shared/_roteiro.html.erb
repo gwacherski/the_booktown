@@ -109,8 +109,10 @@
 </div>
 
   <%# #mapa add fora da iteração %>
-  <strong> All pinned itineraries:  </strong><br>
-  <br>
+  <div style="text-align: center; color: black;">
+    <strong> All pinned itineraries:  </strong><br>
+    <br>
+  </div>
   <div style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
