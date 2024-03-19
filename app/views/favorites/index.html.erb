@@ -1,14 +1,12 @@
 <!-- app/views/favorites/index.html.erb -->
 
-<h1>Profile page</h1>
+<h1>Hi <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
 
 <div class="grid-fav">
 
   <div class="photo-fav">
     <div class="photo-div row">
       <div class="col">
-        Hi <%= current_user.first_name %> <%= current_user.last_name %>!
-        <br>
         <% if current_user.photo.url.present? %>
         <%= cl_image_tag(current_user.photo.key, :transformation=>[
           {:gravity=>"face", :height=>120, :width=>120, :crop=>"fill"},
@@ -42,6 +40,7 @@
   <div class="favorites">
     <h3>My Favorites</h3>
     <% if @favorites.present? %>
+    <div class="table-wrapper">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -63,7 +62,8 @@
         <% end %>
       </tbody>
     </table>
-
+    </div>
+    
     <script>
       // Seleciona todas as linhas da tabela que representam os favoritos
       var favoriteColumns = document.querySelectorAll('.clickable-column');
@@ -90,35 +90,35 @@
   <div class="roteiros">
     <h3>My Itinerarys</h3>
     <% if @user_roteiros.present? %>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Itinerary Title</th>
-          <th scope="col">Belongs to</th>
-          <th scope="col">Average Itinerary Rating</th>
-          <th scope="col">Last update</th>
-          <th scope="col">No. of reviews</th>
-          <th scope="col">Edit Itinerary</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user_roteiros.each do |roteiro| %>
-        <tr class="roteiro-row" data-book-id="<%= roteiro.book.id %>">
-          <!-- Conteúdo da tabela -->
-          <td class="clickable-column"><%= roteiro.title %></td>
-          <td class="clickable-column"><%= roteiro.book.name %></td>
-          <td class="clickable-column"><%= roteiro.rating.to_f.round(1) %></td>
-          <td class="clickable-column"><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
-          <td class="clickable-column"><%= roteiro.reviews.count %></td>
-          <td>
-  <%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id), class: "edit-button" %>
-</td>
-
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-
+      <div class="table-wrapper">
+        <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Itinerary Title</th>
+            <th scope="col">Belongs to</th>
+            <th scope="col">Average Itinerary Rating</th>
+            <th scope="col">Last update</th>
+            <th scope="col">No. of reviews</th>
+            <th scope="col">Edit Itinerary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_roteiros.each do |roteiro| %>
+          <tr class="roteiro-row" data-book-id="<%= roteiro.book.id %>">
+            <!-- Conteúdo da tabela -->
+            <td class="clickable-column"><%= roteiro.title %></td>
+            <td class="clickable-column"><%= roteiro.book.name %></td>
+            <td class="clickable-column"><%= roteiro.rating.to_f.round(1) %></td>
+            <td class="clickable-column"><%= roteiro.updated_at.strftime("%Y-%m-%d") %></td>
+            <td class="clickable-column"><%= roteiro.reviews.count %></td>
+            <td>
+    <%= link_to "Edit", edit_roteiro_path(roteiro, book_id: roteiro.book_id), class: "edit-button" %>
+  </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
     <script>
       // Seleciona todas as linhas da tabela que representam os itinerários do usuário
       var favoritesColumns = document.querySelectorAll('.clickable-column');
@@ -145,34 +145,33 @@
   <div class="reviews">
     <h3>My Reviews</h3>
     <% if @user_reviews.present? %>
-    <table class="table table-hover">
-     <% # Ordene as revisões por data de atualização (last update) %>
-<% @user_reviews = @user_reviews.sort_by(&:updated_at).reverse %>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Book Name</th>
-      <th scope="col">Itinerary Title</th>
-      <th scope="col">Short Description</th>
-      <th scope="col">Last update</th>
-      <th scope="col">Rating given</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @user_reviews.each do |review| %>
-    <tr class="review-row" data-book-id="<%= review.roteiro.book.id %>">
-      <!-- Conteúdo da tabela -->
-      <td class="clickable-column"><%= review.roteiro.book.name %></td>
-      <td class="clickable-column"><%= review.roteiro.title %></td>
-      <td class="clickable-column"><%= truncate(review.description, length: 25) %></td>
-      <td><%= review.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-      <td><%= review.rating %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
+     <div class="table-wrapper">
+     <%# Ordene as revisões por data de atualização (last update) %>
+      <% @user_reviews = @user_reviews.sort_by(&:updated_at).reverse %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Book Name</th>
+            <th scope="col">Itinerary Title</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">Last update</th>
+            <th scope="col">Rating given</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_reviews.each do |review| %>
+          <tr class="review-row" data-book-id="<%= review.roteiro.book.id %>">
+            <!-- Conteúdo da tabela -->
+            <td class="clickable-column"><%= review.roteiro.book.name %></td>
+            <td class="clickable-column"><%= review.roteiro.title %></td>
+            <td class="clickable-column"><%= truncate(review.description, length: 25) %></td>
+            <td><%= review.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= review.rating %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
     <script>
       // Seleciona todas as linhas da tabela que representam as revisões do usuário
       var reviewColumns = document.querySelectorAll('.clickable-column');
