@@ -1,6 +1,6 @@
 <!-- app/views/favorites/index.html.erb -->
 
-<h1>Hi <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+<h1>Hi, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
 
 <div class="grid-fav">
 
@@ -63,7 +63,7 @@
       </tbody>
     </table>
     </div>
-    
+
     <script>
       // Seleciona todas as linhas da tabela que representam os favoritos
       var favoriteColumns = document.querySelectorAll('.clickable-column');

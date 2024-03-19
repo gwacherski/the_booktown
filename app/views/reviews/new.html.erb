@@ -1,16 +1,45 @@
-<div class="container">
+<div class="container py-5">
   <div class="row">
-    <div class="col-4">
-      <%= simple_form_for(@review, url: book_roteiro_reviews_path) do |f| %>
-        <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
-        <%= f.input :description %>
-        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <%= simple_form_for(@review, url: book_roteiro_reviews_path) do |f| %>
+          Hi, <%= current_user.first_name %>!<br> We would love to hear your opinion about this book. Please, leave your review below:<br><br>
+          <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: { data: { controller: "star-rating" } } %>
+          <%= f.input :description, as: :text, input_html: { rows: 4, id: "review_description" } %>
+          <div style="display: flex; justify-content: flex-end;">
+            <div style="font-size: smaller;">
+              <span id="charCount"></span> characters remaining
+            </div>
+          </div>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
-        <%= f.button :submit, "Send your review", class: "btn btn-success" %>
-      <% end %>
+          <%= f.button :submit, "Send your review", class: "btn btn-success" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var maxLength = 700;
+    var descriptionInput = document.getElementById("review_description");
+    var charCount = document.getElementById("charCount");
+
+    descriptionInput.addEventListener("input", function() {
+      var remainingChars = maxLength - this.value.length;
+      charCount.textContent = remainingChars;
+      if (remainingChars < 0) {
+        charCount.style.color = "red";
+      } else {
+        charCount.style.color = "";
+      }
+    });
+  });
+</script>
+
+
+
 
 
 
