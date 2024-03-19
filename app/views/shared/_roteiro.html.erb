@@ -13,7 +13,13 @@
       <div class="roteiro-details" style="display:none;">
         <!-- FAVORITES BUTTON -->
         <% if user_signed_in? %>
-          <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "add-favorite edit-button" %>
+          <% if Favorite.exists_for?(current_user, roteiro) %>
+            <%#LINK_TO DO REMOVE QUEBRADO - PROBLEMA DE ROTA - INSTALADO ALTERNATIVA  %>
+            <%#= link_to "Remove from Favorites", favorite_path(book_id: roteiro.book_id, id: roteiro.id), data: { turbo_method: :delete }, class: "remove-favorite edit-button" %>
+            <%= link_to "Favorited!", favorites_path, class: "remove-favorite edit-button" %>
+          <% else %>
+            <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: { turbo_method: :post }, class: "add-favorite edit-button" %>
+          <% end %>
         <% end %>
         <div class="details-container row">
           <% if roteiro.photos.present? %>

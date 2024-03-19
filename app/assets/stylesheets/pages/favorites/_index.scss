@@ -48,7 +48,7 @@
   align-items: center;
   text-align: center;
   padding: 2px;
-
+  flex-wrap: nowrap;
 }
 
 .text {
@@ -84,3 +84,11 @@ tr {
   text-decoration: underline;
   padding: 2px 12px; /* Ajuste o padding conforme necessário */
 }
+
+.table-wrapper {
+  overflow-y: auto;
+  max-height: 300px;
+  display: block;
+}
+
+
