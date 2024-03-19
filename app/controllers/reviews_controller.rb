@@ -66,12 +66,19 @@ class ReviewsController < ApplicationController
     roteiro = Roteiro.find(roteiro_id)
     reviews = Review.where(roteiro_id: roteiro_id)
     total_rating = 0
-    reviews.each do |review|
-      total_rating += review.rating
+
+    unless reviews.empty?
+      reviews.each do |review|
+        total_rating += review.rating.to_f
+      end
+      roteiro.rating = total_rating / reviews.count
+    else
+      roteiro.rating = 0
     end
-    roteiro.rating = total_rating / reviews.count
+
     roteiro.save
   end
+
 end
 
 # FEATURES PARA SEREM IMPLEMENTADAS (Número na frente da feature é a prioridade)
@@ -83,5 +90,3 @@ end
 # 2 Aprovação de review pelo admin (ou não) - verificar possibilidade. Criar um campo de status da aprovação do reviews
 #   no DB
 # 2 Mostrar data que o review foi editado (created_at e updated_at) - # APENAS SHOW, JÁ VEM PRONTO. #
-
-

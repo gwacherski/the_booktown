@@ -110,3 +110,9 @@
   bottom: 5px;
   right: 5px;
 }
+
+.review-description {
+  max-height: 50x; /* Defina a altura máxima que deseja */
+  overflow-y: auto; /* Adicione uma barra de rolagem vertical caso o conteúdo exceda a altura máxima */
+  word-wrap: break-word;
+}

@@ -46,7 +46,7 @@ p {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	max-width: 700px;
+	max-width: 750px;
 	margin-left: auto;
 	margin-right: auto;
 
@@ -73,7 +73,7 @@ p {
 }
 
 .photo-details {
-	padding: 2.1875em 5%;
+	padding: 2.1875em 3%;
 
 	@media #{$breakpoint-medium} {
 		width: 50%;
