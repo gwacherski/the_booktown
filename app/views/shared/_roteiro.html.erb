@@ -11,6 +11,10 @@
       </div>
 
       <div class="roteiro-details" style="display:none;">
+        <!-- FAVORITES BUTTON -->
+        <% if user_signed_in? %>
+          <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "add-favorite edit-button" %>
+        <% end %>
         <div class="details-container row">
           <% if roteiro.photos.present? %>
             <div class="photo-container col">
@@ -90,10 +94,7 @@
 
           </div>
         <div>
-          <!-- Add the button code below -->
-          <% if user_signed_in? %>
-            <%= link_to "Add to Favorites", book_favorites_path(book_id: roteiro.book_id, roteiro_id: roteiro.id), data: {turbo_method: :post}, class: "edit-button" %>
-          <% end %>
+
           <%= render partial: 'shared/review', locals: { roteiro: roteiro } %>
         </div>
       </div>
@@ -121,4 +122,5 @@
         details.style.display = "none";
       }
     }
+
   </script>
