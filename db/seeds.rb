@@ -51,7 +51,7 @@ def fetch_google_books(author)
     user = User.first
 
     book = Book.new(name: name, author: author, description: description, thumbnail: medium, user: user)
-    book.save! if book.thumbnail.present?
+    book.save! if book.thumbnail.present? && book.valid? && book.description.present?
   end
 end
 

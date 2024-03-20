@@ -87,13 +87,11 @@
 
             <ul class ="col" >
             <div class="text-left">
-              <li><strong>Itinerary Created by:</strong> <%= roteiro.author %></li>
+              <li><strong>Created by:</strong> <%= roteiro.author %></li>
               <li><strong>City:</strong> <%= roteiro.location %></li>
-              <li><strong>Full Address:</strong> <%= roteiro.activity_address %></li>
-              <li><strong>Approx. Time taken:</strong> <%= roteiro.estimated_time %>  hours</li>
-              <li><strong>Approx. Cost:</strong> $ <%= roteiro.estimated_costs.to_i %></li>
+              <li><strong>Point:</strong> <%= roteiro.activity_address %></li>
               <hr>
-              <li><strong>Activity Description:</strong></li>
+              <li><strong>What to do:</strong></li>
               <li><%= simple_format(roteiro.activity_description) %></li>
             </div>
             </ul>
