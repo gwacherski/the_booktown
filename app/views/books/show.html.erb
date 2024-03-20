@@ -3,47 +3,43 @@
 </div>
 
 <div class="photo-card">
-<div class="photo-background d-flex justify-content-center align-items-center">
-  <%= image_tag @book.thumbnail, style: "width: 300px; height: auto;" %>
-</div>
-	<div class="photo-details">
-		<h1><strong><%= @book.name %></strong></h1>
-		<span class="photo-author"><a href="#" title="Photos by Jessie Parker" rel="author"> <em><%= @book.author %></em></a></span>
-		<p><em><%= @book.description %></em></p>
-  <div class="actions action-buttons"">
+  <div class="photo-background d-flex justify-content-center align-items-center">
+    <%= image_tag @book.thumbnail, style: "width: 300px; height: auto;" %>
+  </div>
+  <div class="photo-details">
+    <h1><strong><%= @book.name %></strong></h1>
+    <span class="photo-author"><a href="#" title="Photos by Jessie Parker" rel="author"> <em><%= @book.author %></em></a></span>
+    <p><em><%= truncate(@book.description, length: 600) %></em></p>
+
     <% if user_signed_in? && current_user.admin? %>
-      <%= button_to "Destroy Book", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger action-button" %>
+      <%= button_to "Destroy Book", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn action-button" %>
     <% end %>
 
     <% if user_signed_in? && (current_user.admin? || @book.user == current_user) %>
       <!-- O link de edição abre o modal -->
-      <button type="button" class="btn btn-primary action-button" data-bs-toggle="modal" data-bs-target="#editBookModal">
+      <button type="button" class="btn action-button" data-bs-toggle="modal" data-bs-target="#editBookModal">
         Edit
       </button>
     <% end %>
   </div>
 </div>
-	</div>
 
-</div>
-
-
-
-
-<div class="new-itinerary">
+<div class="new-itinerary d-flex justify-content-center">
   <div>
-    <h3>Create Your Itinerary!</h3>
+    <div class="d-flex justify-content-center" style="margin: 30px;">
+      <h3>Create Your Itinerary!</h3>
+    </div>
     <p>Inpired by the book, share your own experience or the expeirience that you wanted to do based on the places, building or monuments that your favorite character visited, lived and explored within the pages.
     Fill the custom itinerary with details, enrich with photos of the places (add your own photos, it's ok to be smug sometimes) and help other read the city as you did!
     And last, remember to leave a review or better, give a compliment to the fellow reader who created the itinerary and inspired you!</p>
     <% if user_signed_in? %>
       <div class="new-itinerary-button">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-warning btn-lg rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
           New Itinerary
         </button>
       </div>
     <% else %>
-      <%= link_to "Share your experience!", new_user_session_path, class: "btn btn-primary" %>
+      <%= link_to "Share your experience!", new_user_session_path, class: "btn" %>
     <% end %>
   </div>
 </div>
@@ -64,7 +60,7 @@
   </div>
 </div>
 
-<div class="box-shadow" style="padding: 30px;">
+<div style="padding: 10px;">
   <%= render 'shared/roteiro' %>
 </div>
 
@@ -74,6 +70,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title fs-5" id="exampleModalLabel">New Itinarary</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 25px;"></button>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
