@@ -1,4 +1,9 @@
 <div>
+  <% if Roteiro.where(book_id: @book.id).present? %>
+    <h3>Explore through the <%= Roteiro.where(book_id: @book.id).count %> available itineraries. Click on the title to expand.</h3>
+  <% else %>
+    <h3>Sorry, this book has no itinerarys yet. Come back later or create a new one!</h3>
+  <% end %>
   <% Roteiro.where(book_id: @book.id).each do |roteiro| %>
     <div class="roteiro-card">
       <div class="roteiro-title d-flex justify-content-between" onclick="toggleDetails(this)">
@@ -87,9 +92,10 @@
 
             <ul class ="col" >
             <div class="text-left">
-              <li><strong>Created by:</strong> <%= roteiro.author %></li>
-              <li><strong>City:</strong> <%= roteiro.location %></li>
               <li><strong>Point:</strong> <%= roteiro.activity_address %></li>
+              <li><strong>City:</strong> <%= roteiro.location %></li>
+              <li><strong>Created by:</strong> <%= roteiro.author %></li>
+              <li><strong>Last Update: </strong><%= roteiro.updated_at.strftime("%Y-%m-%d")%> </li>
               <hr>
               <li><strong>What to do:</strong></li>
               <li><%= simple_format(roteiro.activity_description) %></li>

@@ -49,42 +49,34 @@
 
     <% unless review.photos.attached? %>
       <div class="no-image-message">
-        Review created without images.
+        <p> Review created without images.</p>
       </div>
     <% end %>
   </div>
 <% end %>
 
-
-<% if user_signed_in? %>
-
-  <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Leave a review!
-    </button>
-  </div>
-
-<% else %>
-  <div>
-    <%= link_to 'Sign in to leave a review!', new_user_session_path, class: "btn text-center" %>
-  </div>
-<% end %>
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fs-5" id="exampleModalLabel">New Review</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="leave-review">
+  <% if user_signed_in? %>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+        Leave a review!
+      </button>
+      <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title fs-5" id="reviewModalLabel">New Review</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Aqui será renderizado o formulário para adicionar um novo review -->
+              <%@roteiro = roteiro %>
+              <%@review = Review.new %>
+              <%= render 'shared/new-review', { review: @review, book: @book, roteiro: @roteiro } %>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <!-- Aqui será renderizado o formulário para adicionar um novo roteiro -->
-        <%@roteiro = roteiro %>
-        <%@review = Review.new %>
-        <%= render 'shared/new-review', { review: @review, book: @book, roteiro: @roteiro } %>
-      </div>
-    </div>
-  </div>
+  <% else %>
+      <%= link_to 'Sign in to leave a review!', new_user_session_path, class: "btn text-center" %>
+  <% end %>
 </div>

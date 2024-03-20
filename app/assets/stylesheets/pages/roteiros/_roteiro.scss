@@ -1,9 +1,9 @@
 /* Estilos gerais para os cartões */
 .roteiro-card {
-  border: 1px solid #ddd; /* Borda sutil */
-  border-radius: 8px; /* Bordas arredondadas */
+  // border: 1px solid #ddd; /* Borda sutil */
+  // border-radius: 8px; /* Bordas arredondadas */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra leve para dar profundidade */
-  margin-bottom: 20px; /* Espaço entre os cartões */
+  margin-bottom: 15px; /* Espaço entre os cartões */
   overflow: hidden; /* Garante que nada saia fora dos limites do cartão */
   transition: box-shadow 0.3s ease; /* Efeito de transição para a sombra */
 }
@@ -27,7 +27,7 @@
 }
 
 .roteiro-details div {
-  margin-bottom: 10px; /* Espaço entre os elementos dos detalhes */
+  margin-bottom: 5px; /* Espaço entre os elementos dos detalhes */
 }
 
 /* Estilização específica para imagens, se necessário */
@@ -64,7 +64,7 @@
     padding: 5px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    min-width: 90%;
+    min-width: 95%;
 
   }
 
@@ -140,12 +140,17 @@ li {
 }
 
 .row {
-  margin: 10px auto 0;
+  margin: 5px auto 0;
 }
 
 hr {
   margin: 10px 0;
   color: #007bff;
+}
+
+p {
+  font-size: 100%;
+
 }
 
 // CAROUSEL //

@@ -43,6 +43,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: left; /* Alinha o conteúdo da div.card à esquerda */
   display: block; /*garante que os itens sejam dispostos em uma coluna */
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .avatar-profile {
@@ -115,4 +118,26 @@
   max-height: 50x; /* Defina a altura máxima que deseja */
   overflow-y: auto; /* Adicione uma barra de rolagem vertical caso o conteúdo exceda a altura máxima */
   word-wrap: break-word;
+
+  p {
+    color: black;
+  }
+}
+
+.leave-review {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  justify-content: center;
+
+  button {
+   width: 25%;
+  }
+}
+
+.no-image-message {
+  margin-left: 5px;
+  font-size: 16px;
+  
 }
