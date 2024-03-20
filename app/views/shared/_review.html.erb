@@ -57,11 +57,34 @@
 
 
 <% if user_signed_in? %>
+
   <div>
-    <%= link_to 'Leave a review!', new_book_roteiro_review_path(book_id: roteiro.book.id, roteiro_id: roteiro.id), class: "edit-button" %>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Leave a review!
+    </button>
   </div>
+
 <% else %>
   <div>
     <%= link_to 'Sign in to leave a review!', new_user_session_path, class: "btn btn-primary" %>
   </div>
 <% end %>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-5" id="exampleModalLabel">New Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Aqui será renderizado o formulário para adicionar um novo roteiro -->
+        <%@roteiro = roteiro %>
+        <%@review = Review.new %>
+        <%= render 'shared/new-review', { review: @review, book: @book, roteiro: @roteiro } %>
+      </div>
+    </div>
+  </div>
+</div>
