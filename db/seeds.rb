@@ -27,13 +27,11 @@ user = User.create!(
   admin: true
 )
 
-
-
 def fetch_google_books(author)
   puts 'fazendo o seed'
   query_author = author.gsub(' ', '%20')
   base_url = 'https://www.googleapis.com/books/v1/volumes'
-  query_url = "#{base_url}?q=inauthor:#{query_author}&maxResults=6&key=#{GOOGLE_BOOKS_API_KEY}"
+  query_url = "#{base_url}?q=inauthor:#{query_author}&maxResults=15&key=#{GOOGLE_BOOKS_API_KEY}"
 
   response = HTTParty.get(query_url)
   items = response['items']
@@ -51,7 +49,7 @@ def fetch_google_books(author)
     user = User.first
 
     book = Book.new(name: name, author: author, description: description, thumbnail: medium, user: user)
-    book.save! if book.thumbnail.present? && book.valid? && book.description.present?
+    book.save! if book.thumbnail.present? && book.valid? && book.description.present? && book.author.split(',').size == 1
   end
 end
 
