@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     # if current_user.id == @review.user_id
     @review.destroy
-    redirect_to book_path
+    redirect_to favorites_path
   end
 
 
