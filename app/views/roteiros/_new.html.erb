@@ -11,7 +11,8 @@
     <%= f.label :activity_done, "Share your photos as well! (Max. 3 per Itinerary)" %>
       <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, "Create" %>
-  <%= link_to "Cancel", root_path  %>
-  <% end %>
 
-</div>
+  <%= link_to "Cancel", request.referer %>
+
+  <% end %>
+  </div>
