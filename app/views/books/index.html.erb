@@ -1,10 +1,9 @@
 <div class="container-12">
-  <h1>Welcome to the BookTown
     <span class="txt-type"></span></h1>
-  <h2>Choose your book and inspire yourself</h2>
+  <h2>Choose your book and start reading the city</h2>
 </div>
 
-<div class="grid" style="background: #dfcaca url('https://img.freepik.com/fotos-gratis/escultura-em-pedra-por-do-sol_1137-178.jpg?w=740&t=st=1710591319~exp=1710591919~hmac=d4a541e0e9c8a68b29521ce252f813254340c389baedb67963894542b7b6e835'); background-size: cover; background-repeat: no-repeat; background-position: center">
+<div class="grid">
   <% @books.order(id: :asc).limit(12).each_slice(3) do |books| %>
     <div class="grid-row">
       <% books.each do |book| %>
