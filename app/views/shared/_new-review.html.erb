@@ -19,7 +19,7 @@
     var charCount = document.getElementById("charCount");
     var submitButton = document.getElementById("submit_button");
     var ratingInputs = document.querySelectorAll('input[name="review[rating]"]');
-    var ratingSelected = false;
+    // var ratingSelected = false;
 
     descriptionInput.addEventListener("input", function() {
       var remainingChars = maxLength - this.value.length;
@@ -31,17 +31,17 @@
       }
     });
 
-    ratingInputs.forEach(function(input) {
-      input.addEventListener("change", function() {
-        ratingSelected = true;
-      });
-    });
+    // ratingInputs.forEach(function(input) {
+    //   input.addEventListener("change", function() {
+    //     ratingSelected = true;
+    //   });
+    // });
 
-    submitButton.addEventListener("click", function(event) {
-      if (!ratingSelected) {
-        event.preventDefault(); // Prevent form submission
-        alert("Please rate the itinerary before submitting your review.");
-      }
-    });
+    // submitButton.addEventListener("click", function(event) {
+    //   if (!ratingSelected) {
+    //     event.preventDefault(); // Prevent form submission
+    //     alert("Please rate the itinerary before submitting your review.");
+    //   }
+    // });
   });
 </script>
