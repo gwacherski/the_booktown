@@ -1,6 +1,6 @@
 <!-- app/views/favorites/index.html.erb -->
 <div class="favorite-title">
-  <h1>Hi, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+  <h1 style="font-family: 'Tourney', sans-serif;">Hi, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
 </div>
 <div class="grid-fav">
 
@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col text">
           <ul>
-            <li><strong>My data:</strong></li>
+            <li style="font-family: 'Tourney', sans-serif;"><strong>My data:</strong></li>
             <li><i class="fa-regular fa-user"></i> <%= current_user.username %></li>
             <li><i class="fa-regular fa-envelope"></i> <%= current_user.email %></li>
             <li><i class="fa-regular fa-calendar"></i> <%= current_user.created_at.strftime("%Y-%m-%d") %></li>
@@ -38,16 +38,16 @@
   </div>
 
   <div class="favorites">
-    <h3>My Favorites</h3>
+    <h3 style="font-family: 'Tourney', sans-serif; font-weight: 800;">My Favorites</h3>
     <% if @favorites.present? %>
     <div class="table-wrapper">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Itinerary Title</th>
-          <th scope="col">Book Name</th>
-          <th scope="col">Average Itinerary Rating</th>
-          <th scope="col">Actions</th>
+        <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Itinerary Title</th>
+        <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Book Name</th>
+        <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Average Itinerary Rating</th>
+        <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -88,18 +88,18 @@
   </div>
 
   <div class="roteiros">
-    <h3>My Itinerarys</h3>
+    <h3 style="font-family: 'Tourney', sans-serif; font-weight: 800;">My Itinerarys</h3>
     <% if @user_roteiros.present? %>
       <div class="table-wrapper">
         <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Itinerary Title</th>
-            <th scope="col">Belongs to</th>
-            <th scope="col">Average Itinerary Rating</th>
-            <th scope="col">Last update</th>
-            <th scope="col">No. of reviews</th>
-            <th scope="col">Edit Itinerary</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Itinerary Title</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Belongs to</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Average Itinerary Rating</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Last update</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">No. of reviews</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Edit Itinerary</th>
           </tr>
         </thead>
         <tbody>
@@ -143,7 +143,7 @@
   </div>
 
   <div class="reviews">
-    <h3>My Reviews</h3>
+    <h3 style="font-family: 'Tourney', sans-serif; font-weight: 800;">My Reviews</h3>
     <% if @user_reviews.present? %>
      <div class="table-wrapper">
      <%# Ordene as revisões por data de atualização (last update) %>
@@ -151,12 +151,12 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Book Name</th>
-            <th scope="col">Itinerary Title</th>
-            <th scope="col">Short Description</th>
-            <th scope="col">Last update</th>
-            <th scope="col">Rating given</th>
-            <th scope="col">Delete</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Book Name</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Itinerary Title</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Short Description</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Last update</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Rating given</th>
+            <th scope="col" style="font-family: 'Tourney', sans-serif; font-weight: 800;">Delete</th>
           </tr>
         </thead>
         <tbody>

@@ -1,5 +1,5 @@
 <div class="title-book">
-  <h2><strong><%= "Trip with #{@book.author}" %></strong></h2>
+  <h2 style="font-family: 'Tourney', sans-serif;"><strong><%= "Trip with #{@book.author}" %></strong></h2>
 </div>
 
 <div class="photo-card">
@@ -26,15 +26,15 @@
 
 <div class="new-itinerary">
   <div class="itinerary-card">
-    <h3>Create Your Itinerary<i class="fa-solid fa-map-pin" style="color: black; margin: 8px;"></i></h3>
+    <h3 style="font-family: 'Tourney', sans-serif; font-weight: 800;">Create Your Itinerary<i class="fa-solid fa-map-pin" style="color: black; margin: 8px;"></i></h3>
     <p>Inpired by the book, share your own experience or the expeirience that you wanted to do based on the places, building or monuments that your favorite character visited, lived and explored within the pages.
     Fill the custom itinerary with details, enrich with photos of the places (add your own photos, it's ok to be smug sometimes) and help other read the city as you did!
     And last, remember to leave a review or better, give a compliment to the fellow reader who created the itinerary and inspired you!</p>
     <% if user_signed_in? %>
       <div class="new-itinerary-button">
-        <button type="button" class="btn btn-warning btn-lg rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          New Itinerary
-        </button>
+         <button type="button" class="btn btn-warning btn-lg rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-family: 'Tourney', sans-serif; font-weight: 800;">
+            New Itinerary
+         </button>
       </div>
     <% else %>
       <%= link_to "Share your experience!", new_user_session_path, class: "btn" %>
@@ -63,7 +63,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fs-5" id="exampleModalLabel">New Itinerary</h5>
+        <h5 class="modal-title fs-5" id="exampleModalLabel" style="font-family: 'Tourney', sans-serif; font-weight: 800; color: black;">New Itinerary</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 25px;"></button>
       </div>
       <div class="modal-body">
