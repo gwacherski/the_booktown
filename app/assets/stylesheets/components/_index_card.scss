@@ -28,7 +28,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  font-family: $open-sans;
+  font-family: 'Raleway', sans-serif;
 }
 
 a {
@@ -36,7 +36,7 @@ a {
 }
 
 h1 {
-  font-family: $open-sans;
+  font-family: 'Raleway', sans-serif;
   font-weight: 300;
 }
 
@@ -83,7 +83,7 @@ h1 {
       top: 0;
       font-size: 10px;
       font-weight: 700;
-      font-family: 'Open Sans';
+      font-family: 'Raleway', sans-serif;
       transform: translate(-50%, 0);
     }
   }
