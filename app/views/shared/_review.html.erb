@@ -30,14 +30,26 @@
 
     <!-- Photos -->
 
-    <% if review.photos.attached? %>
-      <div class="review-photos">
+    <% if review.photos.present? %>
+      <div class="row review-photo-grid">
         <% review.photos.each do |photo| %>
-          <%= cl_image_tag review.photos %>
+          <div class="col">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal<%= photo.id %>">
+              <%= cl_image_tag photo.key, class: 'img-fluid' %>
+            </a>
+            <div class="modal fade" id="photoModal<%= photo.id %>" tabindex="-1" aria-labelledby="photoModalLabel<%= photo.id %>" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <%= cl_image_tag photo.key, class: 'img-fluid' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
     <% end %>
-
 
     <!-- Review Description -->
 
@@ -47,7 +59,7 @@
 
     <!-- Message for reviews without images -->
 
-    <% unless review.photos.attached? %>
+    <% unless review.photos.present? %>
       <div class="no-image-message">
         <p> Review created without images.</p>
       </div>

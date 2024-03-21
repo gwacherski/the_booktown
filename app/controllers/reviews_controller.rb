@@ -59,7 +59,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :description, :rich_body, :book_id, :user_id, :roteiro_id)
+    params.require(:review).permit(:rating, :description, :rich_body, :book_id, :user_id, :roteiro_id, photos: [])
   end
 
   def update_roteiro_rating(roteiro_id)
