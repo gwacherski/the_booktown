@@ -10,9 +10,11 @@
         <div class="carousel-item active" style="background-image: url(assets/images/back-2.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Welcome to <span>The BookTown!</span></h2>
-              <p class="animate__animated animate__fadeInUp">Search for you favorite book and start exploring the city!</p>
-              <%# <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a> %>
+              <!-- Usei uma classe font-tourney para aplicar a fonte apenas ao texto desejado -->
+              <h2 class="animate__animated animate__fadeInDown" style="font-family: 'Tourney', sans-serif;">Welcome to The BookTown!</h2>
+
+              <!-- Outros elementos permanecem sem a classe font-tourney e, portanto, sem a fonte Tourney -->
+              <p class="animate__animated animate__fadeInUp">Search for your favorite book and start exploring the city!</p>
               <div class="search">
                 <i class="fa fa-search"></i>
                 <form action="<%= books_path %>" method="get">
