@@ -1,24 +1,25 @@
+<%= simple_form_for(@review, url: book_roteiro_reviews_path(book_id: @book.id, roteiro_id: @roteiro.id)) do |f| %>
+  Hi, <%= current_user.first_name %>!<br> We would love to hear your opinion about this book. Please, leave your review below:<br><br>
+  <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: { data: { controller: "star-rating" } } %>
+  <%= f.input :description, as: :text, input_html: { rows: 4, id: "review_description" } %>
+  <div style="display: flex; justify-content: flex-end;">
+    <div style="font-size: smaller;">
+      <span id="charCount"></span> characters remaining
+    </div>
+  </div>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
-        <%= simple_form_for(@review, url: book_roteiro_reviews_path(book_id: @book.id, roteiro_id: @roteiro.id)) do |f| %>
-          Hi, <%= current_user.first_name %>!<br> We would love to hear your opinion about this book. Please, leave your review below:<br><br>
-          <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: { data: { controller: "star-rating" } } %>
-          <%= f.input :description, as: :text, input_html: { rows: 4, id: "review_description" } %>
-          <div style="display: flex; justify-content: flex-end;">
-            <div style="font-size: smaller;">
-              <span id="charCount"></span> characters remaining
-            </div>
-          </div>
-          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-
-          <%= f.button :submit, "Send your review", class: "btn btn-success" %>
-        <% end %>
-
+  <%= f.button :submit, "Send your review", class: "btn btn-success", id: "submit_button" %>
+<% end %>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var maxLength = 700;
     var descriptionInput = document.getElementById("review_description");
     var charCount = document.getElementById("charCount");
+    var submitButton = document.getElementById("submit_button");
+    var ratingInputs = document.querySelectorAll('input[name="review[rating]"]');
+    var ratingSelected = false;
 
     descriptionInput.addEventListener("input", function() {
       var remainingChars = maxLength - this.value.length;
@@ -27,6 +28,19 @@
         charCount.style.color = "red";
       } else {
         charCount.style.color = "";
+      }
+    });
+
+    ratingInputs.forEach(function(input) {
+      input.addEventListener("change", function() {
+        ratingSelected = true;
+      });
+    });
+
+    submitButton.addEventListener("click", function(event) {
+      if (!ratingSelected) {
+        event.preventDefault(); // Prevent form submission
+        alert("Please rate the book before submitting your review.");
       }
     });
   });
