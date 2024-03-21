@@ -12,12 +12,12 @@
     <p><em><%= truncate(@book.description, length: 600) %></em></p>
     <div class="book-buttons">
       <% if user_signed_in? && current_user.admin? %>
-        <%= button_to "Destroy Book", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn action-button" %>
+        <%= button_to "Delete Book", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn action-button" %>
       <% end %>
       <% if user_signed_in? && (current_user.admin? || @book.user == current_user) %>
         <!-- O link de edição abre o modal -->
         <button type="button" class="btn action-button" data-bs-toggle="modal" data-bs-target="#editBookModal">
-          Edit
+          Edit Book
         </button>
       <% end %>
     </div>
@@ -32,7 +32,7 @@
     And last, remember to leave a review or better, give a compliment to the fellow reader who created the itinerary and inspired you!</p>
     <% if user_signed_in? %>
       <div class="new-itinerary-button">
-         <button type="button" class="btn btn-warning btn-lg rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-family: 'Tourney', sans-serif; font-weight: 800;">
+         <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-family: 'Tourney', sans-serif; font-weight: 800;">
             New Itinerary
          </button>
       </div>
