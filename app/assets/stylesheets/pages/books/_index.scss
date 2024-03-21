@@ -34,7 +34,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:200,100,400');
 
 body {
-  font-family: 'Raleway', sans-serif;
+
   height: 100vh;
   background: #dfcaca;
   color: #ccc;
@@ -61,21 +61,24 @@ body {
   height: 100%;
   padding: 0 3rem;
   align-items: center;
+  background-color: black;
+
+  h2 {
+    font-weight: 200;
+    margin: 0.4rem;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-top: 15px;
+
+  }
+
 }
 
-h1, h2 {
-  font-weight: 200;
-  margin: 0.4rem;
-}
 
 h1 {
   font-size: 3.5rem;
 }
 
-h2 {
-  font-size: 2rem;
-  color: #aaa;
-}
 
 /* Cursor */
 .txt-type > .txt {
@@ -106,4 +109,8 @@ h2 {
   h2 {
     font-size: 1.5rem;
   }
+}
+
+.grid {
+  background-color: #cdcdcd;
 }

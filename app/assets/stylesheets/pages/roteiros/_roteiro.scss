@@ -1,7 +1,7 @@
 /* Estilos gerais para os cartões */
 .roteiro-card {
   // border: 1px solid #ddd; /* Borda sutil */
-  // border-radius: 8px; /* Bordas arredondadas */
+  border-radius: 6px; /* Bordas arredondadas */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra leve para dar profundidade */
   margin-bottom: 15px; /* Espaço entre os cartões */
   overflow: hidden; /* Garante que nada saia fora dos limites do cartão */
@@ -13,7 +13,7 @@
 }
 
 .roteiro-title {
-  background-color: orange; /* Cor de fundo do título (exemplo com azul) */
+  background-color: black; /* Cor de fundo do título (exemplo com azul) */
   color: white; /* Cor do texto do título */
   padding: 15px 20px; /* Espaçamento interno */
   cursor: pointer; /* Indica que é clicável */
@@ -23,7 +23,7 @@
 .roteiro-details {
   display: none; /* Inicialmente escondido */
   padding: 5px; /* Espaçamento interno */
-  background-color: #f8f9fa; /* Cor de fundo do carrosel e do card de dados */
+  background-color: #cdcdcd; /* Cor de fundo do carrosel e do card de dados */
 }
 
 .roteiro-details div {
@@ -62,9 +62,9 @@
     display: grid;
     gap: 20px;
     padding: 5px;
-    background-color: #f9f9f9;
+
     border-radius: 10px;
-    min-width: 95%;
+    min-width: 96%;
 
   }
 
@@ -125,6 +125,7 @@
     margin-left: 0px;
     width: -webkit-fill-available;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
   }
 }
 
@@ -150,7 +151,28 @@ hr {
 
 p {
   font-size: 100%;
+}
 
+.favorite-btn {
+  text-align: end;
+
+  a {
+    background-color: #a9b683;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #a9b683;
+    }
+  }
+}
+
+.review-card h3{
+text-align: center;
 }
 
 // CAROUSEL //
