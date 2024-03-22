@@ -1,25 +1,33 @@
-<div class="container">
-  <%= simple_form_for(@roteiro) do |f| %>
-    <%= f.input :title, :label => 'Itinerary Title' %>
-    <%= f.input :location, :label => 'City' %>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <div class="container">
+          <%= simple_form_for(@roteiro) do |f| %>
+            <%= f.input :title, :label => 'Itinerary Title' %>
+            <%= f.input :location, :label => 'City' %>
 
-    <%= f.input :activity_description, :as => :text, :input_html => { style: 'resize:vertical; min-height: 120px;' }  %>
-    <%= f.input :activity_address %>
-    <%= f.input :estimated_time, :label => 'Estimated time (hours) for itinerary' %>
-    <%= f.input :estimated_costs, :label => 'Total estimated costs' %>
-    <%= f.label :activity_done, "I did this itinerary" %>
-      <%= f.check_box :activity_done %>
-    <%= f.label :activity_done, "Share your photos as well!" %>
-      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-        <% if @roteiro.photos.attached? %>
-          <% @roteiro.photos.each do |photo| %>
-            <div>
-              <p>Current photo: <%= photo.filename %></p>
-              <%= f.input :remove_photo, as: :boolean %>
-            </div>
-          <% end %>
-        <% end %>
-      <%= f.button :submit, "Finish editing" %>
-      <%= link_to "Cancel", favorites_path %>
-    <% end %>
+            <%= f.input :activity_description, :as => :text, :input_html => { style: 'resize:vertical; min-height: 120px;' }  %>
+            <%= f.input :activity_address %>
+            <%= f.input :estimated_time, :label => 'Estimated time (hours) for itinerary' %>
+            <%= f.input :estimated_costs, :label => 'Total estimated costs' %>
+            <%= f.label :activity_done, "I did this itinerary" %>
+              <%= f.check_box :activity_done %>
+            <%= f.label :activity_done, "Share your photos as well!" %>
+              <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+                <% if @roteiro.photos.attached? %>
+                  <% @roteiro.photos.each do |photo| %>
+                    <div>
+                      <p>Current photo: <%= photo.filename %></p>
+                      <%= f.input :remove_photo, as: :boolean %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <%= f.button :submit, "Finish editing" %>
+              <%= link_to "Cancel", favorites_path %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
