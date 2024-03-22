@@ -26,5 +26,7 @@ Rails.application.routes.draw do
 # new review
 #  get 'books/:book_id/roteiros/:roteiro_id/reviews/new', to: 'reviews#new', as: :new_review
 
+  get '/users', to: redirect('/')
+
   resources :roteiros, only: [:index, :edit, :update]
 end

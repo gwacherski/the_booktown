@@ -1,7 +1,7 @@
 
 .grid-fav {
 	display: grid;
-  grid-template-columns: 250px auto;
+  grid-template-columns: 265px auto;
   grid-auto-rows: minmax(120px, auto);
   grid-gap: 10px;
   margin: 10px;
@@ -22,6 +22,9 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
+  p {
+    color: black;
+  }
 
 }
 
@@ -30,6 +33,9 @@
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+  p {
+    color: black;
+  }
 
 }
 
@@ -38,6 +44,9 @@
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
+  p {
+    color: black;
+  }
 
 }
 
